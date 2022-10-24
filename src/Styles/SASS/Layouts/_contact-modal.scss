@@ -1,6 +1,6 @@
 .contactModal {
   border-radius: 5px;
-  background-color: #db8876;
+  background-color: $highlight-tertiary;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ form {
 }
 
 form label {
-  color: #312e2e;
+  color: $neutral-primary;
   font-size: 36px;
 }
 

@@ -10,24 +10,47 @@
 </head>
 
 <body>
-  <header>
-    <img src="src/Assets/Images/logo.png" class="logo" />
+  <header class="header">
+    <img class="header__logo" src="src/Assets/Images/logo.png" class="logo" />
   </header>
   <main id="mainSection">
     <div class="photographerHeader">
+      <div class="photographerInfos">
+        <h1 class="photographerInfos__name">Mimi Keel</h1>
+        <p class="photographerInfos__location">London, UK</p>
+        <p class="photographerInfos__tagline">Voir le beau dans le quotidien</p>
+      </div>
       <button class="contactButton">Contactez-moi</button>
+      <img class="photographerHeader__picture" src="./src/Assets/Photographers/ID_Photos/MimiKeel.jpg"
+        alt="Photographer Mimi Keel">
     </div>
   </main>
   <div class="contactModal__overlay">
     <div class="contactModal">
       <header class="contactModal__header">
-        <h2 class="contactModal__title">Contactez-moi</h2>
+        <h2 class="contactModal__title">Contactez-moi Mimi Keel</h2>
         <img class="contactModal__closeButton" src="src/Assets/Icons/close.svg" alt="Close contact modal" />
       </header>
       <form class="contactModal__form">
-        <div>
-          <label>Prénom</label>
-          <input />
+        <div class="form__data">
+          <label for="first">Prénom</label><br>
+          <input class="form__textControl" type="text" id="first" name="first"><br>
+          <span class="form__errorMessage"></span>
+        </div>
+        <div class="form__data">
+          <label for="last">Nom</label><br>
+          <input class="form__textControl" type="text" id="last" name="last"><br>
+          <span class="form__errorMessage"></span>
+        </div>
+        <div class="form__data">
+          <label for="email">Email</label><br>
+          <input class="form__textControl" type="text" id="email" name="email"><br>
+          <span class="form__errorMessage"></span>
+        </div>
+        <div class="form__data">
+          <label for="message">Votre message</label><br>
+          <input class="form__textControl" type="text" id="message" name="message"><br>
+          <span class="form__errorMessage"></span>
         </div>
         <button class="contactButton">Envoyer</button>
       </form>

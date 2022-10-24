@@ -1,0 +1,19 @@
+.photographerInfos {
+display: flex;
+flex-direction: column;
+gap: 16px;
+
+  &__name {
+    color: $highlight-secondary;
+    @include typographies(header);
+  }
+
+  &__location {
+    color: $highlight-primary;
+    @include typographies(subtitle);
+  }
+
+  &__tagline {
+    @include typographies(body);
+  }
+}

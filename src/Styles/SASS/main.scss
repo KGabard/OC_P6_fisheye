@@ -5,28 +5,12 @@
 @import './Base/base';
 
 @import './Components/photographer-card';
+@import './Components/contact-button';
+@import './Components/photographer-infos';
 
 @import './Layouts/header';
 @import './Layouts/photographer-section';
 @import './Layouts/contact-modal';
+@import './Layouts/photographer-header';
 
 //photographer.css
-
-.photographerHeader {
-  background-color: #fafafa;
-  height: 300px;
-  margin: 0 100px;
-}
-
-.contactButton {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
-}

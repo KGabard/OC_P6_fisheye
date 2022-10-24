@@ -1,0 +1,15 @@
+.photographerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $neutral-tertiary;
+  height: 300px;
+  padding: 0 48px;
+
+  &__picture {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

@@ -20,7 +20,7 @@
   }
 
   &__name {
-    color: #d3573c;
+    color: $highlight-secondary;
     @include typographies(title);
     @include ellipsis(1);
   }

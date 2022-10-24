@@ -6,7 +6,7 @@
   height: 96px;
 
   &__title {
-    color: #901c1c;
+    color: $highlight-primary;
     @include typographies(title);
   }
 

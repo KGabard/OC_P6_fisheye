@@ -73,6 +73,45 @@ body {
   color: #312e2e;
 }
 
+.contactButton {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.photographerInfos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.photographerInfos__name {
+  color: #d3573c;
+  font-family: DM Sans, sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 83px;
+}
+.photographerInfos__location {
+  color: #901c1c;
+  font-family: DM Sans, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+}
+.photographerInfos__tagline {
+  font-family: DM Sans, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 23.5px;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -168,20 +207,17 @@ form input {
 }
 
 .photographerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fafafa;
   height: 300px;
-  margin: 0 100px;
+  padding: 0 48px;
 }
-
-.contactButton {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
+.photographerHeader__picture {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=main.css.map */

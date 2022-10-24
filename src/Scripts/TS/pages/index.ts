@@ -1,6 +1,9 @@
-import { photographerFactory } from '../factories/photographer.js'
+import {
+  photographerData,
+  photographerFactory,
+} from '../factories/photographer.js'
 
-const getPhotographers = async () => {
+const getPhotographers: () => Promise<photographerData[]> = async () => {
   try {
     const res = await fetch('src/data/photographers.json')
     const data = await res.json()
@@ -16,8 +19,12 @@ const getPhotographers = async () => {
   }
 }
 
-const displayData = async (photographers) => {
-  const photographersSection = document.querySelector('.photographerSection')
+const displayData: (photographers: photographerData[]) => void = async (
+  photographers
+) => {
+  const photographersSection = document.querySelector(
+    '.photographerSection'
+  ) as HTMLDivElement
 
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer)
@@ -26,7 +33,7 @@ const displayData = async (photographers) => {
   })
 }
 
-const init = async () => {
+export const init = async () => {
   const photographers = await getPhotographers()
   displayData(photographers)
 }

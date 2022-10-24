@@ -1,10 +1,26 @@
-export const photographerFactory = (data) => {
+export type photographerData = {
+  name: string
+  id: number
+  city: string
+  country: string
+  tagline: string
+  price: number
+  portrait: string
+}
+
+type photographerFactoryType = (data: photographerData) => {
+  name: string
+  picture: string
+  getUserCardDOM: () => HTMLElement
+}
+
+export const photographerFactory: photographerFactoryType = (data) => {
   const { name, city, country, tagline, price, portrait } = data
 
   const picture = `src/Assets/photographers/ID_Photos/${portrait}`
 
   const getUserCardDOM = () => {
-    const card = document.createElement('article')
+    const card = document.createElement('article') as HTMLElement
     card.classList.add('photographerCard')
 
     card.innerHTML =

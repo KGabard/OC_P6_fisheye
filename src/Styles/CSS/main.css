@@ -108,30 +108,7 @@ body {
   margin: 96px 0;
 }
 
-#contactModal {
-  display: none;
-}
-
-.photographerHeader {
-  background-color: #fafafa;
-  height: 300px;
-  margin: 0 100px;
-}
-
-.contactButton {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.modal {
+.contactModal {
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
@@ -142,19 +119,24 @@ body {
   padding: 35px;
   margin: auto;
 }
-
-.modal header {
+.contactModal__overlay {
+  display: none;
+}
+.contactModal__overlay--active {
+  display: block;
+}
+.contactModal__header {
   justify-content: space-between;
   width: 100%;
 }
-
-.modal header img {
+.contactModal__closeButton {
   cursor: pointer;
 }
-
-.modal header h2 {
+.contactModal__title {
+  font-family: DM Sans, sans-serif;
   font-size: 64px;
-  font-weight: normal;
+  font-weight: 400;
+  line-height: 83px;
   text-align: center;
 }
 
@@ -183,4 +165,23 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.photographerHeader {
+  background-color: #fafafa;
+  height: 300px;
+  margin: 0 100px;
+}
+
+.contactButton {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

@@ -15,16 +15,16 @@
   </header>
   <main id="mainSection">
     <div class="photographerHeader">
-      <button class="contactButton" onclick="displayModal()">Contactez-moi</button>
+      <button class="contactButton">Contactez-moi</button>
     </div>
   </main>
-  <div id="contactModal" class="contactModal">
-    <div class="modal">
-      <header>
-        <h2>Contactez-moi</h2>
-        <img src="src/Assets/Icons/close.svg" onclick="closeModal()" />
+  <div class="contactModal__overlay">
+    <div class="contactModal">
+      <header class="contactModal__header">
+        <h2 class="contactModal__title">Contactez-moi</h2>
+        <img class="contactModal__closeButton" src="src/Assets/Icons/close.svg" alt="Close contact modal" />
       </header>
-      <form>
+      <form class="contactModal__form">
         <div>
           <label>Prénom</label>
           <input />
@@ -33,8 +33,7 @@
       </form>
     </div>
   </div>
-  <script src="src/Scripts/factories/photographer.js"></script>
-  <script src="src/Scripts/utils/contactForm.js"></script>
+  <script type="module" src="./src/Scripts/JS/pages/photographer.js"></script>
 </body>
 
 </html>

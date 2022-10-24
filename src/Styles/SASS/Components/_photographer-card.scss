@@ -1,0 +1,41 @@
+.photographerCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: fit-content;
+
+  &__link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__picture {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__name {
+    color: #d3573c;
+    @include typographies(title);
+    @include ellipsis(1);
+  }
+
+  &__location {
+    @include typographies(card-body-big);
+    color: $highlight-primary;
+  }
+
+  &__tagline {
+    @include typographies(card-body-medium);
+  }
+
+  &__price {
+    @include typographies(card-body-small);
+    color: $neutral-primary;
+  }
+}

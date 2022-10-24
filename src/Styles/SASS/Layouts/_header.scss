@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 96px;
+
+  &__title {
+    color: #901c1c;
+    @include typographies(title);
+  }
+
+  &__logo {
+    height: 50px;
+  }
+}
+
+@include mobile {
+  .header {
+    margin-top: 32px;
+    flex-direction: column;
+
+    &__title {
+      text-align: center;
+    }
+  }
+}

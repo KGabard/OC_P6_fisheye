@@ -1,0 +1,74 @@
+$typographies: (
+  header: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 64px,
+    font-weight: 400,
+    line-height: 83px,
+  ),
+  title: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 36px,
+    font-weight: 400,
+    line-height: 47px,
+  ),
+  subtitle-bold: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 24px,
+    font-weight: 500,
+    line-height: 31px,
+  ),
+  subtitle: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 24px,
+    font-weight: 400,
+    line-height: 31px,
+  ),
+  body-bold: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 18px,
+    font-weight: 700,
+    line-height: 23.5px,
+  ),
+  body: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 18px,
+    font-weight: 400,
+    line-height: 23.5px,
+  ),
+  card-body-big: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 13px,
+    font-weight: 400,
+    line-height: 17px,
+  ),
+  card-body-medium: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 10px,
+    font-weight: 400,
+    line-height: 13px,
+  ),
+  card-body-small: (
+    font-family: (
+      $font-default,
+    ),
+    font-size: 9px,
+    font-weight: 400,
+    line-height: 12px,
+  ),
+);

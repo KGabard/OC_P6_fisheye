@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-default;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $gutter-desktop;
+}
+
+@include mobile {
+  body {
+    padding: 0 $gutter-mobile;
+  }
+}

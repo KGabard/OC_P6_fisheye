@@ -1,0 +1,20 @@
+@mixin mobile {
+  @media screen and (max-width: 800px) {
+    @content;
+  }
+}
+
+@mixin typographies($type) {
+  $typography: map-get($typographies, $type);
+  @each $attribute, $val in $typography {
+    #{$attribute}: #{$val};
+  }
+}
+
+@mixin ellipsis($line-count) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line-count;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

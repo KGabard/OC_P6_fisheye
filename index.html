@@ -2,23 +2,35 @@
 <html>
 
 <head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="src/Styles/CSS/main.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="icon" type="image/png" href="src/Assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Fisheye</title>
 </head>
 
 <body>
-  <header>
-    <img src="assets/images/logo.png" class="logo" />
-    <h1>Nos photographes</h1>
+  <header class="header">
+    <a href="#" class="header__link" aria-label="Fisheye Home page">
+      <img class="header__logo" src="src/Assets/Images/logo.png" class="logo" />
+    </a>
+    <h1 class="header__title">Nos photographes</h1>
   </header>
-  <main id="main">
-    <div class="photographer_section"></div>
-  </main>
-  <script src="scripts/factories/photographer.js"></script>
-  <script src="scripts/pages/index.js"></script>
+  <main id="mainSection">
+    <div class="photographerSection">
+      <!-- <article class="photographerCard">
+        <a class="photographerCard__link" href="#">
+          <img src="src/Assets/Photographers/ID_Photos/MimiKeel.jpg" alt="Photographer MimiKeel"
+            class="photographerCard__picture">
+          <h2 class="photographerCard__name">Mimi Keel</h2>
+        </a>
+        <h3 class="photographerCard__location">London, UK</h3>
+        <p class="photographerCard__tagline">Voir le beau dans le quotidien</p>
+        <p class="photographerCard__price">400€/jour</p>
+      </article> -->
+    </div>
+    </mainSection>
+    <script type="module" src="src/Scripts/pages/index.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,11 @@
+@mixin tablet {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
 @mixin mobile {
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     @content;
   }
 }
@@ -17,4 +23,19 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@mixin button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  min-width: 170px;
+  height: 70px;
+  min-height: 70px;
+  border: none;
+  background-color: $highlight-primary;
+  border-radius: 5px;
+  cursor: pointer;
 }

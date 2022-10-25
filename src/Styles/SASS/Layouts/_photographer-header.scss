@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 64px;
   background-color: $neutral-tertiary;
   height: 300px;
   padding: 0 48px;
@@ -11,5 +12,17 @@
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
+  }
+}
+
+@include tablet {
+  .photographerHeader {
+    flex-direction: column;
+    height: fit-content;
+    padding: 48px 24px;
+
+    &__picture {
+      order: -1;
+    }
   }
 }

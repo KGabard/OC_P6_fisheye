@@ -1,27 +1,36 @@
 .contactModal {
   border-radius: 5px;
   background-color: $highlight-tertiary;
-  width: 50%;
+  width: 100%;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 35px;
   margin: 64px auto;
+  position: relative;
+  z-index: 210;
 
-  &__overlay {
+  &__wrapper {
     display: none;
     position: fixed;
-    z-index: 200;
+    overflow: auto;
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
     &--active {
       display: block;
     }
+  }
+
+  &__overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   &__header {
@@ -41,5 +50,19 @@
 
   &__title {
     @include typographies(header);
+  }
+}
+
+@include mobile {
+  .contactModal {
+    &__header {
+      flex-direction: column;
+    }
+
+    &__closeButton {
+      order: -1;
+      align-self: end;
+      top: 0;
+    }
   }
 }

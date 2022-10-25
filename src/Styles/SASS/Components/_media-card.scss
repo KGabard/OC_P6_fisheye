@@ -1,0 +1,43 @@
+.mediaCard {
+  overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__picture {
+    width: $media-card-width;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  &__title {
+    @include typographies(subtitle);
+    color: $highlight-primary;
+  }
+
+  &__likeWrapper {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &__likeCount {
+    @include typographies(subtitle);
+    color: $highlight-primary;
+  }
+
+  &__likeIcon {
+    font-size: 20px;
+    color: $highlight-primary;
+  }
+}

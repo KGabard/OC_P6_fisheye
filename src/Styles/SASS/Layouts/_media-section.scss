@@ -1,0 +1,8 @@
+.mediaSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($media-card-width, 1fr));
+    gap: 64px;
+    row-gap: 32px;
+    justify-items: center;
+    margin: 32px 0;
+}

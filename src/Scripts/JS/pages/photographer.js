@@ -9,28 +9,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 //Mettre le code JavaScript lié à la page photographer.html
 import { contactFormHandler } from '../utils/contactForm.js';
-import { getPhotographers } from '../pages/index.js';
+import { getCurrentPhotographer, } from '../factories/photographer.js';
+import { getCurrentMedia, getMediaCardElmt } from '../factories/media.js';
 const photographerNameElmt = document.querySelector('.photographerInfos__name');
 const photographerLocationElmt = document.querySelector('.photographerInfos__location');
 const photographerTaglineElmt = document.querySelector('.photographerInfos__tagline');
 const photographerPictureElmt = document.querySelector('.photographerHeader__picture');
+const contactTitleElmt = document.querySelector('.contactModal__title');
 contactFormHandler();
-const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
-    const currentId = new URLSearchParams(window.location.search).get('id');
-    console.log(currentId);
-    const photographers = yield getPhotographers();
-    return photographers.filter((photographer) => photographer.id.toString() === currentId);
-});
 const displayPhotographerData = (photographer) => {
-    const { name, country, city, tagline, portrait } = photographer[0];
+    if (!photographer)
+        return;
+    const { name, country, city, tagline, portrait } = photographer;
     photographerNameElmt.innerText = name;
-    photographerLocationElmt.innerText = country + ', ' + city;
+    photographerLocationElmt.innerText = city + ', ' + country;
     photographerTaglineElmt.innerText = tagline;
-    photographerPictureElmt.src = `src/Assets/photographers/ID_Photos/${portrait}`;
+    photographerPictureElmt.src = `src/Assets/Photographers/${portrait}`;
     photographerPictureElmt.alt = `Photographer ${name}`;
+    contactTitleElmt.innerText = `Contactez-moi \n ${name}`;
+};
+const displayMedia = (mediaArray) => {
+    const mediaSectionElmt = document.querySelector('.mediaSection');
+    mediaArray.forEach((media) => {
+        const mediaCardElmt = getMediaCardElmt(media);
+        mediaSectionElmt.appendChild(mediaCardElmt);
+    });
 };
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentPhotographer = yield getCurrentPhotographer();
+    if (!currentPhotographer)
+        return;
     displayPhotographerData(currentPhotographer);
+    const currentMedia = yield getCurrentMedia(currentPhotographer.id);
+    if (!currentMedia)
+        return;
+    displayMedia(currentMedia);
 });
 initPhotographerPage();

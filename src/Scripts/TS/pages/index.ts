@@ -1,23 +1,8 @@
 import {
   photographerData,
   photographerFactory,
+  getPhotographers,
 } from '../factories/photographer.js'
-
-export const getPhotographers: () => Promise<photographerData[]> = async () => {
-  try {
-    const res = await fetch('src/data/photographers.json')
-    const data = await res.json()
-
-    if (!res.ok) {
-      Promise.reject('Error in 4xx or 5xx range')
-      return
-    }
-
-    return data.photographers
-  } catch (error) {
-    console.log(error)
-  }
-}
 
 const displayData: (photographers: photographerData[]) => void = async (
   photographers

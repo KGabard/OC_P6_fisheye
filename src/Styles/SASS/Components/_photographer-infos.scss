@@ -1,19 +1,32 @@
 .photographerInfos {
-display: flex;
-flex-direction: column;
-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
   &__name {
     color: $highlight-secondary;
     @include typographies(header);
+    @include ellipsis(2);
   }
 
   &__location {
     color: $highlight-primary;
     @include typographies(subtitle);
+    @include ellipsis(1);
   }
 
   &__tagline {
     @include typographies(body);
+    @include ellipsis(3);
+  }
+}
+
+@include tablet {
+  .photographerInfos {
+    align-items: center;
+
+    &__name, &__location, &__tagline {
+      text-align: center;
+    }
   }
 }

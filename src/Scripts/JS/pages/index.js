@@ -7,21 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { photographerFactory, } from '../factories/photographer.js';
-export const getPhotographers = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const res = yield fetch('src/data/photographers.json');
-        const data = yield res.json();
-        if (!res.ok) {
-            Promise.reject('Error in 4xx or 5xx range');
-            return;
-        }
-        return data.photographers;
-    }
-    catch (error) {
-        console.log(error);
-    }
-});
+import { photographerFactory, getPhotographers, } from '../factories/photographer.js';
 const displayData = (photographers) => __awaiter(void 0, void 0, void 0, function* () {
     const photographersSection = document.querySelector('.photographerSection');
     photographers.forEach((photographer) => {

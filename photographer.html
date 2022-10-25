@@ -4,7 +4,8 @@
 <head>
   <link href="src/Styles/CSS/main.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
-  <link rel="icon" type="image/png" href="src/Assets/favicon.png">
+  <script src="https://kit.fontawesome.com/ecaabcc8db.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/png" href="src/Assets/Logos/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Fisheye - photographe</title>
 </head>
@@ -12,7 +13,7 @@
 <body>
   <header class="header">
     <a href="./" class="header__link" aria-label="Fisheye Home page">
-      <img class="header__logo" src="src/Assets/Images/logo.png" class="logo" />
+      <img class="header__logo" src="src/Assets/Logos/logo.png" class="logo" />
     </a>
   </header>
   <main id="mainSection">
@@ -23,11 +24,25 @@
         <p class="photographerInfos__tagline">Citation</p>
       </div>
       <button class="contactButton">Contactez-moi</button>
-      <img class="photographerHeader__picture" src="./src/Assets/Photographers/account.png"
-        alt="Photographer">
+      <img class="photographerHeader__picture" src="./src/Assets/Photographers/account.png" alt="Photographer">
     </div>
+    <section class="mediaSection">
+      <!-- <div class="mediaCard">
+        <a href="#" class="mediaCard__link">
+          <img src="./src/Assets/Medias/Pictures/Animals_Majesty.jpg" alt="" class="mediaCard__picture">
+        </a>
+        <div class="mediaCard__infos">
+          <h2 class="mediaCard__title">Titre</h2>
+          <div class="mediaCard__likeWrapper">
+            <p class="mediaCard__likeCount">10</p>
+            <i class="mediaCard__likeIcon fa-solid fa-heart"></i>
+          </div>
+        </div>
+      </div> -->
+    </section>
   </main>
-  <div class="contactModal__overlay">
+  <div class="contactModal__wrapper">
+    <div class="contactModal__overlay"></div>
     <div class="contactModal">
       <header class="contactModal__header">
         <h2 class="contactModal__title">Contactez-moi <br> Mimi Keel</h2>
@@ -54,7 +69,7 @@
           <textarea class="form__input form__input--large" type="text" id="message" name="message"></textarea><br>
           <span class="form__errorMessage"></span>
         </div>
-        <button class="contactButton">Envoyer</button>
+        <button class="submitButton">Envoyer</button>
       </form>
     </div>
   </div>

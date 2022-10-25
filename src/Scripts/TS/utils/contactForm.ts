@@ -7,14 +7,18 @@ const closeModalButton = document.querySelector(
 const contactModalOverlay = document.querySelector(
   '.contactModal__overlay'
 ) as HTMLDivElement
+const contactModalWrapper = document.querySelector(
+  '.contactModal__wrapper'
+) as HTMLDivElement
 
 const toggleContactModal = () => {
-  contactModalOverlay.classList.contains('contactModal__overlay--active')
-    ? contactModalOverlay.classList.remove('contactModal__overlay--active')
-    : contactModalOverlay.classList.add('contactModal__overlay--active')
+  contactModalWrapper.classList.contains('contactModal__wrapper--active')
+    ? contactModalWrapper.classList.remove('contactModal__wrapper--active')
+    : contactModalWrapper.classList.add('contactModal__wrapper--active')
 }
 
 export const contactFormHandler = () => {
   contactButton.addEventListener('click', toggleContactModal)
   closeModalButton.addEventListener('click', toggleContactModal)
+  contactModalOverlay.addEventListener('click', toggleContactModal)
 }

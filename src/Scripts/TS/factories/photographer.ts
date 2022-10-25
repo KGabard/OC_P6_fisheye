@@ -17,7 +17,7 @@ type photographerFactoryType = (data: photographerData) => {
 export const photographerFactory: photographerFactoryType = (data) => {
   const { name, id, city, country, tagline, price, portrait } = data
 
-  const picture = `src/Assets/photographers/ID_Photos/${portrait}`
+  const picture = `src/Assets/Photographers/${portrait}`
 
   const getUserCardDOM = () => {
     const card = document.createElement('article') as HTMLElement
@@ -35,4 +35,31 @@ export const photographerFactory: photographerFactoryType = (data) => {
     return card
   }
   return { name, picture, getUserCardDOM }
+}
+
+export const getPhotographers: () => Promise<photographerData[]> = async () => {
+  try {
+    const res = await fetch('src/data/photographers.json')
+    const data = await res.json()
+
+    if (!res.ok) {
+      Promise.reject('Error in 4xx or 5xx range')
+      return
+    }
+
+    return data.photographers
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getCurrentPhotographer: () => Promise<
+  photographerData | undefined
+> = async () => {
+  const currentId = new URLSearchParams(window.location.search).get('id')
+  const photographers = await getPhotographers()
+
+  return photographers.find(
+    (photographer) => photographer.id.toString() === currentId
+  )
 }

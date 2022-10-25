@@ -3,7 +3,7 @@ import {
   photographerFactory,
 } from '../factories/photographer.js'
 
-const getPhotographers: () => Promise<photographerData[]> = async () => {
+export const getPhotographers: () => Promise<photographerData[]> = async () => {
   try {
     const res = await fetch('src/data/photographers.json')
     const data = await res.json()

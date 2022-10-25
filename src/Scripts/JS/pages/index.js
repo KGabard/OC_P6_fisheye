@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { photographerFactory, } from '../factories/photographer.js';
-const getPhotographers = () => __awaiter(void 0, void 0, void 0, function* () {
+export const getPhotographers = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const res = yield fetch('src/data/photographers.json');
         const data = yield res.json();

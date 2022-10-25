@@ -15,7 +15,7 @@ type photographerFactoryType = (data: photographerData) => {
 }
 
 export const photographerFactory: photographerFactoryType = (data) => {
-  const { name, city, country, tagline, price, portrait } = data
+  const { name, id, city, country, tagline, price, portrait } = data
 
   const picture = `src/Assets/photographers/ID_Photos/${portrait}`
 
@@ -24,7 +24,7 @@ export const photographerFactory: photographerFactoryType = (data) => {
     card.classList.add('photographerCard')
 
     card.innerHTML =
-      `<a class="photographerCard__link" href="#" aria-label="Link to photographer ${name}">` +
+      `<a class="photographerCard__link" href="photographer.html?id=${id}" aria-label="Link to photographer ${name}">` +
       `<img class="photographerCard__picture" src=${picture} alt="">` +
       `<h2 class="photographerCard__name">${name}</h2>` +
       `</a>` +

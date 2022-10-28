@@ -9,14 +9,14 @@ const listItemClass = 'mediaSorter__dropdownMenu__listItem'
 const selectorContainerElmt = document.querySelector(
   '.' + selectorContainerClass
 ) as HTMLDivElement
-const sortButtonElmt = document.querySelector(
+export const sortButtonElmt = document.querySelector(
   '.' + sortButtonClass
 ) as HTMLButtonElement
 const dropdownMenuElmt = document.querySelector(
   '.' + dropdownMenuClass
 ) as HTMLDivElement
 const chevronElmt = document.querySelector('.' + chevronClass) as HTMLElement
-const listItemElmts = document.querySelectorAll(
+export const listItemElmts = document.querySelectorAll(
   '.' + listItemClass
 ) as NodeListOf<HTMLLIElement>
 
@@ -39,6 +39,7 @@ const setLabelsInput: (
   label3: string
 ) => void = (label1, label2, label3) => {
   sortButtonElmt.innerText = label1
+  sortButtonElmt.setAttribute('data-value', label1.toLowerCase())
   listItemElmts[0].innerText = label1
   listItemElmts[0].setAttribute('data-value', label1.toLowerCase())
   listItemElmts[1].innerText = label2
@@ -47,7 +48,7 @@ const setLabelsInput: (
   listItemElmts[2].setAttribute('data-value', label3.toLowerCase())
 }
 
-const updateLabelsInput: (currentInput: string) => void = (currentInput) => {
+export const updateLabelsInput: (currentInput: string) => void = (currentInput) => {
   switch (currentInput) {
     case 'popularité':
       setLabelsInput('Popularité', 'Date', 'Titre')
@@ -66,18 +67,7 @@ const updateLabelsInput: (currentInput: string) => void = (currentInput) => {
   }
 }
 
-const getInput: (e: MouseEvent) => string | null = (e) => {
-  const currentLiEmlt = e.target as HTMLLIElement
-  const currentInput = currentLiEmlt.getAttribute('data-value')
-  currentInput && updateLabelsInput(currentInput)
-  return currentInput
-}
-
 // Add Eventlisteners
 export const sortMenuHandler = () => {
   selectorContainerElmt.addEventListener('click', toggleMenu)
-  dropdownMenuElmt.addEventListener('click', (e) => {
-    e.preventDefault()
-    console.log(getInput(e))
-  })
 }

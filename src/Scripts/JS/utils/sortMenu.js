@@ -6,10 +6,10 @@ const chevronClass = 'mediaSorter__chevron';
 const listItemClass = 'mediaSorter__dropdownMenu__listItem';
 // DOM Elements
 const selectorContainerElmt = document.querySelector('.' + selectorContainerClass);
-const sortButtonElmt = document.querySelector('.' + sortButtonClass);
+export const sortButtonElmt = document.querySelector('.' + sortButtonClass);
 const dropdownMenuElmt = document.querySelector('.' + dropdownMenuClass);
 const chevronElmt = document.querySelector('.' + chevronClass);
-const listItemElmts = document.querySelectorAll('.' + listItemClass);
+export const listItemElmts = document.querySelectorAll('.' + listItemClass);
 // Functions
 const toggleMenu = () => {
     if (dropdownMenuElmt.classList.contains(dropdownMenuClass + '--active')) {
@@ -25,6 +25,7 @@ const toggleMenu = () => {
 };
 const setLabelsInput = (label1, label2, label3) => {
     sortButtonElmt.innerText = label1;
+    sortButtonElmt.setAttribute('data-value', label1.toLowerCase());
     listItemElmts[0].innerText = label1;
     listItemElmts[0].setAttribute('data-value', label1.toLowerCase());
     listItemElmts[1].innerText = label2;
@@ -32,7 +33,7 @@ const setLabelsInput = (label1, label2, label3) => {
     listItemElmts[2].innerText = label3;
     listItemElmts[2].setAttribute('data-value', label3.toLowerCase());
 };
-const updateLabelsInput = (currentInput) => {
+export const updateLabelsInput = (currentInput) => {
     switch (currentInput) {
         case 'popularité':
             setLabelsInput('Popularité', 'Date', 'Titre');
@@ -47,17 +48,7 @@ const updateLabelsInput = (currentInput) => {
             break;
     }
 };
-const getInput = (e) => {
-    const currentLiEmlt = e.target;
-    const currentInput = currentLiEmlt.getAttribute('data-value');
-    currentInput && updateLabelsInput(currentInput);
-    return currentInput;
-};
 // Add Eventlisteners
 export const sortMenuHandler = () => {
     selectorContainerElmt.addEventListener('click', toggleMenu);
-    dropdownMenuElmt.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log(getInput(e));
-    });
 };

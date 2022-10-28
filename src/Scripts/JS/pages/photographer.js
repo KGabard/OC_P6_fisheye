@@ -7,58 +7,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+// Imports
 import { contactFormHandler } from '../Utils/contactForm.js';
+import { MediaApi, PhotographerApi } from '../Api/api.js';
+import { Photographer } from '../Models/photographer.js';
+import { Media } from '../Models/media.js';
+import { MediaCardFactory } from '../Templates/mediaCard.js';
+import { listItemElmts, sortButtonElmt, sortMenuHandler, updateLabelsInput, } from '../Utils/sortMenu.js';
+// Global variables
+let currentMediaArray = [];
+// DOM Elements
 const photographerNameElmt = document.querySelector('.photographerInfos__name');
 const photographerLocationElmt = document.querySelector('.photographerInfos__location');
 const photographerTaglineElmt = document.querySelector('.photographerInfos__tagline');
 const photographerPictureElmt = document.querySelector('.photographerHeader__picture');
 const contactTitleElmt = document.querySelector('.contactModal__title');
 const mediaSectionElmt = document.querySelector('.mediaSection');
-// const displayPhotographerData: (
-//   photographer: photographerData | undefined
-// ) => void = (photographer) => {
-//   if (!photographer) return
-//   const { name, country, city, tagline, portrait } = photographer
-//   photographerNameElmt.innerText = name
-//   photographerLocationElmt.innerText = city + ', ' + country
-//   photographerTaglineElmt.innerText = tagline
-//   photographerPictureElmt.src = `src/Assets/Photographers/${portrait}`
-//   photographerPictureElmt.alt = `Photographer ${name}`
-//   contactTitleElmt.innerText = `Contactez-moi \n ${name}`
-// }
-// const displayMedia: (mediaArray: mediaData[]) => void = (mediaArray) => {
-//   const mediaSectionElmt = document.querySelector(
-//     '.mediaSection'
-//   ) as HTMLElement
-//   mediaArray.forEach((media) => {
-//     const mediaCardElmt = getMediaCardElmt(media)
-//     mediaSectionElmt.appendChild(mediaCardElmt)
-//   })
-// }
-// const initPhotographerPage = async () => {
-//   const currentPhotographer = await getCurrentPhotographer()
-//   if (!currentPhotographer) return
-//   displayPhotographerData(currentPhotographer)
-//   const currentMedia = await getCurrentMedia(currentPhotographer.id)
-//   if (!currentMedia) return
-//   displayMedia(currentMedia)
-// }
-// initPhotographerPage()
-// const displayPhotographersCards: (
-//   photographersArray: photographerDataType[]
-// ) => void = (photographersArray) => {
-//   photographersArray
-//     .map((photographer) => new Photographer(photographer))
-//     .forEach((photographer) => {
-//       const photographerCardElmt = new PhotographerCard(photographer).cardElmt
-//       photographersSectionElmt.appendChild(photographerCardElmt)
-//     })
-// }
-import { MediaApi, PhotographerApi } from '../Api/api.js';
-import { Photographer } from '../Models/photographer.js';
-import { Media } from '../Models/media.js';
-import { PictureCard, VideoCard } from '../Templates/mediaCard.js';
-import { sortMenuHandler } from '../Utils/sortMenu.js';
+// Functions
 const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentId = new URLSearchParams(window.location.search).get('id');
     if (!currentId)
@@ -86,31 +51,69 @@ const displayPhotographerInfos = (photographer) => {
     contactTitleElmt.innerText = `Contactez-moi \n ${photographer.name}`;
 };
 const displayMediaCards = (mediaArray) => {
+    mediaSectionElmt.innerHTML = '';
     mediaArray.forEach((media) => {
-        let mediaCardElmt;
-        switch (media.type) {
-            case 'picture':
-                mediaCardElmt = new PictureCard(media).cardElmt;
-                break;
-            case 'video':
-                mediaCardElmt = new VideoCard(media).cardElmt;
-                break;
-            default:
-                break;
-        }
-        // const mediaCardElmt = new MediaCardFactory(media)
-        if (mediaCardElmt)
-            mediaSectionElmt.appendChild(mediaCardElmt);
+        const mediaCardElmt = new MediaCardFactory(media).cardElmt;
+        mediaSectionElmt.appendChild(mediaCardElmt);
     });
+};
+const likesComparator = (a, b) => {
+    return b.likes - a.likes;
+};
+const datesComparator = (a, b) => {
+    const aDate = a.date.split('-');
+    const bDate = b.date.split('-');
+    const aYear = parseInt(aDate[0]);
+    const bYear = parseInt(bDate[0]);
+    const aMonth = parseInt(aDate[1]);
+    const bMonth = parseInt(bDate[1]);
+    const aDay = parseInt(aDate[2]);
+    const bDay = parseInt(bDate[2]);
+    if (aYear !== bYear)
+        return bYear - aYear;
+    if (aMonth !== bMonth)
+        return bMonth - aMonth;
+    if (aDay !== bDay)
+        return bDay - aDay;
+    return 0;
+};
+const titlesComparator = (a, b) => {
+    return a.title.localeCompare(b.title);
+};
+const sortMediaArray = (type) => {
+    switch (type) {
+        case 'popularité':
+            currentMediaArray.sort(likesComparator);
+            break;
+        case 'date':
+            currentMediaArray.sort(datesComparator);
+            break;
+        case 'titre':
+            currentMediaArray.sort(titlesComparator);
+            break;
+        default:
+            break;
+    }
+};
+const handleSortMenu = () => {
+    listItemElmts.forEach((item) => item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const currentLiEmlt = e.target;
+        const currentInput = currentLiEmlt.getAttribute('data-value') || '';
+        sortMediaArray(currentInput);
+        updateLabelsInput(currentInput);
+        displayMediaCards(currentMediaArray);
+    }));
 };
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
     contactFormHandler();
     sortMenuHandler();
     const currentPhotographer = yield getCurrentPhotographer();
-    const currentMediaArray = yield getCurrentMedia();
+    currentMediaArray = (yield getCurrentMedia()) || [];
+    sortMediaArray(sortButtonElmt.getAttribute('data-value') || '');
     if (currentPhotographer)
         displayPhotographerInfos(currentPhotographer);
-    if (currentMediaArray)
-        displayMediaCards(currentMediaArray);
+    displayMediaCards(currentMediaArray);
+    handleSortMenu();
 });
 initPhotographerPage();

@@ -50,12 +50,18 @@ export class VideoCard extends MediaCard {
 }
 
 export class MediaCardFactory {
+  _media: Media
+
   constructor(media: Media) {
-    switch (media.type) {
+    this._media = media
+  }
+
+  get cardElmt() {
+    switch (this._media.type) {
       case 'picture':
-        return new PictureCard(media)
+        return new PictureCard(this._media).cardElmt
       case 'video':
-        return new VideoCard(media)
+        return new VideoCard(this._media).cardElmt
 
       default:
         throw 'Unknown type format'

@@ -7,42 +7,108 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-//Mettre le code JavaScript lié à la page photographer.html
-import { contactFormHandler } from '../utils/contactForm.js';
-import { getCurrentPhotographer, } from '../factories/photographer.js';
-import { getCurrentMedia, getMediaCardElmt } from '../factories/media.js';
+import { contactFormHandler } from '../Utils/contactForm.js';
 const photographerNameElmt = document.querySelector('.photographerInfos__name');
 const photographerLocationElmt = document.querySelector('.photographerInfos__location');
 const photographerTaglineElmt = document.querySelector('.photographerInfos__tagline');
 const photographerPictureElmt = document.querySelector('.photographerHeader__picture');
 const contactTitleElmt = document.querySelector('.contactModal__title');
-contactFormHandler();
-const displayPhotographerData = (photographer) => {
-    if (!photographer)
+const mediaSectionElmt = document.querySelector('.mediaSection');
+// const displayPhotographerData: (
+//   photographer: photographerData | undefined
+// ) => void = (photographer) => {
+//   if (!photographer) return
+//   const { name, country, city, tagline, portrait } = photographer
+//   photographerNameElmt.innerText = name
+//   photographerLocationElmt.innerText = city + ', ' + country
+//   photographerTaglineElmt.innerText = tagline
+//   photographerPictureElmt.src = `src/Assets/Photographers/${portrait}`
+//   photographerPictureElmt.alt = `Photographer ${name}`
+//   contactTitleElmt.innerText = `Contactez-moi \n ${name}`
+// }
+// const displayMedia: (mediaArray: mediaData[]) => void = (mediaArray) => {
+//   const mediaSectionElmt = document.querySelector(
+//     '.mediaSection'
+//   ) as HTMLElement
+//   mediaArray.forEach((media) => {
+//     const mediaCardElmt = getMediaCardElmt(media)
+//     mediaSectionElmt.appendChild(mediaCardElmt)
+//   })
+// }
+// const initPhotographerPage = async () => {
+//   const currentPhotographer = await getCurrentPhotographer()
+//   if (!currentPhotographer) return
+//   displayPhotographerData(currentPhotographer)
+//   const currentMedia = await getCurrentMedia(currentPhotographer.id)
+//   if (!currentMedia) return
+//   displayMedia(currentMedia)
+// }
+// initPhotographerPage()
+// const displayPhotographersCards: (
+//   photographersArray: photographerDataType[]
+// ) => void = (photographersArray) => {
+//   photographersArray
+//     .map((photographer) => new Photographer(photographer))
+//     .forEach((photographer) => {
+//       const photographerCardElmt = new PhotographerCard(photographer).cardElmt
+//       photographersSectionElmt.appendChild(photographerCardElmt)
+//     })
+// }
+import { MediaApi, PhotographerApi } from '../Api/api.js';
+import { Photographer } from '../Models/photographer.js';
+import { Media } from '../Models/media.js';
+import { PictureCard, VideoCard } from '../Templates/mediaCard.js';
+const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
+    const currentId = new URLSearchParams(window.location.search).get('id');
+    if (!currentId)
         return;
-    const { name, country, city, tagline, portrait } = photographer;
-    photographerNameElmt.innerText = name;
-    photographerLocationElmt.innerText = city + ', ' + country;
-    photographerTaglineElmt.innerText = tagline;
-    photographerPictureElmt.src = `src/Assets/Photographers/${portrait}`;
-    photographerPictureElmt.alt = `Photographer ${name}`;
-    contactTitleElmt.innerText = `Contactez-moi \n ${name}`;
+    const currentPhotographerData = yield new PhotographerApi('../src/Data/photographers.json').getCurrentPhotographer(currentId);
+    if (!currentPhotographerData)
+        return;
+    return new Photographer(currentPhotographerData);
+});
+const getCurrentMedia = () => __awaiter(void 0, void 0, void 0, function* () {
+    const currentId = new URLSearchParams(window.location.search).get('id');
+    if (!currentId)
+        return;
+    const currentMediaData = yield new MediaApi('../src/Data/photographers.json').getCurrentMedia(currentId);
+    if (!currentMediaData)
+        return;
+    return currentMediaData.map((media) => new Media(media));
+});
+const displayPhotographerInfos = (photographer) => {
+    photographerNameElmt.innerText = photographer.name;
+    photographerLocationElmt.innerText = photographer.location;
+    photographerTaglineElmt.innerText = photographer.tagline;
+    photographerPictureElmt.src = photographer.picture;
+    photographerPictureElmt.alt = `Photographer ${photographer.name}`;
+    contactTitleElmt.innerText = `Contactez-moi \n ${photographer.name}`;
 };
-const displayMedia = (mediaArray) => {
-    const mediaSectionElmt = document.querySelector('.mediaSection');
+const displayMediaCards = (mediaArray) => {
     mediaArray.forEach((media) => {
-        const mediaCardElmt = getMediaCardElmt(media);
-        mediaSectionElmt.appendChild(mediaCardElmt);
+        let mediaCardElmt;
+        switch (media.type) {
+            case 'picture':
+                mediaCardElmt = new PictureCard(media).cardElmt;
+                break;
+            case 'video':
+                mediaCardElmt = new VideoCard(media).cardElmt;
+                break;
+            default:
+                break;
+        }
+        // const mediaCardElmt = new MediaCardFactory(media)
+        if (mediaCardElmt)
+            mediaSectionElmt.appendChild(mediaCardElmt);
     });
 };
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
+    contactFormHandler();
     const currentPhotographer = yield getCurrentPhotographer();
-    if (!currentPhotographer)
-        return;
-    displayPhotographerData(currentPhotographer);
-    const currentMedia = yield getCurrentMedia(currentPhotographer.id);
-    if (!currentMedia)
-        return;
-    displayMedia(currentMedia);
+    const currentMediaArray = yield getCurrentMedia();
+    if (currentPhotographer)
+        displayPhotographerInfos(currentPhotographer);
+    if (currentMediaArray)
+        displayMediaCards(currentMediaArray);
 });
 initPhotographerPage();

@@ -7,17 +7,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { photographerFactory, getPhotographers, } from '../factories/photographer.js';
-const displayData = (photographers) => __awaiter(void 0, void 0, void 0, function* () {
-    const photographersSection = document.querySelector('.photographerSection');
-    photographers.forEach((photographer) => {
-        const photographerModel = photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
+import { PhotographerApi } from '../Api/api.js';
+import { Photographer } from '../Models/photographer.js';
+import { PhotographerCard } from '../Templates/photographerCard.js';
+const photographersSectionElmt = document.querySelector('.photographerSection');
+const displayPhotographersCards = (photographersArray) => {
+    photographersArray
+        .map((photographer) => new Photographer(photographer))
+        .forEach((photographer) => {
+        const photographerCardElmt = new PhotographerCard(photographer).cardElmt;
+        photographersSectionElmt.appendChild(photographerCardElmt);
     });
+};
+const initIndexPage = () => __awaiter(void 0, void 0, void 0, function* () {
+    const photographersArray = yield new PhotographerApi('../src/Data/photographers.json').getPhotographers();
+    if (!photographersArray)
+        return;
+    displayPhotographersCards(photographersArray);
 });
-export const init = () => __awaiter(void 0, void 0, void 0, function* () {
-    const photographers = yield getPhotographers();
-    displayData(photographers);
-});
-init();
+initIndexPage();

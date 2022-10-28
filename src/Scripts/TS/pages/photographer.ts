@@ -70,6 +70,7 @@ import { MediaApi, PhotographerApi } from '../Api/api.js'
 import { Photographer } from '../Models/photographer.js'
 import { Media } from '../Models/media.js'
 import { MediaCardFactory, PictureCard, VideoCard } from '../Templates/mediaCard.js'
+import { sortMenuHandler } from '../Utils/sortMenu.js'
 
 const getCurrentPhotographer = async () => {
   const currentId = new URLSearchParams(window.location.search).get('id')
@@ -127,6 +128,7 @@ const displayMediaCards: (mediaArray: Media[]) => void = (mediaArray) => {
 
 const initPhotographerPage = async () => {
   contactFormHandler()
+  sortMenuHandler()
   const currentPhotographer = await getCurrentPhotographer()
   const currentMediaArray = await getCurrentMedia()
   if (currentPhotographer) displayPhotographerInfos(currentPhotographer)

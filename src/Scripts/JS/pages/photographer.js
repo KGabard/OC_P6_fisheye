@@ -58,6 +58,7 @@ import { MediaApi, PhotographerApi } from '../Api/api.js';
 import { Photographer } from '../Models/photographer.js';
 import { Media } from '../Models/media.js';
 import { PictureCard, VideoCard } from '../Templates/mediaCard.js';
+import { sortMenuHandler } from '../Utils/sortMenu.js';
 const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentId = new URLSearchParams(window.location.search).get('id');
     if (!currentId)
@@ -104,6 +105,7 @@ const displayMediaCards = (mediaArray) => {
 };
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
     contactFormHandler();
+    sortMenuHandler();
     const currentPhotographer = yield getCurrentPhotographer();
     const currentMediaArray = yield getCurrentMedia();
     if (currentPhotographer)

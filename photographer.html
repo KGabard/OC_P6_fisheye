@@ -16,6 +16,7 @@
       <img class="header__logo" src="src/Assets/Logos/logo.png" class="logo" />
     </a>
   </header>
+
   <main id="mainSection">
     <div class="photographerHeader">
       <div class="photographerInfos">
@@ -26,6 +27,24 @@
       <button class="contactButton">Contactez-moi</button>
       <img class="photographerHeader__picture" src="./src/Assets/Photographers/account.png" alt="Photographer">
     </div>
+
+    <div class="mediaSorter">
+      <span class="mediaSorter__label">Trier par</span>
+      <div class="mediaSorter__selectorContainer">
+        <i class="fa-solid fa-chevron-down mediaSorter__chevron"></i>
+        <button class="mediaSorter__sortButton mediaSorter__sortButton--active">
+          Popularité
+        </button>
+        <div class="mediaSorter__dropdownMenu">
+          <ul class="mediaSorter__dropdownMenu__list">
+            <li data-value="popularité" class="mediaSorter__dropdownMenu__listItem">Popularité</li>
+            <li data-value="date" class="mediaSorter__dropdownMenu__listItem">Date</li>
+            <li data-value="titre" class="mediaSorter__dropdownMenu__listItem">Titre</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <section class="mediaSection">
       <!-- <div class="mediaCard">
         <a href="#" class="mediaCard__link">
@@ -41,6 +60,7 @@
       </div> -->
     </section>
   </main>
+
   <div class="contactModal__wrapper">
     <div class="contactModal__overlay"></div>
     <div class="contactModal">

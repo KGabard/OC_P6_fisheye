@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 class Api {
     constructor(url) {
-        this.url = url;
+        this._url = url;
     }
-    get() {
+    getData() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const res = yield fetch(this.url);
+                const res = yield fetch(this._url);
                 const data = yield res.json();
                 if (!res.ok) {
                     Promise.reject('Error in 4xx or 5xx range');
@@ -29,12 +29,12 @@ class Api {
     }
 }
 export class PhotographerApi extends Api {
-    constructor(url) {
-        super(url);
+    constructor(_url) {
+        super(_url);
     }
     getPhotographers() {
         return __awaiter(this, void 0, void 0, function* () {
-            const fullData = yield this.get();
+            const fullData = yield this.getData();
             if (!fullData)
                 return;
             return fullData.photographers;
@@ -55,18 +55,14 @@ export class MediaApi extends Api {
     }
     getAllMedia() {
         return __awaiter(this, void 0, void 0, function* () {
-            const fullData = yield this.get();
-            if (!fullData)
-                return;
-            return fullData.media;
+            const fullData = yield this.getData();
+            return fullData ? fullData.media : undefined;
         });
     }
     getCurrentMedia(currentId) {
         return __awaiter(this, void 0, void 0, function* () {
             const mediaArray = yield this.getAllMedia();
-            if (!mediaArray)
-                return;
-            return mediaArray.filter(media => media.photographerId.toString() === currentId);
+            return mediaArray ? mediaArray.filter(media => media.photographerId.toString() === currentId) : undefined;
         });
     }
 }

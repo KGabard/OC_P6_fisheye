@@ -3,13 +3,13 @@ import { contactFormHandler } from '../Utils/contactForm.js'
 import { MediaApi, PhotographerApi } from '../Api/api.js'
 import { Photographer } from '../Models/photographer.js'
 import { Media } from '../Models/media.js'
-import { MediaCardFactory } from '../Templates/mediaCard.js'
 import {
   listItemElmts,
   sortButtonElmt,
   sortMenuHandler,
   updateLabelsInput,
 } from '../Utils/sortMenu.js'
+import { MediaCard } from '../Templates/mediaCard.js'
 
 // Global variables
 let currentMediaArray: Media[] = []
@@ -34,27 +34,27 @@ const mediaSectionElmt = document.querySelector('.mediaSection') as HTMLElement
 
 // Functions
 const getCurrentPhotographer = async () => {
-  const currentId = new URLSearchParams(window.location.search).get('id')
-  if (!currentId) return
+  const currentId = new URLSearchParams(window.location.search).get('id') || ''
 
   const currentPhotographerData = await new PhotographerApi(
     '../src/Data/photographers.json'
   ).getCurrentPhotographer(currentId)
-  if (!currentPhotographerData) return
 
-  return new Photographer(currentPhotographerData)
+  return currentPhotographerData
+    ? new Photographer(currentPhotographerData)
+    : null
 }
 
 const getCurrentMedia = async () => {
-  const currentId = new URLSearchParams(window.location.search).get('id')
-  if (!currentId) return
+  const currentId = new URLSearchParams(window.location.search).get('id') || ''
 
   const currentMediaData = await new MediaApi(
     '../src/Data/photographers.json'
   ).getCurrentMedia(currentId)
-  if (!currentMediaData) return
 
-  return currentMediaData.map((media) => new Media(media))
+  return currentMediaData
+    ? currentMediaData.map((media) => new Media(media))
+    : null
 }
 
 const displayPhotographerInfos: (photographer: Photographer) => void = (
@@ -71,7 +71,7 @@ const displayPhotographerInfos: (photographer: Photographer) => void = (
 const displayMediaCards: (mediaArray: Media[]) => void = (mediaArray) => {
   mediaSectionElmt.innerHTML = ''
   mediaArray.forEach((media) => {
-    const mediaCardElmt = new MediaCardFactory(media).cardElmt
+    const mediaCardElmt = new MediaCard(media).cardElmt
     mediaSectionElmt.appendChild(mediaCardElmt)
   })
 }

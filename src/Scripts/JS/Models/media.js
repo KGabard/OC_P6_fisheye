@@ -22,12 +22,23 @@ export class Media {
             throw 'Unknonw type format';
         }
     }
-    get src() {
+    get originalSrc() {
         switch (this.type) {
             case 'picture':
-                return `./src/Assets/Media/Pictures/${this._media.image}`;
+                return `./src/Assets/Media/Originals/Pictures/${this._media.image}`;
             case 'video':
-                return `./src/Assets/Media/Movies/${this._media.video}`;
+                return `./src/Assets/Media/Originals/Movies/${this._media.video}`;
+            default:
+                return;
+        }
+    }
+    get thumbnailSrc() {
+        var _a, _b;
+        switch (this.type) {
+            case 'picture':
+                return `./src/Assets/Media/Thumbnails/${(_a = this._media.image) === null || _a === void 0 ? void 0 : _a.slice(0, -4)}.jpg`;
+            case 'video':
+                return `./src/Assets/Media/Thumbnails/${(_b = this._media.video) === null || _b === void 0 ? void 0 : _b.slice(0, -4)}.jpg`;
             default:
                 return;
         }

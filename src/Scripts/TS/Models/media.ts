@@ -29,12 +29,30 @@ export class Media {
     }
   }
 
-  get src() {
+  get originalSrc() {
     switch (this.type) {
       case 'picture':
-        return `./src/Assets/Media/Pictures/${this._media.image}`
+        return `./src/Assets/Media/Originals/Pictures/${this._media.image}`
       case 'video':
-        return `./src/Assets/Media/Movies/${this._media.video}`
+        return `./src/Assets/Media/Originals/Movies/${this._media.video}`
+
+      default:
+        return
+    }
+  }
+
+  get thumbnailSrc() {
+    switch (this.type) {
+      case 'picture':
+        return `./src/Assets/Media/Thumbnails/${this._media.image?.slice(
+          0,
+          -4
+        )}.jpg`
+      case 'video':
+        return `./src/Assets/Media/Thumbnails/${this._media.video?.slice(
+          0,
+          -4
+        )}.jpg`
 
       default:
         return

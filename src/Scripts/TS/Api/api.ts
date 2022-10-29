@@ -1,15 +1,15 @@
 import { fullDataType } from '../Types/types.js'
 
 class Api {
-  url: string
+  _url: string
 
   constructor(url: string) {
-    this.url = url
+    this._url = url
   }
 
-  async get(): Promise<fullDataType | undefined> {
+  async getData(): Promise<fullDataType | undefined> {
     try {
-      const res = await fetch(this.url)
+      const res = await fetch(this._url)
       const data = await res.json()
 
       if (!res.ok) {
@@ -25,12 +25,12 @@ class Api {
 }
 
 export class PhotographerApi extends Api {
-  constructor(url: string) {
-    super(url)
+  constructor(_url: string) {
+    super(_url)
   }
 
   async getPhotographers() {
-    const fullData = await this.get()
+    const fullData = await this.getData()
     if (!fullData) return
     return fullData.photographers
   }
@@ -48,14 +48,12 @@ export class MediaApi extends Api {
   }
 
   async getAllMedia() {
-    const fullData = await this.get()
-    if (!fullData) return
-    return fullData.media
+    const fullData = await this.getData()
+    return fullData ? fullData.media : undefined
   }
 
   async getCurrentMedia(currentId: string) {
     const mediaArray = await this.getAllMedia()
-    if (!mediaArray) return
-    return mediaArray.filter(media => media.photographerId.toString() === currentId)
+    return mediaArray ? mediaArray.filter(media => media.photographerId.toString() === currentId) : undefined
   }
 }

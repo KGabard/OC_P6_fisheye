@@ -1,20 +1,18 @@
 import { Media } from '../Models/media'
 
-class MediaCard {
+export class MediaCard {
   _media: Media
   constructor(media: Media) {
     this._media = media
   }
-}
 
-export class PictureCard extends MediaCard {
   get cardElmt() {
     const card = document.createElement('div') as HTMLDivElement
     card.classList.add('mediaCard')
 
     card.innerHTML =
       `<a href="#" class="mediaCard__link">` +
-      `<img src="${this._media.src}" alt="${this._media.title}" class="mediaCard__picture">` +
+      `<img src="${this._media.thumbnailSrc}" alt="${this._media.title}" class="mediaCard__picture">` +
       `</a>` +
       `<div class="mediaCard__infos">` +
       `<h2 class="mediaCard__title">${this._media.title}</h2>` +
@@ -28,43 +26,67 @@ export class PictureCard extends MediaCard {
   }
 }
 
-export class VideoCard extends MediaCard {
-  get cardElmt() {
-    const card = document.createElement('div') as HTMLDivElement
-    card.classList.add('mediaCard')
+// export class PictureCard extends MediaCard {
+//   get cardElmt() {
+//     const card = document.createElement('div') as HTMLDivElement
+//     card.classList.add('mediaCard')
 
-    card.innerHTML =
-      `<a href="#" class="mediaCard__link">` +
-      `<video src="${this._media.src}" alt="${this._media.title}" class="mediaCard__picture"></video>` +
-      `</a>` +
-      `<div class="mediaCard__infos">` +
-      `<h2 class="mediaCard__title">${this._media.title}</h2>` +
-      `<div class="mediaCard__likeWrapper">` +
-      `<p class="mediaCard__likeCount">${this._media.likes.toString()}</p>` +
-      `<i class="mediaCard__likeIcon fa-solid fa-heart"></i>` +
-      `</div>` +
-      `</div>`
+//     card.innerHTML =
+//       `<a href="#" class="mediaCard__link">` +
+//       `<img src="${this._media.src}" alt="${this._media.title}" class="mediaCard__picture">` +
+//       `</a>` +
+//       `<div class="mediaCard__infos">` +
+//       `<h2 class="mediaCard__title">${this._media.title}</h2>` +
+//       `<div class="mediaCard__likeWrapper">` +
+//       `<p class="mediaCard__likeCount">${this._media.likes.toString()}</p>` +
+//       `<i class="mediaCard__likeIcon fa-solid fa-heart"></i>` +
+//       `</div>` +
+//       `</div>`
 
-    return card
-  }
-}
+//     return card
+//   }
+// }
 
-export class MediaCardFactory {
-  _media: Media
+// export class VideoCard extends MediaCard {
+//   get cardElmt() {
+//     const card = document.createElement('div') as HTMLDivElement
+//     card.classList.add('mediaCard')
 
-  constructor(media: Media) {
-    this._media = media
-  }
+//     card.innerHTML =
+//       `<a href="#" class="mediaCard__link">` +
+//       `<video src="${this._media.src}" alt="${this._media.title}" class="mediaCard__picture"></video>` +
+//       `</a>` +
+//       `<div class="mediaCard__infos">` +
+//       `<h2 class="mediaCard__title">${this._media.title}</h2>` +
+//       `<div class="mediaCard__likeWrapper">` +
+//       `<p class="mediaCard__likeCount">${this._media.likes.toString()}</p>` +
+//       `<i class="mediaCard__likeIcon fa-solid fa-heart"></i>` +
+//       `</div>` +
+//       `</div>`
 
-  get cardElmt() {
-    switch (this._media.type) {
-      case 'picture':
-        return new PictureCard(this._media).cardElmt
-      case 'video':
-        return new VideoCard(this._media).cardElmt
+//     return card
+//   }
+// }
 
-      default:
-        throw 'Unknown type format'
-    }
-  }
-}
+// export class MediaCardFactory {
+//   _media: PictureCard | VideoCard
+
+//   constructor(media: Media) {
+//     switch (media.type) {
+//       case 'picture':
+//         this._media = new PictureCard(media)
+//         break
+
+//       case 'video':
+//         this._media = new VideoCard(media)
+//         break
+
+//       default:
+//         throw 'Unknown type format'
+//     }
+//   }
+
+//   get cardElmt() {
+//     return this._media.cardElmt
+//   }
+// }

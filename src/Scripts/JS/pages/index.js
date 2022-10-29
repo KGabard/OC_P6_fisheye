@@ -20,9 +20,7 @@ const displayPhotographersCards = (photographersArray) => {
     });
 };
 const initIndexPage = () => __awaiter(void 0, void 0, void 0, function* () {
-    const photographersArray = yield new PhotographerApi('../src/Data/photographers.json').getPhotographers();
-    if (!photographersArray)
-        return;
+    const photographersArray = (yield new PhotographerApi('../src/Data/photographers.json').getPhotographers()) || [];
     displayPhotographersCards(photographersArray);
 });
 initIndexPage();

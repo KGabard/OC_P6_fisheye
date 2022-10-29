@@ -17,12 +17,12 @@ import { MediaCard } from '../Templates/mediaCard.js';
 // Global variables
 let currentMediaArray = [];
 // DOM Elements
-const photographerNameElmt = document.querySelector('.photographerInfos__name');
-const photographerLocationElmt = document.querySelector('.photographerInfos__location');
-const photographerTaglineElmt = document.querySelector('.photographerInfos__tagline');
-const photographerPictureElmt = document.querySelector('.photographerHeader__picture');
-const contactTitleElmt = document.querySelector('.contactModal__title');
-const mediaSectionElmt = document.querySelector('.mediaSection');
+const photographerNameElmt = document.querySelector('.photographer-infos__name');
+const photographerLocationElmt = document.querySelector('.photographer-infos__location');
+const photographerTaglineElmt = document.querySelector('.photographer-infos__tagline');
+const photographerPictureElmt = document.querySelector('.photographer-header__picture');
+const contactTitleElmt = document.querySelector('.contact-modal__title');
+const mediaSectionElmt = document.querySelector('.media-section');
 // Functions
 const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentId = new URLSearchParams(window.location.search).get('id') || '';
@@ -38,7 +38,7 @@ const getCurrentMedia = () => __awaiter(void 0, void 0, void 0, function* () {
         ? currentMediaData.map((media) => new Media(media))
         : null;
 });
-const displayPhotographerInfos = (photographer) => {
+const displayphotographerInfos = (photographer) => {
     photographerNameElmt.innerText = photographer.name;
     photographerLocationElmt.innerText = photographer.location;
     photographerTaglineElmt.innerText = photographer.tagline;
@@ -108,7 +108,7 @@ const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* (
     currentMediaArray = (yield getCurrentMedia()) || [];
     sortMediaArray(sortButtonElmt.getAttribute('data-value') || '');
     if (currentPhotographer)
-        displayPhotographerInfos(currentPhotographer);
+        displayphotographerInfos(currentPhotographer);
     displayMediaCards(currentMediaArray);
     handleSortMenu();
 });

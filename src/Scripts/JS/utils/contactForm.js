@@ -1,11 +1,11 @@
-const contactButton = document.querySelector('.contactButton');
-const closeModalButton = document.querySelector('.contactModal__closeButton');
-const contactModalOverlay = document.querySelector('.contactModal__overlay');
-const contactModalWrapper = document.querySelector('.contactModal__wrapper');
+const contactButton = document.querySelector('.contact-button');
+const closeModalButton = document.querySelector('.contact-modal__closeButton');
+const contactModalOverlay = document.querySelector('.contact-modal__overlay');
+const contactModalWrapper = document.querySelector('.contact-modal__wrapper');
 const toggleContactModal = () => {
-    contactModalWrapper.classList.contains('contactModal__wrapper--active')
-        ? contactModalWrapper.classList.remove('contactModal__wrapper--active')
-        : contactModalWrapper.classList.add('contactModal__wrapper--active');
+    contactModalWrapper.classList.contains('contact-modal__wrapper--active')
+        ? contactModalWrapper.classList.remove('contact-modal__wrapper--active')
+        : contactModalWrapper.classList.add('contact-modal__wrapper--active');
 };
 export const contactFormHandler = () => {
     contactButton.addEventListener('click', toggleContactModal);

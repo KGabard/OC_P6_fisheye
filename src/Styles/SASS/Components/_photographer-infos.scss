@@ -1,4 +1,4 @@
-.photographerInfos {
+.photographer-infos {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -22,10 +22,12 @@
 }
 
 @include tablet {
-  .photographerInfos {
+  .photographer-infos {
     align-items: center;
 
-    &__name, &__location, &__tagline {
+    &__name,
+    &__location,
+    &__tagline {
       text-align: center;
     }
   }

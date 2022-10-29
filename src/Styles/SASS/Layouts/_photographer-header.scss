@@ -1,4 +1,4 @@
-.photographerHeader {
+.photographer-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 @include tablet {
-  .photographerHeader {
+  .photographer-header {
     flex-direction: column;
     height: fit-content;
     padding: 48px 24px;

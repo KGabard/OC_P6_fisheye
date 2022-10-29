@@ -1,4 +1,4 @@
-.mediaCard {
+.media-card {
   overflow: hidden;
   width: fit-content;
   height: fit-content;
@@ -32,7 +32,7 @@
     color: $highlight-primary;
   }
 
-  &__likeWrapper {
+  &__like-wrapper {
     display: flex;
     gap: 4px;
     align-items: center;

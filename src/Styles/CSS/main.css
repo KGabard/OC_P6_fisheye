@@ -18,7 +18,7 @@ body {
     padding: 0 0px;
   }
 }
-.photographerCard {
+.photographer-card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,20 +27,20 @@ body {
   width: -moz-fit-content;
   width: fit-content;
 }
-.photographerCard__link {
+.photographer-card__link {
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.photographerCard__picture {
+.photographer-card__picture {
   height: 200px;
   width: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
 }
-.photographerCard__name {
+.photographer-card__name {
   color: #d3573c;
   font-family: DM Sans, sans-serif;
   font-size: 36px;
@@ -51,25 +51,25 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.photographerCard__location {
+.photographer-card__location {
   font-family: DM Sans, sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #901c1c;
 }
-.photographerCard__tagline {
+.photographer-card__tagline {
   font-family: DM Sans, sans-serif;
   font-size: 14px;
   font-weight: 400;
 }
-.photographerCard__price {
+.photographer-card__price {
   font-family: DM Sans, sans-serif;
   font-size: 12px;
   font-weight: 400;
   color: #312e2e;
 }
 
-.contactButton {
+.contact-button {
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -84,7 +84,7 @@ body {
   cursor: pointer;
 }
 
-.submitButton {
+.submit-button {
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -99,12 +99,12 @@ body {
   cursor: pointer;
 }
 
-.photographerInfos {
+.photographer-infos {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.photographerInfos__name {
+.photographer-infos__name {
   color: #d3573c;
   font-family: DM Sans, sans-serif;
   font-size: 44px;
@@ -115,7 +115,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.photographerInfos__location {
+.photographer-infos__location {
   color: #901c1c;
   font-family: DM Sans, sans-serif;
   font-size: 24px;
@@ -126,7 +126,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.photographerInfos__tagline {
+.photographer-infos__tagline {
   font-family: DM Sans, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -138,10 +138,10 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
-  .photographerInfos {
+  .photographer-infos {
     align-items: center;
   }
-  .photographerInfos__name, .photographerInfos__location, .photographerInfos__tagline {
+  .photographer-infos__name, .photographer-infos__location, .photographer-infos__tagline {
     text-align: center;
   }
 }
@@ -179,7 +179,7 @@ body {
   vertical-align: top;
 }
 
-.mediaCard {
+.media-card {
   overflow: hidden;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -192,24 +192,24 @@ body {
   gap: 8px;
   transition: transform 200ms ease-in-out;
 }
-.mediaCard:hover {
+.media-card:hover {
   transform: scale(1.05);
 }
-.mediaCard__picture {
+.media-card__picture {
   width: 350px;
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 8px;
 }
-.mediaCard__infos {
+.media-card__infos {
   display: flex;
   justify-content: space-between;
   gap: 32px;
   align-items: center;
   padding: 0 8px;
 }
-.mediaCard__title {
+.media-card__title {
   font-family: DM Sans, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -220,23 +220,23 @@ body {
   text-overflow: ellipsis;
   color: #901c1c;
 }
-.mediaCard__likeWrapper {
+.media-card__like-wrapper {
   display: flex;
   gap: 4px;
   align-items: center;
 }
-.mediaCard__likeCount {
+.media-card__likeCount {
   font-family: DM Sans, sans-serif;
   font-size: 18px;
   font-weight: 400;
   color: #901c1c;
 }
-.mediaCard__likeIcon {
+.media-card__likeIcon {
   font-size: 20px;
   color: #901c1c;
 }
 
-.mediaSorter {
+.media-sorter {
   display: flex;
   gap: 16px;
   margin-top: 16px;
@@ -244,14 +244,14 @@ body {
   position: relative;
   z-index: 100;
 }
-.mediaSorter__label {
+.media-sorter__label {
   font-family: DM Sans, sans-serif;
   font-size: 18px;
   font-weight: 700;
   position: relative;
   top: 16px;
 }
-.mediaSorter__selectorContainer {
+.media-sorter__selector-container {
   width: 170px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -262,20 +262,20 @@ body {
   position: relative;
   cursor: pointer;
 }
-.mediaSorter__selectorContainer:hover .mediaSorter__sortButton {
+.media-sorter__selector-container:hover .media-sorter__sort-button {
   background-color: #d3573c;
 }
-.mediaSorter__chevron {
+.media-sorter__chevron {
   position: absolute;
   z-index: 110;
   top: 18px;
   right: 16px;
   color: white;
 }
-.mediaSorter__chevron--active {
+.media-sorter__chevron--active {
   transform: rotate(180deg);
 }
-.mediaSorter__sortButton {
+.media-sorter__sort-button {
   font-family: DM Sans, sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -288,17 +288,17 @@ body {
   cursor: pointer;
   display: none;
 }
-.mediaSorter__sortButton--active {
+.media-sorter__sort-button--active {
   display: block;
 }
-.mediaSorter__dropdownMenu {
+.media-sorter__dropdown-menu {
   width: 100%;
   display: none;
 }
-.mediaSorter__dropdownMenu--active {
+.media-sorter__dropdown-menu--active {
   display: block;
 }
-.mediaSorter__dropdownMenu__list {
+.media-sorter__dropdown-menu__list {
   font-family: DM Sans, sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -306,14 +306,14 @@ body {
   color: white;
   list-style: none;
 }
-.mediaSorter__dropdownMenu__listItem {
+.media-sorter__dropdown-menu__list-item {
   padding: 16px;
   position: relative;
 }
-.mediaSorter__dropdownMenu__listItem:hover {
+.media-sorter__dropdown-menu__list-item:hover {
   background-color: #d3573c;
 }
-.mediaSorter__dropdownMenu__listItem:not(:last-child)::after {
+.media-sorter__dropdown-menu__list-item:not(:last-child)::after {
   content: "";
   width: 80%;
   height: 2px;
@@ -350,7 +350,7 @@ body {
     text-align: center;
   }
 }
-.photographerSection {
+.photographer-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
   justify-items: center;
@@ -358,7 +358,7 @@ body {
   margin: 96px 0;
 }
 
-.contactModal {
+.contact-modal {
   border-radius: 5px;
   background-color: #db8876;
   width: 100%;
@@ -372,7 +372,7 @@ body {
   position: relative;
   z-index: 210;
 }
-.contactModal__wrapper {
+.contact-modal__wrapper {
   display: none;
   position: fixed;
   overflow: auto;
@@ -381,46 +381,46 @@ body {
   height: 100%;
   width: 100%;
 }
-.contactModal__wrapper--active {
+.contact-modal__wrapper--active {
   display: block;
 }
-.contactModal__overlay {
+.contact-modal__overlay {
   height: 100%;
   width: 100%;
   position: fixed;
   z-index: 200;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.contactModal__header {
+.contact-modal__header {
   display: flex;
   justify-content: space-between;
   width: 100%;
   gap: 32px;
   margin-bottom: 32px;
 }
-.contactModal__closeButton {
+.contact-modal__closeButton {
   cursor: pointer;
   align-self: start;
   position: relative;
   top: 20px;
 }
-.contactModal__title {
+.contact-modal__title {
   font-family: DM Sans, sans-serif;
   font-size: 44px;
   font-weight: 400;
 }
 
 @media screen and (max-width: 768px) {
-  .contactModal__header {
+  .contact-modal__header {
     flex-direction: column;
   }
-  .contactModal__closeButton {
+  .contact-modal__closeButton {
     order: -1;
     align-self: end;
     top: 0;
   }
 }
-.photographerHeader {
+.photographer-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -429,7 +429,7 @@ body {
   height: 300px;
   padding: 0 48px;
 }
-.photographerHeader__picture {
+.photographer-header__picture {
   height: 200px;
   width: 200px;
   border-radius: 50%;
@@ -438,18 +438,18 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
-  .photographerHeader {
+  .photographer-header {
     flex-direction: column;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     padding: 48px 24px;
   }
-  .photographerHeader__picture {
+  .photographer-header__picture {
     order: -1;
   }
 }
-.mediaSection {
+.media-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 64px;

@@ -1,4 +1,4 @@
-.mediaSorter {
+.media-sorter {
   display: flex;
   gap: 16px;
   margin-top: 16px;
@@ -12,7 +12,7 @@
     top: 16px;
   }
 
-  &__selectorContainer {
+  &__selector-container {
     width: 170px;
     height: fit-content;
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
@@ -20,7 +20,7 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    &:hover .mediaSorter__sortButton {
+    &:hover .media-sorter__sort-button {
       background-color: $highlight-secondary;
     }
   }
@@ -36,7 +36,7 @@
     }
   }
 
-  &__sortButton {
+  &__sort-button {
     @include typographies(body-bold);
     background-color: $highlight-primary;
     color: white;
@@ -51,7 +51,7 @@
     }
   }
 
-  &__dropdownMenu {
+  &__dropdown-menu {
     width: 100%;
     display: none;
     &--active {
@@ -63,7 +63,7 @@
       color: white;
       list-style: none;
     }
-    &__listItem {
+    &__list-item {
       padding: 16px;
       position: relative;
       &:hover {

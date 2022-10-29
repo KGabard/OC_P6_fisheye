@@ -4,7 +4,7 @@ import { PhotographerCard } from '../Templates/photographerCard.js'
 import { photographerDataType } from '../Types/types.js'
 
 const photographersSectionElmt = document.querySelector(
-  '.photographerSection'
+  '.photographer-section'
 ) as HTMLDivElement
 
 const displayPhotographersCards: (

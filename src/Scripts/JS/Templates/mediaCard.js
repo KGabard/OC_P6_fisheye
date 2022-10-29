@@ -4,16 +4,16 @@ export class MediaCard {
     }
     get cardElmt() {
         const card = document.createElement('div');
-        card.classList.add('mediaCard');
+        card.classList.add('media-card');
         card.innerHTML =
-            `<a href="#" class="mediaCard__link">` +
-                `<img src="${this._media.thumbnailSrc}" alt="${this._media.title}" class="mediaCard__picture">` +
+            `<a href="#" class="media-card__link">` +
+                `<img src="${this._media.thumbnailSrc}" alt="${this._media.title}" class="media-card__picture">` +
                 `</a>` +
-                `<div class="mediaCard__infos">` +
-                `<h2 class="mediaCard__title">${this._media.title}</h2>` +
-                `<div class="mediaCard__likeWrapper">` +
-                `<p class="mediaCard__likeCount">${this._media.likes.toString()}</p>` +
-                `<i class="mediaCard__likeIcon fa-solid fa-heart"></i>` +
+                `<div class="media-card__infos">` +
+                `<h2 class="media-card__title">${this._media.title}</h2>` +
+                `<div class="media-card__like-wrapper">` +
+                `<p class="media-card__likeCount">${this._media.likes.toString()}</p>` +
+                `<i class="media-card__likeIcon fa-solid fa-heart"></i>` +
                 `</div>` +
                 `</div>`;
         return card;
@@ -22,16 +22,16 @@ export class MediaCard {
 // export class PictureCard extends MediaCard {
 //   get cardElmt() {
 //     const card = document.createElement('div') as HTMLDivElement
-//     card.classList.add('mediaCard')
+//     card.classList.add('media-card')
 //     card.innerHTML =
-//       `<a href="#" class="mediaCard__link">` +
-//       `<img src="${this._media.src}" alt="${this._media.title}" class="mediaCard__picture">` +
+//       `<a href="#" class="media-card__link">` +
+//       `<img src="${this._media.src}" alt="${this._media.title}" class="media-card__picture">` +
 //       `</a>` +
-//       `<div class="mediaCard__infos">` +
-//       `<h2 class="mediaCard__title">${this._media.title}</h2>` +
-//       `<div class="mediaCard__likeWrapper">` +
-//       `<p class="mediaCard__likeCount">${this._media.likes.toString()}</p>` +
-//       `<i class="mediaCard__likeIcon fa-solid fa-heart"></i>` +
+//       `<div class="media-card__infos">` +
+//       `<h2 class="media-card__title">${this._media.title}</h2>` +
+//       `<div class="media-card__like-wrapper">` +
+//       `<p class="media-card__likeCount">${this._media.likes.toString()}</p>` +
+//       `<i class="media-card__likeIcon fa-solid fa-heart"></i>` +
 //       `</div>` +
 //       `</div>`
 //     return card
@@ -40,16 +40,16 @@ export class MediaCard {
 // export class VideoCard extends MediaCard {
 //   get cardElmt() {
 //     const card = document.createElement('div') as HTMLDivElement
-//     card.classList.add('mediaCard')
+//     card.classList.add('media-card')
 //     card.innerHTML =
-//       `<a href="#" class="mediaCard__link">` +
-//       `<video src="${this._media.src}" alt="${this._media.title}" class="mediaCard__picture"></video>` +
+//       `<a href="#" class="media-card__link">` +
+//       `<video src="${this._media.src}" alt="${this._media.title}" class="media-card__picture"></video>` +
 //       `</a>` +
-//       `<div class="mediaCard__infos">` +
-//       `<h2 class="mediaCard__title">${this._media.title}</h2>` +
-//       `<div class="mediaCard__likeWrapper">` +
-//       `<p class="mediaCard__likeCount">${this._media.likes.toString()}</p>` +
-//       `<i class="mediaCard__likeIcon fa-solid fa-heart"></i>` +
+//       `<div class="media-card__infos">` +
+//       `<h2 class="media-card__title">${this._media.title}</h2>` +
+//       `<div class="media-card__like-wrapper">` +
+//       `<p class="media-card__likeCount">${this._media.likes.toString()}</p>` +
+//       `<i class="media-card__likeIcon fa-solid fa-heart"></i>` +
 //       `</div>` +
 //       `</div>`
 //     return card

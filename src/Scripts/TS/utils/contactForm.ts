@@ -1,20 +1,20 @@
 const contactButton = document.querySelector(
-  '.contactButton'
+  '.contact-button'
 ) as HTMLButtonElement
 const closeModalButton = document.querySelector(
-  '.contactModal__closeButton'
+  '.contact-modal__closeButton'
 ) as HTMLButtonElement
 const contactModalOverlay = document.querySelector(
-  '.contactModal__overlay'
+  '.contact-modal__overlay'
 ) as HTMLDivElement
 const contactModalWrapper = document.querySelector(
-  '.contactModal__wrapper'
+  '.contact-modal__wrapper'
 ) as HTMLDivElement
 
 const toggleContactModal = () => {
-  contactModalWrapper.classList.contains('contactModal__wrapper--active')
-    ? contactModalWrapper.classList.remove('contactModal__wrapper--active')
-    : contactModalWrapper.classList.add('contactModal__wrapper--active')
+  contactModalWrapper.classList.contains('contact-modal__wrapper--active')
+    ? contactModalWrapper.classList.remove('contact-modal__wrapper--active')
+    : contactModalWrapper.classList.add('contact-modal__wrapper--active')
 }
 
 export const contactFormHandler = () => {

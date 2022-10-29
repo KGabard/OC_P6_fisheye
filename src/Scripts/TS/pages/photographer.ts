@@ -16,21 +16,21 @@ let currentMediaArray: Media[] = []
 
 // DOM Elements
 const photographerNameElmt = document.querySelector(
-  '.photographerInfos__name'
+  '.photographer-infos__name'
 ) as HTMLHeadingElement
 const photographerLocationElmt = document.querySelector(
-  '.photographerInfos__location'
+  '.photographer-infos__location'
 ) as HTMLParagraphElement
 const photographerTaglineElmt = document.querySelector(
-  '.photographerInfos__tagline'
+  '.photographer-infos__tagline'
 ) as HTMLParagraphElement
 const photographerPictureElmt = document.querySelector(
-  '.photographerHeader__picture'
+  '.photographer-header__picture'
 ) as HTMLImageElement
 const contactTitleElmt = document.querySelector(
-  '.contactModal__title'
+  '.contact-modal__title'
 ) as HTMLHeadingElement
-const mediaSectionElmt = document.querySelector('.mediaSection') as HTMLElement
+const mediaSectionElmt = document.querySelector('.media-section') as HTMLElement
 
 // Functions
 const getCurrentPhotographer = async () => {
@@ -57,7 +57,7 @@ const getCurrentMedia = async () => {
     : null
 }
 
-const displayPhotographerInfos: (photographer: Photographer) => void = (
+const displayphotographerInfos: (photographer: Photographer) => void = (
   photographer
 ) => {
   photographerNameElmt.innerText = photographer.name
@@ -137,7 +137,7 @@ const initPhotographerPage = async () => {
   const currentPhotographer = await getCurrentPhotographer()
   currentMediaArray = (await getCurrentMedia()) || []
   sortMediaArray(sortButtonElmt.getAttribute('data-value') || '')
-  if (currentPhotographer) displayPhotographerInfos(currentPhotographer)
+  if (currentPhotographer) displayphotographerInfos(currentPhotographer)
   displayMediaCards(currentMediaArray)
   handleSortMenu()
 }

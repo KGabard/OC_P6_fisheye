@@ -18,43 +18,43 @@
   </header>
 
   <main id="mainSection">
-    <section class="photographerHeader">
-      <div class="photographerInfos">
-        <h1 class="photographerInfos__name">Nom</h1>
-        <p class="photographerInfos__location">Localisation</p>
-        <p class="photographerInfos__tagline">Citation</p>
+    <section class="photographer-header">
+      <div class="photographer-infos">
+        <h1 class="photographer-infos__name">Nom</h1>
+        <p class="photographer-infos__location">Localisation</p>
+        <p class="photographer-infos__tagline">Citation</p>
       </div>
-      <button class="contactButton">Contactez-moi</button>
-      <img class="photographerHeader__picture" src="./src/Assets/Photographers/account.png" alt="Photographer">
+      <button class="contact-button">Contactez-moi</button>
+      <img class="photographer-header__picture" src="./src/Assets/Photographers/account.png" alt="Photographer">
     </section>
 
-    <div class="mediaSorter">
-      <span class="mediaSorter__label">Trier par</span>
-      <div class="mediaSorter__selectorContainer">
-        <i class="fa-solid fa-chevron-down mediaSorter__chevron"></i>
-        <button data-value="popularité" class="mediaSorter__sortButton mediaSorter__sortButton--active">
+    <div class="media-sorter">
+      <span class="media-sorter__label">Trier par</span>
+      <div class="media-sorter__selector-container">
+        <i class="fa-solid fa-chevron-down media-sorter__chevron"></i>
+        <button data-value="popularité" class="media-sorter__sort-button media-sorter__sort-button--active">
           Popularité
         </button>
-        <div class="mediaSorter__dropdownMenu">
-          <ul class="mediaSorter__dropdownMenu__list">
-            <li data-value="popularité" class="mediaSorter__dropdownMenu__listItem">Popularité</li>
-            <li data-value="date" class="mediaSorter__dropdownMenu__listItem">Date</li>
-            <li data-value="titre" class="mediaSorter__dropdownMenu__listItem">Titre</li>
+        <div class="media-sorter__dropdown-menu">
+          <ul class="media-sorter__dropdown-menu__list">
+            <li data-value="popularité" class="media-sorter__dropdown-menu__list-item">Popularité</li>
+            <li data-value="date" class="media-sorter__dropdown-menu__list-item">Date</li>
+            <li data-value="titre" class="media-sorter__dropdown-menu__list-item">Titre</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <section class="mediaSection">
-      <!-- <div class="mediaCard">
-        <a href="#" class="mediaCard__link">
-          <img src="./src/Assets/Medias/Pictures/Animals_Majesty.jpg" alt="" class="mediaCard__picture">
+    <section class="media-section">
+      <!-- <div class="media-card">
+        <a href="#" class="media-card__link">
+          <img src="./src/Assets/Medias/Pictures/Animals_Majesty.jpg" alt="" class="media-card__picture">
         </a>
-        <div class="mediaCard__infos">
-          <h2 class="mediaCard__title">Titre</h2>
-          <div class="mediaCard__likeWrapper">
-            <p class="mediaCard__likeCount">10</p>
-            <i class="mediaCard__likeIcon fa-solid fa-heart"></i>
+        <div class="media-card__infos">
+          <h2 class="media-card__title">Titre</h2>
+          <div class="media-card__like-wrapper">
+            <p class="media-card__likeCount">10</p>
+            <i class="media-card__likeIcon fa-solid fa-heart"></i>
           </div>
         </div>
       </div> -->
@@ -62,35 +62,35 @@
 
   </main>
 
-  <div class="contactModal__wrapper">
-    <div class="contactModal__overlay"></div>
-    <div class="contactModal">
-      <header class="contactModal__header">
-        <h2 class="contactModal__title">Contactez-moi <br> Mimi Keel</h2>
-        <img class="contactModal__closeButton" src="src/Assets/Icons/close.svg" alt="Close contact modal" />
+  <div class="contact-modal__wrapper">
+    <div class="contact-modal__overlay"></div>
+    <div class="contact-modal">
+      <header class="contact-modal__header">
+        <h2 class="contact-modal__title">Contactez-moi <br> Mimi Keel</h2>
+        <img class="contact-modal__closeButton" src="src/Assets/Icons/close.svg" alt="Close contact modal" />
       </header>
       <form class="form">
         <div class="form__data">
           <label class="form__label" for="first">Prénom</label><br>
           <input class="form__input" type="text" id="first" name="first"><br>
-          <span class="form__errorMessage"></span>
+          <span class="form__error-message"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="last">Nom</label><br>
           <input class="form__input" type="text" id="last" name="last"><br>
-          <span class="form__errorMessage"></span>
+          <span class="form__error-message"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="email">Email</label><br>
           <input class="form__input" type="text" id="email" name="email"><br>
-          <span class="form__errorMessage"></span>
+          <span class="form__error-message"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="message">Votre message</label><br>
           <textarea class="form__input form__input--large" type="text" id="message" name="message"></textarea><br>
-          <span class="form__errorMessage"></span>
+          <span class="form__error-message"></span>
         </div>
-        <button class="submitButton">Envoyer</button>
+        <button class="submit-button">Envoyer</button>
       </form>
     </div>
   </div>

@@ -1,9 +1,9 @@
 // DOM Classes
-const selectorContainerClass = 'mediaSorter__selectorContainer';
-const sortButtonClass = 'mediaSorter__sortButton';
-const dropdownMenuClass = 'mediaSorter__dropdownMenu';
-const chevronClass = 'mediaSorter__chevron';
-const listItemClass = 'mediaSorter__dropdownMenu__listItem';
+const selectorContainerClass = 'media-sorter__selector-container';
+const sortButtonClass = 'media-sorter__sort-button';
+const dropdownMenuClass = 'media-sorter__dropdown-menu';
+const chevronClass = 'media-sorter__chevron';
+const listItemClass = 'media-sorter__dropdown-menu__list-item';
 // DOM Elements
 const selectorContainerElmt = document.querySelector('.' + selectorContainerClass);
 export const sortButtonElmt = document.querySelector('.' + sortButtonClass);

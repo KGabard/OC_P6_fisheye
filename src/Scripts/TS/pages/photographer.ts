@@ -13,6 +13,7 @@ import { MediaCard } from '../Templates/mediaCard.js'
 
 // Global variables
 let currentMediaArray: Media[] = []
+let currentPhotographer: Photographer | null
 
 // DOM Elements
 const photographerNameElmt = document.querySelector(
@@ -31,6 +32,12 @@ const contactTitleElmt = document.querySelector(
   '.contact-modal__title'
 ) as HTMLHeadingElement
 const mediaSectionElmt = document.querySelector('.media-section') as HTMLElement
+const likeCountElmt = document.querySelector(
+  '.sticky-bar__like-count'
+) as HTMLParagraphElement
+const likePriceElmt = document.querySelector(
+  '.sticky-bar__price'
+) as HTMLParagraphElement
 
 // Functions
 const getCurrentPhotographer = async () => {
@@ -57,23 +64,34 @@ const getCurrentMedia = async () => {
     : null
 }
 
-const displayphotographerInfos: (photographer: Photographer) => void = (
-  photographer
-) => {
-  photographerNameElmt.innerText = photographer.name
-  photographerLocationElmt.innerText = photographer.location
-  photographerTaglineElmt.innerText = photographer.tagline
-  photographerPictureElmt.src = photographer.picture
-  photographerPictureElmt.alt = `Photographer ${photographer.name}`
-  contactTitleElmt.innerText = `Contactez-moi \n ${photographer.name}`
+const getCurrentLikeCount = () => {
+  return currentMediaArray.reduce(
+    (totalLikes, media) => totalLikes + media.likes,
+    0
+  )
 }
 
-const displayMediaCards: (mediaArray: Media[]) => void = (mediaArray) => {
+const displayphotographerInfos = () => {
+  if (!currentPhotographer) return
+  photographerNameElmt.innerText = currentPhotographer.name
+  photographerLocationElmt.innerText = currentPhotographer.location
+  photographerTaglineElmt.innerText = currentPhotographer.tagline
+  photographerPictureElmt.src = currentPhotographer.picture
+  photographerPictureElmt.alt = `Photographer ${currentPhotographer.name}`
+  contactTitleElmt.innerText = `Contactez-moi \n ${currentPhotographer.name}`
+}
+
+const displayMediaCards = () => {
   mediaSectionElmt.innerHTML = ''
-  mediaArray.forEach((media) => {
+  currentMediaArray.forEach((media) => {
     const mediaCardElmt = new MediaCard(media).cardElmt
     mediaSectionElmt.appendChild(mediaCardElmt)
   })
+}
+
+const displayStickyBarInfos = () => {
+  likeCountElmt.innerText = getCurrentLikeCount().toString()
+  if (currentPhotographer) likePriceElmt.innerText = currentPhotographer.price
 }
 
 const likesComparator: (a: Media, b: Media) => number = (a, b) => {
@@ -126,7 +144,7 @@ const handleSortMenu = () => {
 
       sortMediaArray(currentInput)
       updateLabelsInput(currentInput)
-      displayMediaCards(currentMediaArray)
+      displayMediaCards()
     })
   )
 }
@@ -134,12 +152,13 @@ const handleSortMenu = () => {
 const initPhotographerPage = async () => {
   contactFormHandler()
   sortMenuHandler()
-  const currentPhotographer = await getCurrentPhotographer()
+  handleSortMenu()
+  currentPhotographer = await getCurrentPhotographer()
   currentMediaArray = (await getCurrentMedia()) || []
   sortMediaArray(sortButtonElmt.getAttribute('data-value') || '')
-  if (currentPhotographer) displayphotographerInfos(currentPhotographer)
-  displayMediaCards(currentMediaArray)
-  handleSortMenu()
+  displayphotographerInfos()
+  displayMediaCards()
+  displayStickyBarInfos()
 }
 
 initPhotographerPage()

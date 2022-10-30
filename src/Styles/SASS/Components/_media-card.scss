@@ -32,19 +32,20 @@
     color: $highlight-primary;
   }
 
-  &__like-wrapper {
+  &__like-container {
     display: flex;
     gap: 4px;
     align-items: center;
   }
 
-  &__likeCount {
+  &__like-count {
     @include typographies(body);
     color: $highlight-primary;
   }
 
-  &__likeIcon {
+  &__like-icon {
     font-size: 20px;
     color: $highlight-primary;
+    cursor: pointer;
   }
 }

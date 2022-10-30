@@ -1,0 +1,31 @@
+.sticky-bar {
+  max-width: 376px;
+  width: 100%;
+  padding: 16px 32px;
+  background-color: $highlight-tertiary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+  position: fixed;
+  bottom: 0;
+  right: $gutter-desktop;
+
+  &__like-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__like-count {
+    @include typographies(subtitle);
+  }
+
+  &__like-icon {
+    font-size: 18px;
+  }
+
+  &__price {
+    @include typographies(subtitle);
+  }
+}

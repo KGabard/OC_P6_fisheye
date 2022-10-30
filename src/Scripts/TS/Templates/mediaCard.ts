@@ -16,9 +16,9 @@ export class MediaCard {
       `</a>` +
       `<div class="media-card__infos">` +
       `<h2 class="media-card__title">${this._media.title}</h2>` +
-      `<div class="media-card__like-wrapper">` +
-      `<p class="media-card__likeCount">${this._media.likes.toString()}</p>` +
-      `<i class="media-card__likeIcon fa-solid fa-heart"></i>` +
+      `<div class="media-card__like-container">` +
+      `<p class="media-card__like-count">${this._media.likes.toString()}</p>` +
+      `<i class="media-card__like-icon fa-solid fa-heart"></i>` +
       `</div>` +
       `</div>`
 
@@ -37,9 +37,9 @@ export class MediaCard {
 //       `</a>` +
 //       `<div class="media-card__infos">` +
 //       `<h2 class="media-card__title">${this._media.title}</h2>` +
-//       `<div class="media-card__like-wrapper">` +
-//       `<p class="media-card__likeCount">${this._media.likes.toString()}</p>` +
-//       `<i class="media-card__likeIcon fa-solid fa-heart"></i>` +
+//       `<div class="media-card__like-container">` +
+//       `<p class="media-card__like-count">${this._media.likes.toString()}</p>` +
+//       `<i class="media-card__like-icon fa-solid fa-heart"></i>` +
 //       `</div>` +
 //       `</div>`
 
@@ -58,9 +58,9 @@ export class MediaCard {
 //       `</a>` +
 //       `<div class="media-card__infos">` +
 //       `<h2 class="media-card__title">${this._media.title}</h2>` +
-//       `<div class="media-card__like-wrapper">` +
-//       `<p class="media-card__likeCount">${this._media.likes.toString()}</p>` +
-//       `<i class="media-card__likeIcon fa-solid fa-heart"></i>` +
+//       `<div class="media-card__like-container">` +
+//       `<p class="media-card__like-count">${this._media.likes.toString()}</p>` +
+//       `<i class="media-card__like-icon fa-solid fa-heart"></i>` +
 //       `</div>` +
 //       `</div>`
 

@@ -1,0 +1,29 @@
+.form-confirmation {
+  background-color: $highlight-tertiary;
+  width: fit-content;
+  max-width: 90%;
+  margin: 20vh auto;
+  border-radius: 8px;
+  padding: 32px;
+  position: relative;
+  z-index: 300;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  gap: 32px;
+
+  &--active {
+    display: flex;
+    animation: modal-open 400ms both;
+  }
+
+  &__text {
+    @include typographies(header);
+    text-align: center;
+  }
+
+  &__close-button {
+    @include button;
+  }
+}

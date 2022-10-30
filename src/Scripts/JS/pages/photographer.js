@@ -16,6 +16,7 @@ import { listItemElmts, sortButtonElmt, sortMenuHandler, updateLabelsInput, } fr
 import { MediaCard } from '../Templates/mediaCard.js';
 // Global variables
 let currentMediaArray = [];
+let currentPhotographer;
 // DOM Elements
 const photographerNameElmt = document.querySelector('.photographer-infos__name');
 const photographerLocationElmt = document.querySelector('.photographer-infos__location');
@@ -23,6 +24,8 @@ const photographerTaglineElmt = document.querySelector('.photographer-infos__tag
 const photographerPictureElmt = document.querySelector('.photographer-header__picture');
 const contactTitleElmt = document.querySelector('.contact-modal__title');
 const mediaSectionElmt = document.querySelector('.media-section');
+const likeCountElmt = document.querySelector('.sticky-bar__like-count');
+const likePriceElmt = document.querySelector('.sticky-bar__price');
 // Functions
 const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentId = new URLSearchParams(window.location.search).get('id') || '';
@@ -38,20 +41,30 @@ const getCurrentMedia = () => __awaiter(void 0, void 0, void 0, function* () {
         ? currentMediaData.map((media) => new Media(media))
         : null;
 });
-const displayphotographerInfos = (photographer) => {
-    photographerNameElmt.innerText = photographer.name;
-    photographerLocationElmt.innerText = photographer.location;
-    photographerTaglineElmt.innerText = photographer.tagline;
-    photographerPictureElmt.src = photographer.picture;
-    photographerPictureElmt.alt = `Photographer ${photographer.name}`;
-    contactTitleElmt.innerText = `Contactez-moi \n ${photographer.name}`;
+const getCurrentLikeCount = () => {
+    return currentMediaArray.reduce((totalLikes, media) => totalLikes + media.likes, 0);
 };
-const displayMediaCards = (mediaArray) => {
+const displayphotographerInfos = () => {
+    if (!currentPhotographer)
+        return;
+    photographerNameElmt.innerText = currentPhotographer.name;
+    photographerLocationElmt.innerText = currentPhotographer.location;
+    photographerTaglineElmt.innerText = currentPhotographer.tagline;
+    photographerPictureElmt.src = currentPhotographer.picture;
+    photographerPictureElmt.alt = `Photographer ${currentPhotographer.name}`;
+    contactTitleElmt.innerText = `Contactez-moi \n ${currentPhotographer.name}`;
+};
+const displayMediaCards = () => {
     mediaSectionElmt.innerHTML = '';
-    mediaArray.forEach((media) => {
+    currentMediaArray.forEach((media) => {
         const mediaCardElmt = new MediaCard(media).cardElmt;
         mediaSectionElmt.appendChild(mediaCardElmt);
     });
+};
+const displayStickyBarInfos = () => {
+    likeCountElmt.innerText = getCurrentLikeCount().toString();
+    if (currentPhotographer)
+        likePriceElmt.innerText = currentPhotographer.price;
 };
 const likesComparator = (a, b) => {
     return b.likes - a.likes;
@@ -98,18 +111,18 @@ const handleSortMenu = () => {
         const currentInput = currentLiEmlt.getAttribute('data-value') || '';
         sortMediaArray(currentInput);
         updateLabelsInput(currentInput);
-        displayMediaCards(currentMediaArray);
+        displayMediaCards();
     }));
 };
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
     contactFormHandler();
     sortMenuHandler();
-    const currentPhotographer = yield getCurrentPhotographer();
+    handleSortMenu();
+    currentPhotographer = yield getCurrentPhotographer();
     currentMediaArray = (yield getCurrentMedia()) || [];
     sortMediaArray(sortButtonElmt.getAttribute('data-value') || '');
-    if (currentPhotographer)
-        displayphotographerInfos(currentPhotographer);
-    displayMediaCards(currentMediaArray);
-    handleSortMenu();
+    displayphotographerInfos();
+    displayMediaCards();
+    displayStickyBarInfos();
 });
 initPhotographerPage();

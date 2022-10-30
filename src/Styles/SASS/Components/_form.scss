@@ -3,25 +3,24 @@
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  gap: 32px;
 
   &__data {
     display: flex;
     flex-direction: column;
     width: 100%;
-    //! A vérifier "self-start"
-    align-items: self-start;
-    margin-bottom: 26px;
+    gap: 8px;
   }
 
   &__label {
-    @include typographies(title);
+    @include typographies(subtitle);
     color: $neutral-primary;
   }
 
   &__input {
     @include typographies(subtitle);
     width: 100%;
-    height: 68px;
+    height: 64px;
     border: none;
     border-radius: 5px;
     padding: 16px;
@@ -29,5 +28,22 @@
         height: 170px;
         vertical-align: top;
     }
+    &--wrong {
+      border: 4px solid red;
+      animation: fade-in-border 300ms;
+    }
   }
+
+
+
+&__error-message {
+  @include typographies(body);
+  color: $highlight-primary;
+  display: none;
+
+  &--active {
+    display: block;
+    animation: fade-in 300ms 100ms both;
+  }
+}
 }

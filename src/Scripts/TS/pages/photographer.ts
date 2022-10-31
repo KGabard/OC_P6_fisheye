@@ -1,5 +1,5 @@
 // Imports
-import { contactFormHandler } from '../Utils/contactForm.js'
+import { contactFormHandler } from '../Components/contact-form.js'
 import { MediaApi, PhotographerApi } from '../Api/api.js'
 import { Photographer } from '../Models/photographer.js'
 import { Media } from '../Models/media.js'
@@ -8,11 +8,12 @@ import {
   sortButtonElmt,
   sortMenuHandler,
   updateLabelsInput,
-} from '../Utils/sortMenu.js'
-import { MediaCard } from '../Templates/mediaCard.js'
+} from '../Components/sort-menu.js'
+import { MediaCard } from '../Templates/media-card.js'
+import { addMediaCardLink, lightboxHandler } from '../Components/lightbox.js'
 
 // Global variables
-let currentMediaArray: Media[] = []
+export let currentMediaArray: Media[] = []
 let currentPhotographer: Photographer | null
 
 // DOM Elements
@@ -87,6 +88,7 @@ const displayMediaCards = () => {
     const mediaCardElmt = new MediaCard(media).cardElmt
     mediaSectionElmt.appendChild(mediaCardElmt)
   })
+  addMediaCardLink()
 }
 
 const displayStickyBarInfos = () => {
@@ -152,6 +154,7 @@ const handleSortMenu = () => {
 const initPhotographerPage = async () => {
   contactFormHandler()
   sortMenuHandler()
+  lightboxHandler()
   handleSortMenu()
   currentPhotographer = await getCurrentPhotographer()
   currentMediaArray = (await getCurrentMedia()) || []

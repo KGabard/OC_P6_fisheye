@@ -1,4 +1,4 @@
-import { mediaDataType } from '../Types/types'
+import { mediaDataType } from '../Types/types.js'
 
 export class Media {
   _media: mediaDataType

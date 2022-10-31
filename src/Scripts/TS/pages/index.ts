@@ -1,6 +1,6 @@
 import { PhotographerApi } from '../Api/api.js'
 import { Photographer } from '../Models/photographer.js'
-import { PhotographerCard } from '../Templates/photographerCard.js'
+import { PhotographerCard } from '../Templates/photographer-card.js'
 import { photographerDataType } from '../Types/types.js'
 
 const photographersSectionElmt = document.querySelector(

@@ -1,0 +1,80 @@
+.lightbox {
+  height: 90vh;
+  width: calc(90vw - 2 * $gutter-desktop);
+  border-radius: 8px;
+  background-color: white;
+  flex-direction: column;
+  padding: 16px 5vh;
+  margin: 5vh auto;
+  position: relative;
+  // animation: modal-open 400ms;
+  display: flex;
+  gap: 8px;
+
+  &__container {
+    display: none;
+    position: fixed;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 150;
+    &--active {
+      display: block;
+    }
+  }
+
+  &__overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__media-selector {
+    height: 0;
+    flex: 1 1 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__media-container {
+    width: 0;
+    flex: 1 1 0px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__media {
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    animation: fade-in 200ms ease-in-out both;
+  }
+
+  &__close-icon {
+    font-size: 36px;
+    align-self: end;
+    cursor: pointer;
+    color: $highlight-primary;
+    position: absolute;
+  }
+
+  &__next-button,
+  &__previous-button {
+    font-size: 36px;
+    cursor: pointer;
+    color: $highlight-primary;
+  }
+
+  &__title {
+    @include typographies(subtitle);
+    color: $highlight-primary;
+  }
+}

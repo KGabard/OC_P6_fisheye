@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { PhotographerApi } from '../Api/api.js';
 import { Photographer } from '../Models/photographer.js';
-import { PhotographerCard } from '../Templates/photographerCard.js';
+import { PhotographerCard } from '../Templates/photographer-card.js';
 const photographersSectionElmt = document.querySelector('.photographer-section');
 const displayPhotographersCards = (photographersArray) => {
     photographersArray

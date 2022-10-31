@@ -47,9 +47,7 @@
 
     <section class="media-section">
       <!-- <div class="media-card">
-        <a href="#" class="media-card__link">
-          <img src="./src/Assets/Medias/Pictures/Animals_Majesty.jpg" alt="" class="media-card__picture">
-        </a>
+        <img data-value="456127" src="./src/Assets/Medias/Pictures/Thumbnails/Animals_Majesty.jpg" alt="" class="media-card__picture">
         <div class="media-card__infos">
           <h2 class="media-card__title">Titre</h2>
           <div class="media-card__like-container">
@@ -60,13 +58,6 @@
       </div> -->
     </section>
 
-    <div class="sticky-bar">
-      <div class="sticky-bar__like-container">
-        <p class="sticky-bar__like-count">10</p>
-        <i class="sticky-bar__like-icon fa-solid fa-heart"></i>
-      </div>
-      <p class="sticky-bar__price">??€/jour</p>
-    </div>
   </main>
 
   <div class="contact-modal__container">
@@ -74,7 +65,7 @@
     <div class="contact-modal contact-modal--active">
       <header class="contact-modal__header">
         <h2 class="contact-modal__title">Contactez-moi <br> Mimi Keel</h2>
-        <img class="contact-modal__close-icon" src="src/Assets/Icons/close.svg" alt="Close contact modal" />
+        <i class="fa-solid fa-xmark contact-modal__close-icon"></i>
       </header>
       <form class="form">
         <div class="form__data">
@@ -107,6 +98,31 @@
       </button>
     </div>
   </div>
+
+  <div class="lightbox__container">
+    <div class="lightbox__overlay"></div>
+    <div class="lightbox">
+      <i class="fa-solid fa-xmark lightbox__close-icon"></i>
+      <div class="lightbox__media-selector">
+        <i class="fa-solid fa-chevron-left lightbox__previous-button"></i>
+        <div class="lightbox__media-container">
+          <!-- <img src="" alt="Titre de la photo" class="lightbox__media">
+          <video src="" controls class="lightbox__media"></video> -->
+        </div>
+        <i class="fa-solid fa-chevron-right lightbox__next-button"></i>
+      </div>
+      <p class="lightbox__title">Titre</p>
+    </div>
+  </div>
+
+  <div class="sticky-bar">
+    <div class="sticky-bar__like-container">
+      <p class="sticky-bar__like-count">10</p>
+      <i class="sticky-bar__like-icon fa-solid fa-heart"></i>
+    </div>
+    <p class="sticky-bar__price">??€/jour</p>
+  </div>
+
   <script type="module" src="./src/Scripts/JS/Pages/photographer.js"></script>
 </body>
 

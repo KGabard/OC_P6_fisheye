@@ -39,3 +39,11 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@mixin successive-fade-in {
+  @for $n from 1 to 50 {
+    &:nth-of-type(#{$n}) {
+      animation: fade-in 300ms $n * 125ms ease-out both;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-@-webkit-keyframes modal-open {
+@-webkit-keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(150px);
@@ -7,7 +7,7 @@
     opacity: 1;
   }
 }
-@keyframes modal-open {
+@keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(150px);
@@ -77,6 +77,202 @@ body {
   width: -moz-fit-content;
   width: fit-content;
 }
+.photographer-card:nth-of-type(1) {
+  -webkit-animation: fade-in 300ms 125ms ease-out both;
+          animation: fade-in 300ms 125ms ease-out both;
+}
+.photographer-card:nth-of-type(2) {
+  -webkit-animation: fade-in 300ms 250ms ease-out both;
+          animation: fade-in 300ms 250ms ease-out both;
+}
+.photographer-card:nth-of-type(3) {
+  -webkit-animation: fade-in 300ms 375ms ease-out both;
+          animation: fade-in 300ms 375ms ease-out both;
+}
+.photographer-card:nth-of-type(4) {
+  -webkit-animation: fade-in 300ms 500ms ease-out both;
+          animation: fade-in 300ms 500ms ease-out both;
+}
+.photographer-card:nth-of-type(5) {
+  -webkit-animation: fade-in 300ms 625ms ease-out both;
+          animation: fade-in 300ms 625ms ease-out both;
+}
+.photographer-card:nth-of-type(6) {
+  -webkit-animation: fade-in 300ms 750ms ease-out both;
+          animation: fade-in 300ms 750ms ease-out both;
+}
+.photographer-card:nth-of-type(7) {
+  -webkit-animation: fade-in 300ms 875ms ease-out both;
+          animation: fade-in 300ms 875ms ease-out both;
+}
+.photographer-card:nth-of-type(8) {
+  -webkit-animation: fade-in 300ms 1000ms ease-out both;
+          animation: fade-in 300ms 1000ms ease-out both;
+}
+.photographer-card:nth-of-type(9) {
+  -webkit-animation: fade-in 300ms 1125ms ease-out both;
+          animation: fade-in 300ms 1125ms ease-out both;
+}
+.photographer-card:nth-of-type(10) {
+  -webkit-animation: fade-in 300ms 1250ms ease-out both;
+          animation: fade-in 300ms 1250ms ease-out both;
+}
+.photographer-card:nth-of-type(11) {
+  -webkit-animation: fade-in 300ms 1375ms ease-out both;
+          animation: fade-in 300ms 1375ms ease-out both;
+}
+.photographer-card:nth-of-type(12) {
+  -webkit-animation: fade-in 300ms 1500ms ease-out both;
+          animation: fade-in 300ms 1500ms ease-out both;
+}
+.photographer-card:nth-of-type(13) {
+  -webkit-animation: fade-in 300ms 1625ms ease-out both;
+          animation: fade-in 300ms 1625ms ease-out both;
+}
+.photographer-card:nth-of-type(14) {
+  -webkit-animation: fade-in 300ms 1750ms ease-out both;
+          animation: fade-in 300ms 1750ms ease-out both;
+}
+.photographer-card:nth-of-type(15) {
+  -webkit-animation: fade-in 300ms 1875ms ease-out both;
+          animation: fade-in 300ms 1875ms ease-out both;
+}
+.photographer-card:nth-of-type(16) {
+  -webkit-animation: fade-in 300ms 2000ms ease-out both;
+          animation: fade-in 300ms 2000ms ease-out both;
+}
+.photographer-card:nth-of-type(17) {
+  -webkit-animation: fade-in 300ms 2125ms ease-out both;
+          animation: fade-in 300ms 2125ms ease-out both;
+}
+.photographer-card:nth-of-type(18) {
+  -webkit-animation: fade-in 300ms 2250ms ease-out both;
+          animation: fade-in 300ms 2250ms ease-out both;
+}
+.photographer-card:nth-of-type(19) {
+  -webkit-animation: fade-in 300ms 2375ms ease-out both;
+          animation: fade-in 300ms 2375ms ease-out both;
+}
+.photographer-card:nth-of-type(20) {
+  -webkit-animation: fade-in 300ms 2500ms ease-out both;
+          animation: fade-in 300ms 2500ms ease-out both;
+}
+.photographer-card:nth-of-type(21) {
+  -webkit-animation: fade-in 300ms 2625ms ease-out both;
+          animation: fade-in 300ms 2625ms ease-out both;
+}
+.photographer-card:nth-of-type(22) {
+  -webkit-animation: fade-in 300ms 2750ms ease-out both;
+          animation: fade-in 300ms 2750ms ease-out both;
+}
+.photographer-card:nth-of-type(23) {
+  -webkit-animation: fade-in 300ms 2875ms ease-out both;
+          animation: fade-in 300ms 2875ms ease-out both;
+}
+.photographer-card:nth-of-type(24) {
+  -webkit-animation: fade-in 300ms 3000ms ease-out both;
+          animation: fade-in 300ms 3000ms ease-out both;
+}
+.photographer-card:nth-of-type(25) {
+  -webkit-animation: fade-in 300ms 3125ms ease-out both;
+          animation: fade-in 300ms 3125ms ease-out both;
+}
+.photographer-card:nth-of-type(26) {
+  -webkit-animation: fade-in 300ms 3250ms ease-out both;
+          animation: fade-in 300ms 3250ms ease-out both;
+}
+.photographer-card:nth-of-type(27) {
+  -webkit-animation: fade-in 300ms 3375ms ease-out both;
+          animation: fade-in 300ms 3375ms ease-out both;
+}
+.photographer-card:nth-of-type(28) {
+  -webkit-animation: fade-in 300ms 3500ms ease-out both;
+          animation: fade-in 300ms 3500ms ease-out both;
+}
+.photographer-card:nth-of-type(29) {
+  -webkit-animation: fade-in 300ms 3625ms ease-out both;
+          animation: fade-in 300ms 3625ms ease-out both;
+}
+.photographer-card:nth-of-type(30) {
+  -webkit-animation: fade-in 300ms 3750ms ease-out both;
+          animation: fade-in 300ms 3750ms ease-out both;
+}
+.photographer-card:nth-of-type(31) {
+  -webkit-animation: fade-in 300ms 3875ms ease-out both;
+          animation: fade-in 300ms 3875ms ease-out both;
+}
+.photographer-card:nth-of-type(32) {
+  -webkit-animation: fade-in 300ms 4000ms ease-out both;
+          animation: fade-in 300ms 4000ms ease-out both;
+}
+.photographer-card:nth-of-type(33) {
+  -webkit-animation: fade-in 300ms 4125ms ease-out both;
+          animation: fade-in 300ms 4125ms ease-out both;
+}
+.photographer-card:nth-of-type(34) {
+  -webkit-animation: fade-in 300ms 4250ms ease-out both;
+          animation: fade-in 300ms 4250ms ease-out both;
+}
+.photographer-card:nth-of-type(35) {
+  -webkit-animation: fade-in 300ms 4375ms ease-out both;
+          animation: fade-in 300ms 4375ms ease-out both;
+}
+.photographer-card:nth-of-type(36) {
+  -webkit-animation: fade-in 300ms 4500ms ease-out both;
+          animation: fade-in 300ms 4500ms ease-out both;
+}
+.photographer-card:nth-of-type(37) {
+  -webkit-animation: fade-in 300ms 4625ms ease-out both;
+          animation: fade-in 300ms 4625ms ease-out both;
+}
+.photographer-card:nth-of-type(38) {
+  -webkit-animation: fade-in 300ms 4750ms ease-out both;
+          animation: fade-in 300ms 4750ms ease-out both;
+}
+.photographer-card:nth-of-type(39) {
+  -webkit-animation: fade-in 300ms 4875ms ease-out both;
+          animation: fade-in 300ms 4875ms ease-out both;
+}
+.photographer-card:nth-of-type(40) {
+  -webkit-animation: fade-in 300ms 5000ms ease-out both;
+          animation: fade-in 300ms 5000ms ease-out both;
+}
+.photographer-card:nth-of-type(41) {
+  -webkit-animation: fade-in 300ms 5125ms ease-out both;
+          animation: fade-in 300ms 5125ms ease-out both;
+}
+.photographer-card:nth-of-type(42) {
+  -webkit-animation: fade-in 300ms 5250ms ease-out both;
+          animation: fade-in 300ms 5250ms ease-out both;
+}
+.photographer-card:nth-of-type(43) {
+  -webkit-animation: fade-in 300ms 5375ms ease-out both;
+          animation: fade-in 300ms 5375ms ease-out both;
+}
+.photographer-card:nth-of-type(44) {
+  -webkit-animation: fade-in 300ms 5500ms ease-out both;
+          animation: fade-in 300ms 5500ms ease-out both;
+}
+.photographer-card:nth-of-type(45) {
+  -webkit-animation: fade-in 300ms 5625ms ease-out both;
+          animation: fade-in 300ms 5625ms ease-out both;
+}
+.photographer-card:nth-of-type(46) {
+  -webkit-animation: fade-in 300ms 5750ms ease-out both;
+          animation: fade-in 300ms 5750ms ease-out both;
+}
+.photographer-card:nth-of-type(47) {
+  -webkit-animation: fade-in 300ms 5875ms ease-out both;
+          animation: fade-in 300ms 5875ms ease-out both;
+}
+.photographer-card:nth-of-type(48) {
+  -webkit-animation: fade-in 300ms 6000ms ease-out both;
+          animation: fade-in 300ms 6000ms ease-out both;
+}
+.photographer-card:nth-of-type(49) {
+  -webkit-animation: fade-in 300ms 6125ms ease-out both;
+          animation: fade-in 300ms 6125ms ease-out both;
+}
 .photographer-card__link {
   text-decoration: none;
   display: flex;
@@ -132,6 +328,10 @@ body {
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 200ms ease-out;
+}
+.contact-button:hover {
+  transform: scale(1.1);
 }
 
 .submit-button {
@@ -265,8 +465,8 @@ body {
 }
 .form-confirmation--active {
   display: flex;
-  -webkit-animation: modal-open 400ms both;
-          animation: modal-open 400ms both;
+  -webkit-animation: fade-in-up 400ms both;
+          animation: fade-in-up 400ms both;
 }
 .form-confirmation__text {
   font-family: DM Sans, sans-serif;
@@ -301,6 +501,202 @@ body {
   flex-direction: column;
   gap: 8px;
   transition: transform 200ms ease-in-out;
+}
+.media-card:nth-of-type(1) {
+  -webkit-animation: fade-in 300ms 125ms ease-out both;
+          animation: fade-in 300ms 125ms ease-out both;
+}
+.media-card:nth-of-type(2) {
+  -webkit-animation: fade-in 300ms 250ms ease-out both;
+          animation: fade-in 300ms 250ms ease-out both;
+}
+.media-card:nth-of-type(3) {
+  -webkit-animation: fade-in 300ms 375ms ease-out both;
+          animation: fade-in 300ms 375ms ease-out both;
+}
+.media-card:nth-of-type(4) {
+  -webkit-animation: fade-in 300ms 500ms ease-out both;
+          animation: fade-in 300ms 500ms ease-out both;
+}
+.media-card:nth-of-type(5) {
+  -webkit-animation: fade-in 300ms 625ms ease-out both;
+          animation: fade-in 300ms 625ms ease-out both;
+}
+.media-card:nth-of-type(6) {
+  -webkit-animation: fade-in 300ms 750ms ease-out both;
+          animation: fade-in 300ms 750ms ease-out both;
+}
+.media-card:nth-of-type(7) {
+  -webkit-animation: fade-in 300ms 875ms ease-out both;
+          animation: fade-in 300ms 875ms ease-out both;
+}
+.media-card:nth-of-type(8) {
+  -webkit-animation: fade-in 300ms 1000ms ease-out both;
+          animation: fade-in 300ms 1000ms ease-out both;
+}
+.media-card:nth-of-type(9) {
+  -webkit-animation: fade-in 300ms 1125ms ease-out both;
+          animation: fade-in 300ms 1125ms ease-out both;
+}
+.media-card:nth-of-type(10) {
+  -webkit-animation: fade-in 300ms 1250ms ease-out both;
+          animation: fade-in 300ms 1250ms ease-out both;
+}
+.media-card:nth-of-type(11) {
+  -webkit-animation: fade-in 300ms 1375ms ease-out both;
+          animation: fade-in 300ms 1375ms ease-out both;
+}
+.media-card:nth-of-type(12) {
+  -webkit-animation: fade-in 300ms 1500ms ease-out both;
+          animation: fade-in 300ms 1500ms ease-out both;
+}
+.media-card:nth-of-type(13) {
+  -webkit-animation: fade-in 300ms 1625ms ease-out both;
+          animation: fade-in 300ms 1625ms ease-out both;
+}
+.media-card:nth-of-type(14) {
+  -webkit-animation: fade-in 300ms 1750ms ease-out both;
+          animation: fade-in 300ms 1750ms ease-out both;
+}
+.media-card:nth-of-type(15) {
+  -webkit-animation: fade-in 300ms 1875ms ease-out both;
+          animation: fade-in 300ms 1875ms ease-out both;
+}
+.media-card:nth-of-type(16) {
+  -webkit-animation: fade-in 300ms 2000ms ease-out both;
+          animation: fade-in 300ms 2000ms ease-out both;
+}
+.media-card:nth-of-type(17) {
+  -webkit-animation: fade-in 300ms 2125ms ease-out both;
+          animation: fade-in 300ms 2125ms ease-out both;
+}
+.media-card:nth-of-type(18) {
+  -webkit-animation: fade-in 300ms 2250ms ease-out both;
+          animation: fade-in 300ms 2250ms ease-out both;
+}
+.media-card:nth-of-type(19) {
+  -webkit-animation: fade-in 300ms 2375ms ease-out both;
+          animation: fade-in 300ms 2375ms ease-out both;
+}
+.media-card:nth-of-type(20) {
+  -webkit-animation: fade-in 300ms 2500ms ease-out both;
+          animation: fade-in 300ms 2500ms ease-out both;
+}
+.media-card:nth-of-type(21) {
+  -webkit-animation: fade-in 300ms 2625ms ease-out both;
+          animation: fade-in 300ms 2625ms ease-out both;
+}
+.media-card:nth-of-type(22) {
+  -webkit-animation: fade-in 300ms 2750ms ease-out both;
+          animation: fade-in 300ms 2750ms ease-out both;
+}
+.media-card:nth-of-type(23) {
+  -webkit-animation: fade-in 300ms 2875ms ease-out both;
+          animation: fade-in 300ms 2875ms ease-out both;
+}
+.media-card:nth-of-type(24) {
+  -webkit-animation: fade-in 300ms 3000ms ease-out both;
+          animation: fade-in 300ms 3000ms ease-out both;
+}
+.media-card:nth-of-type(25) {
+  -webkit-animation: fade-in 300ms 3125ms ease-out both;
+          animation: fade-in 300ms 3125ms ease-out both;
+}
+.media-card:nth-of-type(26) {
+  -webkit-animation: fade-in 300ms 3250ms ease-out both;
+          animation: fade-in 300ms 3250ms ease-out both;
+}
+.media-card:nth-of-type(27) {
+  -webkit-animation: fade-in 300ms 3375ms ease-out both;
+          animation: fade-in 300ms 3375ms ease-out both;
+}
+.media-card:nth-of-type(28) {
+  -webkit-animation: fade-in 300ms 3500ms ease-out both;
+          animation: fade-in 300ms 3500ms ease-out both;
+}
+.media-card:nth-of-type(29) {
+  -webkit-animation: fade-in 300ms 3625ms ease-out both;
+          animation: fade-in 300ms 3625ms ease-out both;
+}
+.media-card:nth-of-type(30) {
+  -webkit-animation: fade-in 300ms 3750ms ease-out both;
+          animation: fade-in 300ms 3750ms ease-out both;
+}
+.media-card:nth-of-type(31) {
+  -webkit-animation: fade-in 300ms 3875ms ease-out both;
+          animation: fade-in 300ms 3875ms ease-out both;
+}
+.media-card:nth-of-type(32) {
+  -webkit-animation: fade-in 300ms 4000ms ease-out both;
+          animation: fade-in 300ms 4000ms ease-out both;
+}
+.media-card:nth-of-type(33) {
+  -webkit-animation: fade-in 300ms 4125ms ease-out both;
+          animation: fade-in 300ms 4125ms ease-out both;
+}
+.media-card:nth-of-type(34) {
+  -webkit-animation: fade-in 300ms 4250ms ease-out both;
+          animation: fade-in 300ms 4250ms ease-out both;
+}
+.media-card:nth-of-type(35) {
+  -webkit-animation: fade-in 300ms 4375ms ease-out both;
+          animation: fade-in 300ms 4375ms ease-out both;
+}
+.media-card:nth-of-type(36) {
+  -webkit-animation: fade-in 300ms 4500ms ease-out both;
+          animation: fade-in 300ms 4500ms ease-out both;
+}
+.media-card:nth-of-type(37) {
+  -webkit-animation: fade-in 300ms 4625ms ease-out both;
+          animation: fade-in 300ms 4625ms ease-out both;
+}
+.media-card:nth-of-type(38) {
+  -webkit-animation: fade-in 300ms 4750ms ease-out both;
+          animation: fade-in 300ms 4750ms ease-out both;
+}
+.media-card:nth-of-type(39) {
+  -webkit-animation: fade-in 300ms 4875ms ease-out both;
+          animation: fade-in 300ms 4875ms ease-out both;
+}
+.media-card:nth-of-type(40) {
+  -webkit-animation: fade-in 300ms 5000ms ease-out both;
+          animation: fade-in 300ms 5000ms ease-out both;
+}
+.media-card:nth-of-type(41) {
+  -webkit-animation: fade-in 300ms 5125ms ease-out both;
+          animation: fade-in 300ms 5125ms ease-out both;
+}
+.media-card:nth-of-type(42) {
+  -webkit-animation: fade-in 300ms 5250ms ease-out both;
+          animation: fade-in 300ms 5250ms ease-out both;
+}
+.media-card:nth-of-type(43) {
+  -webkit-animation: fade-in 300ms 5375ms ease-out both;
+          animation: fade-in 300ms 5375ms ease-out both;
+}
+.media-card:nth-of-type(44) {
+  -webkit-animation: fade-in 300ms 5500ms ease-out both;
+          animation: fade-in 300ms 5500ms ease-out both;
+}
+.media-card:nth-of-type(45) {
+  -webkit-animation: fade-in 300ms 5625ms ease-out both;
+          animation: fade-in 300ms 5625ms ease-out both;
+}
+.media-card:nth-of-type(46) {
+  -webkit-animation: fade-in 300ms 5750ms ease-out both;
+          animation: fade-in 300ms 5750ms ease-out both;
+}
+.media-card:nth-of-type(47) {
+  -webkit-animation: fade-in 300ms 5875ms ease-out both;
+          animation: fade-in 300ms 5875ms ease-out both;
+}
+.media-card:nth-of-type(48) {
+  -webkit-animation: fade-in 300ms 6000ms ease-out both;
+          animation: fade-in 300ms 6000ms ease-out both;
+}
+.media-card:nth-of-type(49) {
+  -webkit-animation: fade-in 300ms 6125ms ease-out both;
+          animation: fade-in 300ms 6125ms ease-out both;
 }
 .media-card:hover {
   transform: scale(1.05);
@@ -357,6 +753,9 @@ body {
   z-index: 100;
 }
 .media-sorter__label {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   font-family: DM Sans, sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -365,9 +764,7 @@ body {
 }
 .media-sorter__selector-container {
   width: 170px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 55px;
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   overflow: hidden;
@@ -376,6 +773,10 @@ body {
 }
 .media-sorter__selector-container:hover .media-sorter__sort-button {
   background-color: #d3573c;
+}
+.media-sorter__selector-container--active {
+  transition: height 200ms ease-out;
+  height: 165.6px;
 }
 .media-sorter__chevron {
   position: absolute;
@@ -587,8 +988,8 @@ body {
   padding: 35px;
   margin: 64px auto;
   position: relative;
-  -webkit-animation: modal-open 400ms;
-          animation: modal-open 400ms;
+  -webkit-animation: fade-in-up 400ms;
+          animation: fade-in-up 400ms;
   display: none;
 }
 .contact-modal--active {

@@ -4,6 +4,7 @@
   align-items: center;
   flex-direction: column;
   width: fit-content;
+  @include successive-fade-in;
 
   &__link {
     text-decoration: none;

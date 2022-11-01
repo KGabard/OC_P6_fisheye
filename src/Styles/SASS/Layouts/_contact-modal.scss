@@ -9,7 +9,7 @@
   padding: 35px;
   margin: 64px auto;
   position: relative;
-  animation: modal-open 400ms;
+  animation: fade-in-up 400ms;
   display: none;
 
   &--active {

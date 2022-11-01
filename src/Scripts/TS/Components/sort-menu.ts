@@ -24,10 +24,12 @@ const toggleMenu = () => {
       dropdownMenuElmt.classList[0] + '--active'
     )
   ) {
+    closeElmt(selectorContainerElmt)
     closeElmt(dropdownMenuElmt)
     closeElmt(chevronElmt)
     openElmt(sortButtonElmt)
   } else {
+    openElmt(selectorContainerElmt)
     openElmt(dropdownMenuElmt)
     openElmt(chevronElmt)
     closeElmt(sortButtonElmt)

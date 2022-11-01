@@ -15,7 +15,7 @@
 
   &--active {
     display: flex;
-    animation: modal-open 400ms both;
+    animation: fade-in-up 400ms both;
   }
 
   &__text {

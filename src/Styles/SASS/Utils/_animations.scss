@@ -1,27 +1,27 @@
-@keyframes modal-open {
-    from {
-      opacity: 0;
-      transform: translateY(150px);
-    }
-    to {
-      opacity: 1;
-    }
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(150px);
   }
-  
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  to {
+    opacity: 1;
   }
-  
-  @keyframes fade-in-border {
-    from {
-      border-color: transparent;
-    }
-    to {
-      border-color: red;
-    }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-border {
+  from {
+    border-color: transparent;
+  }
+  to {
+    border-color: red;
+  }
+}

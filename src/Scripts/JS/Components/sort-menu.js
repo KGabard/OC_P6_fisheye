@@ -8,11 +8,13 @@ export const listItemElmts = document.querySelectorAll('.media-sorter__dropdown-
 // Functions
 const toggleMenu = () => {
     if (dropdownMenuElmt.classList.contains(dropdownMenuElmt.classList[0] + '--active')) {
+        closeElmt(selectorContainerElmt);
         closeElmt(dropdownMenuElmt);
         closeElmt(chevronElmt);
         openElmt(sortButtonElmt);
     }
     else {
+        openElmt(selectorContainerElmt);
         openElmt(dropdownMenuElmt);
         openElmt(chevronElmt);
         closeElmt(sortButtonElmt);

@@ -1,23 +1,25 @@
 .media-card {
-  overflow: hidden;
-  width: fit-content;
-  height: fit-content;
+  // overflow: hidden;
+  // width: fit-content;
+  // height: fit-content;
+  width: $media-card-width;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: transform 200ms ease-in-out;
-  @include successive-fade-in;
-
-  &:hover {
-    transform: scale(1.05);
-  }
 
   &__picture {
-    width: $media-card-width;
-    height: 300px;
+    height: $media-card-height;
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
+    transition: transform 200ms ease-in-out;
+    transform-origin: 50% 0%;
+    &:hover {
+      transform: scaleX(1.05) scaleY(1.05);
+    }
+    &:hover + .media-card__infos {
+      opacity: 0;
+    }
   }
 
   &__infos {
@@ -26,6 +28,7 @@
     gap: 32px;
     align-items: center;
     padding: 0 8px;
+    transition: opacity 200ms ease-in-out;
   }
 
   &__title {
@@ -38,6 +41,10 @@
     display: flex;
     gap: 4px;
     align-items: center;
+    &--liked .media-card__like-icon,
+    &--liked .media-card__like-count {
+      color: $highlight-secondary;
+    }
   }
 
   &__like-count {
@@ -49,5 +56,16 @@
     font-size: 20px;
     color: $highlight-primary;
     cursor: pointer;
+  }
+}
+
+@include mobile {
+  .media-card {
+    width: $media-card-width-mobile;
+
+    &__picture {
+      width: $media-card-width-mobile;
+      height: $media-card-height-mobile;
+    }
   }
 }

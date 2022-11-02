@@ -1,3 +1,4 @@
+import { displayMediaCards, sortMediaArray } from '../Pages/photographer.js';
 import { closeElmt, openElmt } from '../Utils/html-class-functions.js';
 // DOM Elements
 const selectorContainerElmt = document.querySelector('.media-sorter__selector-container');
@@ -48,4 +49,12 @@ export const updateLabelsInput = (currentInput) => {
 // Add Eventlisteners
 export const sortMenuHandler = () => {
     selectorContainerElmt.addEventListener('click', toggleMenu);
+    listItemElmts.forEach((item) => item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const currentLiEmlt = e.target;
+        const currentInput = currentLiEmlt.getAttribute('data-value') || '';
+        sortMediaArray(currentInput);
+        updateLabelsInput(currentInput);
+        displayMediaCards();
+    }));
 };

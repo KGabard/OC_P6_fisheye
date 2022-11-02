@@ -1,12 +1,12 @@
-//-------------
-// DOM Elements
-//-------------
-
 import {
   closeElmt,
   openElmt,
   setElmtToWrong,
 } from '../Utils/html-class-functions.js'
+
+//-------------
+// DOM Elements
+//-------------
 
 const contactButtonElmt = document.querySelector(
   '.contact-button'

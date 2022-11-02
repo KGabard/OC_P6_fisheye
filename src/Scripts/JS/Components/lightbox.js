@@ -1,8 +1,8 @@
+import { currentMediaArray } from '../Pages/photographer.js';
+import { closeElmt, openElmt } from '../Utils/html-class-functions.js';
 //-------------
 // DOM Elements
 //-------------
-import { currentMediaArray } from '../Pages/photographer.js';
-import { closeElmt, openElmt } from '../Utils/html-class-functions.js';
 const lightboxContainerElmt = document.querySelector('.lightbox__container');
 const lightboxOverlayElmt = document.querySelector('.lightbox__overlay');
 const lightboxCloseIconElmt = document.querySelector('.lightbox__close-icon');

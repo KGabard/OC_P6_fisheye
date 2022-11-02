@@ -14,7 +14,7 @@ export class MediaCard {
       `<img data-value="${this._media.id.toString()}" src="${this._media.thumbnailSrc}" alt="${this._media.title}" class="media-card__picture">` +
       `<div class="media-card__infos">` +
       `<h2 class="media-card__title">${this._media.title}</h2>` +
-      `<div class="media-card__like-container">` +
+      `<div class="media-card__like-container ${this._media.isLiked && 'media-card__like-container--liked'}">` +
       `<p class="media-card__like-count">${this._media.likes.toString()}</p>` +
       `<i class="media-card__like-icon fa-solid fa-heart"></i>` +
       `</div>` +

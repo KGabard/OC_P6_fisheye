@@ -2,9 +2,11 @@ import { mediaDataType } from '../Types/types.js'
 
 export class Media {
   _media: mediaDataType
+  _isLiked: boolean
 
   constructor(media: mediaDataType) {
     this._media = media
+    this._isLiked = false
   }
 
   get id() {
@@ -69,5 +71,21 @@ export class Media {
 
   get price() {
     return `${this._media.price}€`
+  }
+
+  get isLiked() {
+    return this._isLiked
+  }
+
+  addLike() {
+    this._media.likes = this._media.likes + 1
+  }
+
+  removeLike() {
+    if (this._media.likes > 0) this._media.likes = this._media.likes - 1
+  }
+
+  toggleIsLiked() {
+    this._isLiked = !this.isLiked
   }
 }

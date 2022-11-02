@@ -1,3 +1,4 @@
+import { displayMediaCards, sortMediaArray } from '../Pages/photographer.js'
 import { closeElmt, openElmt } from '../Utils/html-class-functions.js'
 
 // DOM Elements
@@ -75,4 +76,16 @@ export const updateLabelsInput: (currentInput: string) => void = (
 // Add Eventlisteners
 export const sortMenuHandler = () => {
   selectorContainerElmt.addEventListener('click', toggleMenu)
+  listItemElmts.forEach((item) =>
+    item.addEventListener('click', (e: MouseEvent) => {
+      e.preventDefault()
+
+      const currentLiEmlt = e.target as HTMLLIElement
+      const currentInput = currentLiEmlt.getAttribute('data-value') || ''
+
+      sortMediaArray(currentInput)
+      updateLabelsInput(currentInput)
+      displayMediaCards()
+    })
+  )
 }

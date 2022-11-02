@@ -12,12 +12,14 @@ import { contactFormHandler } from '../Components/contact-form.js';
 import { MediaApi, PhotographerApi } from '../Api/api.js';
 import { Photographer } from '../Models/photographer.js';
 import { Media } from '../Models/media.js';
-import { listItemElmts, sortButtonElmt, sortMenuHandler, updateLabelsInput, } from '../Components/sort-menu.js';
+import { sortButtonElmt, sortMenuHandler } from '../Components/sort-menu.js';
 import { MediaCard } from '../Templates/media-card.js';
 import { addMediaCardLink, lightboxHandler } from '../Components/lightbox.js';
+import { addLikeIconEventListener } from '../Components/media-card.js';
 // Global variables
 export let currentMediaArray = [];
 let currentPhotographer;
+let firstLoading = true;
 // DOM Elements
 const photographerNameElmt = document.querySelector('.photographer-infos__name');
 const photographerLocationElmt = document.querySelector('.photographer-infos__location');
@@ -55,15 +57,19 @@ const displayphotographerInfos = () => {
     photographerPictureElmt.alt = `Photographer ${currentPhotographer.name}`;
     contactTitleElmt.innerText = `Contactez-moi \n ${currentPhotographer.name}`;
 };
-const displayMediaCards = () => {
+export const displayMediaCards = () => {
     mediaSectionElmt.innerHTML = '';
     currentMediaArray.forEach((media) => {
         const mediaCardElmt = new MediaCard(media).cardElmt;
         mediaSectionElmt.appendChild(mediaCardElmt);
     });
     addMediaCardLink();
+    addLikeIconEventListener();
+    !firstLoading &&
+        mediaSectionElmt.classList.remove('media-section--first-loading');
+    firstLoading = false;
 };
-const displayStickyBarInfos = () => {
+export const displayStickyBarInfos = () => {
     likeCountElmt.innerText = getCurrentLikeCount().toString();
     if (currentPhotographer)
         likePriceElmt.innerText = currentPhotographer.price;
@@ -91,7 +97,7 @@ const datesComparator = (a, b) => {
 const titlesComparator = (a, b) => {
     return a.title.localeCompare(b.title);
 };
-const sortMediaArray = (type) => {
+export const sortMediaArray = (type) => {
     switch (type) {
         case 'popularité':
             currentMediaArray.sort(likesComparator);
@@ -106,21 +112,10 @@ const sortMediaArray = (type) => {
             break;
     }
 };
-const handleSortMenu = () => {
-    listItemElmts.forEach((item) => item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const currentLiEmlt = e.target;
-        const currentInput = currentLiEmlt.getAttribute('data-value') || '';
-        sortMediaArray(currentInput);
-        updateLabelsInput(currentInput);
-        displayMediaCards();
-    }));
-};
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
     contactFormHandler();
     sortMenuHandler();
     lightboxHandler();
-    handleSortMenu();
     currentPhotographer = yield getCurrentPhotographer();
     currentMediaArray = (yield getCurrentMedia()) || [];
     sortMediaArray(sortButtonElmt.getAttribute('data-value') || '');

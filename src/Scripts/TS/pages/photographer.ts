@@ -3,18 +3,15 @@ import { contactFormHandler } from '../Components/contact-form.js'
 import { MediaApi, PhotographerApi } from '../Api/api.js'
 import { Photographer } from '../Models/photographer.js'
 import { Media } from '../Models/media.js'
-import {
-  listItemElmts,
-  sortButtonElmt,
-  sortMenuHandler,
-  updateLabelsInput,
-} from '../Components/sort-menu.js'
+import { sortButtonElmt, sortMenuHandler } from '../Components/sort-menu.js'
 import { MediaCard } from '../Templates/media-card.js'
 import { addMediaCardLink, lightboxHandler } from '../Components/lightbox.js'
+import { addLikeIconEventListener } from '../Components/media-card.js'
 
 // Global variables
 export let currentMediaArray: Media[] = []
 let currentPhotographer: Photographer | null
+let firstLoading = true
 
 // DOM Elements
 const photographerNameElmt = document.querySelector(
@@ -82,16 +79,20 @@ const displayphotographerInfos = () => {
   contactTitleElmt.innerText = `Contactez-moi \n ${currentPhotographer.name}`
 }
 
-const displayMediaCards = () => {
+export const displayMediaCards = () => {
   mediaSectionElmt.innerHTML = ''
   currentMediaArray.forEach((media) => {
     const mediaCardElmt = new MediaCard(media).cardElmt
     mediaSectionElmt.appendChild(mediaCardElmt)
   })
   addMediaCardLink()
+  addLikeIconEventListener()
+  !firstLoading &&
+    mediaSectionElmt.classList.remove('media-section--first-loading')
+  firstLoading = false
 }
 
-const displayStickyBarInfos = () => {
+export const displayStickyBarInfos = () => {
   likeCountElmt.innerText = getCurrentLikeCount().toString()
   if (currentPhotographer) likePriceElmt.innerText = currentPhotographer.price
 }
@@ -119,7 +120,7 @@ const titlesComparator: (a: Media, b: Media) => number = (a, b) => {
   return a.title.localeCompare(b.title)
 }
 
-const sortMediaArray: (type: string) => void = (type) => {
+export const sortMediaArray: (type: string) => void = (type) => {
   switch (type) {
     case 'popularité':
       currentMediaArray.sort(likesComparator)
@@ -136,26 +137,10 @@ const sortMediaArray: (type: string) => void = (type) => {
   }
 }
 
-const handleSortMenu = () => {
-  listItemElmts.forEach((item) =>
-    item.addEventListener('click', (e: MouseEvent) => {
-      e.preventDefault()
-
-      const currentLiEmlt = e.target as HTMLLIElement
-      const currentInput = currentLiEmlt.getAttribute('data-value') || ''
-
-      sortMediaArray(currentInput)
-      updateLabelsInput(currentInput)
-      displayMediaCards()
-    })
-  )
-}
-
 const initPhotographerPage = async () => {
   contactFormHandler()
   sortMenuHandler()
   lightboxHandler()
-  handleSortMenu()
   currentPhotographer = await getCurrentPhotographer()
   currentMediaArray = (await getCurrentMedia()) || []
   sortMediaArray(sortButtonElmt.getAttribute('data-value') || '')

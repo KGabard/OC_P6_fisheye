@@ -1,3 +1,2 @@
-- Likes
 - Accessibilité
 - Responsive petit écran

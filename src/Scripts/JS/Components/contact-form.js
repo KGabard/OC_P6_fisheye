@@ -1,7 +1,7 @@
+import { closeElmt, openElmt, setElmtToWrong, } from '../Utils/html-class-functions.js';
 //-------------
 // DOM Elements
 //-------------
-import { closeElmt, openElmt, setElmtToWrong, } from '../Utils/html-class-functions.js';
 const contactButtonElmt = document.querySelector('.contact-button');
 const contactModalContainerElmt = document.querySelector('.contact-modal__container');
 const contactModalElmt = document.querySelector('.contact-modal');

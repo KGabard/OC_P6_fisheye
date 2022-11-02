@@ -1,7 +1,7 @@
 .contact-button {
   @include button;
-  transition: transform 200ms ease-out;
+  transition: background-color 125ms ease-in-out;
   &:hover {
-    transform: scale(1.1);
+    background-color: $highlight-secondary;
   }
 }

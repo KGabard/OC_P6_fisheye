@@ -51,6 +51,7 @@
     text-align: start;
     cursor: pointer;
     display: none;
+    transition: background-color 125ms ease-in-out;
     &--active {
       display: block;
     }
@@ -71,6 +72,7 @@
     &__list-item {
       padding: 16px;
       position: relative;
+      transition: background-color 125ms ease-in-out;
       &:hover {
         background-color: $highlight-secondary;
       }
@@ -85,5 +87,11 @@
         left: 10%;
       }
     }
+  }
+}
+
+@include mobile {
+  .media-sorter {
+    justify-content: center;
   }
 }

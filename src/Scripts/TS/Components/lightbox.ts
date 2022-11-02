@@ -1,10 +1,10 @@
-//-------------
-// DOM Elements
-//-------------
-
 import { Media } from '../Models/media.js'
 import { currentMediaArray } from '../Pages/photographer.js'
 import { closeElmt, openElmt } from '../Utils/html-class-functions.js'
+
+//-------------
+// DOM Elements
+//-------------
 
 const lightboxContainerElmt = document.querySelector(
   '.lightbox__container'

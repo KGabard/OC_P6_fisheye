@@ -1,2 +1,1 @@
 - Accessibilité
-- Responsive petit écran

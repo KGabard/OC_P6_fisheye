@@ -38,6 +38,10 @@
   background-color: $highlight-primary;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 125ms ease-in-out;
+  &:hover {
+    background-color: $highlight-secondary;
+  }
 }
 
 @mixin successive-fade-in {

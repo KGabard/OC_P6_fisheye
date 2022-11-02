@@ -347,6 +347,10 @@ body {
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 125ms ease-in-out;
+}
+.submit-button:hover {
+  background-color: #d3573c;
 }
 
 .photographer-infos {
@@ -487,8 +491,19 @@ body {
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 125ms ease-in-out;
+}
+.form-confirmation__close-button:hover {
+  background-color: #d3573c;
 }
 
+@media screen and (max-width: 768px) {
+  .form-confirmation__text {
+    font-family: DM Sans, sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+  }
+}
 .media-card {
   width: 350px;
   display: flex;
@@ -669,6 +684,7 @@ body {
   position: fixed;
   bottom: 0;
   right: 96px;
+  z-index: 120;
 }
 .sticky-bar__like-container {
   display: flex;
@@ -701,11 +717,11 @@ body {
 .lightbox {
   height: 90vh;
   width: calc(90vw - 192px);
+  margin: 5vh auto;
   border-radius: 8px;
   background-color: white;
   flex-direction: column;
   padding: 16px 5vh;
-  margin: 5vh auto;
   position: relative;
   display: flex;
   gap: 8px;
@@ -749,7 +765,7 @@ body {
   max-width: 100%;
   margin: auto;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
   -webkit-animation: fade-in 200ms ease-in-out both;
           animation: fade-in 200ms ease-in-out both;
 }
@@ -769,9 +785,29 @@ body {
   font-family: DM Sans, sans-serif;
   font-size: 24px;
   font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #901c1c;
 }
 
+@media screen and (max-width: 1024px) {
+  .lightbox {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    border-radius: 0px;
+    padding: 16px 8px;
+  }
+  .lightbox__media-selector {
+    gap: 4px;
+  }
+  .lightbox__title {
+    text-align: center;
+  }
+}
 .header {
   display: flex;
   flex-direction: row;
@@ -869,6 +905,11 @@ body {
     order: -1;
     align-self: end;
     top: 0;
+  }
+  .contact-modal__title {
+    font-family: DM Sans, sans-serif;
+    font-size: 36px;
+    font-weight: 400;
   }
 }
 .photographer-header {

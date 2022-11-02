@@ -27,3 +27,11 @@
     @include button;
   }
 }
+
+@include mobile {
+  .form-confirmation {
+    &__text {
+      @include typographies(title);
+    }
+  }
+}

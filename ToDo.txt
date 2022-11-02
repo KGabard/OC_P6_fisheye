@@ -1,1 +1,2 @@
-- Accessibilité
+Accessibilité :
+- Entêtes de page uniques

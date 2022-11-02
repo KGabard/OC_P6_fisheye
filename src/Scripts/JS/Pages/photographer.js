@@ -32,14 +32,14 @@ const likePriceElmt = document.querySelector('.sticky-bar__price');
 // Functions
 const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentId = new URLSearchParams(window.location.search).get('id') || '';
-    const currentPhotographerData = yield new PhotographerApi('../src/Data/photographers.json').getCurrentPhotographer(currentId);
+    const currentPhotographerData = yield new PhotographerApi('./src/Data/photographers.json').getCurrentPhotographer(currentId);
     return currentPhotographerData
         ? new Photographer(currentPhotographerData)
         : null;
 });
 const getCurrentMedia = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentId = new URLSearchParams(window.location.search).get('id') || '';
-    const currentMediaData = yield new MediaApi('../src/Data/photographers.json').getCurrentMedia(currentId);
+    const currentMediaData = yield new MediaApi('./src/Data/photographers.json').getCurrentMedia(currentId);
     return currentMediaData
         ? currentMediaData.map((media) => new Media(media))
         : null;

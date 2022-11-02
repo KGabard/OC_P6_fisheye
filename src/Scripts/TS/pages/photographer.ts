@@ -42,7 +42,7 @@ const getCurrentPhotographer = async () => {
   const currentId = new URLSearchParams(window.location.search).get('id') || ''
 
   const currentPhotographerData = await new PhotographerApi(
-    '../src/Data/photographers.json'
+    './src/Data/photographers.json'
   ).getCurrentPhotographer(currentId)
 
   return currentPhotographerData
@@ -54,7 +54,7 @@ const getCurrentMedia = async () => {
   const currentId = new URLSearchParams(window.location.search).get('id') || ''
 
   const currentMediaData = await new MediaApi(
-    '../src/Data/photographers.json'
+    './src/Data/photographers.json'
   ).getCurrentMedia(currentId)
 
   return currentMediaData

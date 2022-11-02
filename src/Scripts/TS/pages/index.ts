@@ -21,7 +21,7 @@ const displayPhotographersCards: (
 const initIndexPage = async () => {
   const photographersArray =
     (await new PhotographerApi(
-      '../src/Data/photographers.json'
+      './src/Data/photographers.json'
     ).getPhotographers()) || []
   displayPhotographersCards(photographersArray)
 }

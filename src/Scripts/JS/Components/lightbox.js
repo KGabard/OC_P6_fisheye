@@ -59,6 +59,24 @@ const browseMedia = (option) => {
             throw 'Unkowned format type';
     }
 };
+const handleKeyboard = (e) => {
+    if (!lightboxContainerElmt.classList.contains(lightboxContainerElmt.classList[0] + '--active'))
+        return;
+    e.preventDefault();
+    switch (e.key) {
+        case 'ArrowRight':
+            browseMedia('forward');
+            break;
+        case 'ArrowLeft':
+            browseMedia('backward');
+            break;
+        case 'Escape':
+            closeElmt(lightboxContainerElmt);
+            break;
+        default:
+            break;
+    }
+};
 //----------------
 // Event Listeners
 //----------------
@@ -71,4 +89,5 @@ export const lightboxHandler = () => {
     lightboxCloseIconElmt.addEventListener('click', () => closeElmt(lightboxContainerElmt));
     lightboxNextButtonElmt.addEventListener('click', () => browseMedia('forward'));
     lightboxPreviousButtonElmt.addEventListener('click', () => browseMedia('backward'));
+    document.addEventListener('keydown', (e) => handleKeyboard(e));
 };

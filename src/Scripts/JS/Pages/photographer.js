@@ -120,7 +120,7 @@ const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* (
     currentMediaArray = (yield getCurrentMedia()) || [];
     sortMediaArray(sortButtonElmt.getAttribute('data-value') || '');
     displayphotographerInfos();
-    // displayMediaCards()
+    displayMediaCards();
     displayStickyBarInfos();
 });
 initPhotographerPage();

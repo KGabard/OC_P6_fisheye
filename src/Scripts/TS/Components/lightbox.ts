@@ -96,6 +96,32 @@ const browseMedia: (option: 'forward' | 'backward') => void = (option) => {
   }
 }
 
+const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
+  if (
+    !lightboxContainerElmt.classList.contains(
+      lightboxContainerElmt.classList[0] + '--active'
+    )
+  )
+    return
+
+  e.preventDefault()
+
+  switch (e.key) {
+    case 'ArrowRight':
+      browseMedia('forward')
+      break
+    case 'ArrowLeft':
+      browseMedia('backward')
+      break
+    case 'Escape':
+      closeElmt(lightboxContainerElmt)
+      break
+
+    default:
+      break
+  }
+}
+
 //----------------
 // Event Listeners
 //----------------
@@ -121,4 +147,5 @@ export const lightboxHandler = () => {
   lightboxPreviousButtonElmt.addEventListener('click', () =>
     browseMedia('backward')
   )
+  document.addEventListener('keydown', (e) => handleKeyboard(e))
 }

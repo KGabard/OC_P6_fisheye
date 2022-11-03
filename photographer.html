@@ -2,19 +2,32 @@
 <html>
 
 <head>
-  <link href="src/Styles/CSS/main.css" rel="stylesheet" type="text/css" />
-  <meta charset="utf-8">
-  <script src="https://kit.fontawesome.com/ecaabcc8db.js" crossorigin="anonymous"></script>
-  <link rel="icon" type="image/png" href="src/Assets/Logos/favicon.png">
+  <!-- Meta tags-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Découvrez les créations de [PRENOM] [NOM]">
+
+  <!-- Title -->
+  <title>Fisheye - photographe [NOM] [PRÉNOM]</title>
+
+  <!-- CSS -->
+  <link href="src/Styles/CSS/main.css" rel="stylesheet" type="text/css">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fisheye - photographe</title>
+
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/904e9ee361.js" crossorigin="anonymous"></script>
+
+  <!-- Page logo -->
+  <link rel="icon" type="image/png" href="src/Assets/Logos/favicon.png">
 </head>
 
 <body>
   <header class="header">
     <a href="./" class="header__link" aria-label="Fisheye Home page">
-      <img class="header__logo" src="src/Assets/Logos/logo.png" class="logo" />
+      <img class="header__logo" src="src/Assets/Logos/logo.png" alt="Logo du site">
     </a>
   </header>
 
@@ -47,8 +60,9 @@
     </div>
 
     <section class="media-section media-section--first-loading">
-      <!-- <div class="media-card">
-        <img data-value="456127" src="./src/Assets/Medias/Pictures/Thumbnails/Animals_Majesty.jpg" alt="" class="media-card__picture">
+      <div class="media-card">
+        <img data-value="456127" src="./src/Assets/Media/Thumbnails/Animals_Majesty.jpg" alt="Titre du media"
+          class="media-card__picture">
         <div class="media-card__infos">
           <h2 class="media-card__title">Titre</h2>
           <div class="media-card__like-container">
@@ -56,7 +70,7 @@
             <i class="media-card__like-icon fa-solid fa-heart"></i>
           </div>
         </div>
-      </div> -->
+      </div>
     </section>
 
   </main>
@@ -86,7 +100,7 @@
         </div>
         <div class="form__data">
           <label class="form__label" for="message">Votre message</label>
-          <textarea class="form__input form__input--large" type="text" id="message" name="message"></textarea>
+          <textarea class="form__input form__input--large" id="message" name="message"></textarea>
           <span class="form__error-message"></span>
         </div>
         <button class="submit-button">Envoyer</button>

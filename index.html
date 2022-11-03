@@ -2,36 +2,52 @@
 <html>
 
 <head>
-  <link href="src/Styles/CSS/main.css" rel="stylesheet" type="text/css" />
-  <meta charset="utf-8">
-  <link rel="icon" type="image/png" href="src/Assets/Logos/favicon.png">
+  <!-- Meta tags-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description"
+    content="Bienvenue sur la page d'accueil de FishEye, la plateforme qui regroupe les meilleurs photographes freelance !">
+
+  <!-- Title -->
+  <title>Fisheye - Page d'accueil</title>
+
+  <!-- CSS -->
+  <link href="src/Styles/CSS/main.css" rel="stylesheet" type="text/css">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fisheye</title>
+
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/904e9ee361.js" crossorigin="anonymous"></script>
+
+  <!-- Page logo -->
+  <link rel="icon" type="image/png" href="src/Assets/Logos/favicon.png">
 </head>
 
 <body>
   <header class="header">
-    <a href="#" class="header__link" aria-label="Fisheye Home page">
-      <img class="header__logo" src="src/Assets/Logos/logo.png" class="logo" />
+    <a href="./" class="header__link" aria-label="Fisheye Home page">
+      <img class="header__logo" src="src/Assets/Logos/logo.png" alt="Logo du site">
     </a>
     <h1 class="header__title">Nos photographes</h1>
   </header>
   <main id="mainSection">
     <div class="photographer-section">
-      <!-- <article class="photographer-card">
+      <article class="photographer-card">
         <a class="photographer-card__link" href="#">
-          <img src="src/Assets/Photographers/ID_Photos/MimiKeel.jpg" alt="Photographer MimiKeel"
+          <img src="src/Assets/Photographers/MimiKeel.jpg" alt="Photographer MimiKeel"
             class="photographer-card__picture">
           <h2 class="photographer-card__name">Mimi Keel</h2>
         </a>
         <h3 class="photographer-card__location">London, UK</h3>
         <p class="photographer-card__tagline">Voir le beau dans le quotidien</p>
         <p class="photographer-card__price">400€/jour</p>
-      </article> -->
+      </article>
     </div>
-    </main>
-    <script type="module" src="./src/Scripts/JS/Pages/index.js"></script>
+  </main>
+
+  <script type="module" src="./src/Scripts/JS/Pages/index.js"></script>
 </body>
 
 </html>

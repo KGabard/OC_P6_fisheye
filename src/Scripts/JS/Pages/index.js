@@ -12,6 +12,7 @@ import { Photographer } from '../Models/photographer.js';
 import { PhotographerCard } from '../Templates/photographer-card.js';
 const photographersSectionElmt = document.querySelector('.photographer-section');
 const displayPhotographersCards = (photographersArray) => {
+    photographersSectionElmt.innerHTML = '';
     photographersArray
         .map((photographer) => new Photographer(photographer))
         .forEach((photographer) => {

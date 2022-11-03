@@ -145,7 +145,7 @@ const initPhotographerPage = async () => {
   currentMediaArray = (await getCurrentMedia()) || []
   sortMediaArray(sortButtonElmt.getAttribute('data-value') || '')
   displayphotographerInfos()
-  displayMediaCards()
+  // displayMediaCards()
   displayStickyBarInfos()
 }
 

@@ -10,6 +10,7 @@ const photographersSectionElmt = document.querySelector(
 const displayPhotographersCards: (
   photographersArray: photographerDataType[]
 ) => void = (photographersArray) => {
+  photographersSectionElmt.innerHTML = ''
   photographersArray
     .map((photographer) => new Photographer(photographer))
     .forEach((photographer) => {

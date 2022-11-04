@@ -25,13 +25,13 @@
 </head>
 
 <body>
-  <header class="header">
+  <header class="header" aria-hidden="false">
     <a href="./" class="header__link" aria-label="Fisheye Home page">
       <img class="header__logo" src="src/Assets/Logos/logo.png" alt="Logo du site">
     </a>
   </header>
 
-  <main id="mainSection">
+  <main class="main-section" aria-hidden="false">
     <section class="photographer-header">
       <div class="photographer-infos">
         <h1 class="photographer-infos__name">Nom</h1>
@@ -75,48 +75,53 @@
 
   </main>
 
-  <div class="contact-modal__container">
+  <div class="contact-modal__container" aria-hidden="true">
     <div class="contact-modal__overlay"></div>
-    <div class="contact-modal contact-modal--active">
+    <div class="contact-modal contact-modal--active" aria-hidden="true" role="dialog"
+      aria-describedby="contact-modal__title">
       <header class="contact-modal__header">
-        <h2 class="contact-modal__title">Contactez-moi <br> Mimi Keel</h2>
-        <i class="fa-solid fa-xmark contact-modal__close-icon"></i>
+        <h2 class="contact-modal__title" id="contact-modal__title">Contactez-moi <br> Mimi Keel</h2>
+        <i class="fa-solid fa-xmark contact-modal__close-icon" tabindex="100"></i>
       </header>
       <form class="form">
         <div class="form__data">
           <label class="form__label" for="first">Prénom</label>
-          <input class="form__input" type="text" id="first" name="first">
+          <input class="form__input" type="text" id="first" name="first" aria-required='true' aria-invalid='false'
+            tabindex="100">
           <span class="form__error-message"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="last">Nom</label>
-          <input class="form__input" type="text" id="last" name="last">
+          <input class="form__input" type="text" id="last" name="last" aria-required='true' aria-invalid='false'
+            tabindex="100">
           <span class="form__error-message"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="email">Email</label>
-          <input class="form__input" type="text" id="email" name="email">
+          <input class="form__input" type="text" id="email" name="email" aria-required='true' aria-invalid='false'
+            tabindex="100">
           <span class="form__error-message"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="message">Votre message</label>
-          <textarea class="form__input form__input--large" id="message" name="message"></textarea>
+          <textarea class="form__input form__input--large" id="message" name="message" aria-required='true'
+            aria-invalid='false' tabindex="100"></textarea>
           <span class="form__error-message"></span>
         </div>
-        <button class="submit-button">Envoyer</button>
+        <button class="submit-button" tabindex="100">Envoyer</button>
       </form>
     </div>
-    <div class="form-confirmation">
+    <div class="form-confirmation" aria-hidden="true" role="dialog">
       <p class="form-confirmation__text">Merci pour<br>votre message</p>
-      <button class="form-confirmation__close-button">
+      <button class="form-confirmation__close-button" tabindex="100">
         Fermer
       </button>
     </div>
   </div>
 
-  <div class="lightbox__container">
+  <div class="lightbox__container" aria-hidden="true">
     <div class="lightbox__overlay"></div>
-    <div class="lightbox">
+    <div class="lightbox" aria-hidden="true" role="dialog" aria-describedby="lightbox__title">
       <i class="fa-solid fa-xmark lightbox__close-icon"></i>
       <div class="lightbox__media-selector">
         <i class="fa-solid fa-chevron-left lightbox__previous-button"></i>
@@ -126,11 +131,11 @@
         </div>
         <i class="fa-solid fa-chevron-right lightbox__next-button"></i>
       </div>
-      <p class="lightbox__title">Titre</p>
+      <p class="lightbox__title" id="lightbox__title">Titre</p>
     </div>
   </div>
 
-  <div class="sticky-bar">
+  <div class="sticky-bar" aria-hidden="false">
     <div class="sticky-bar__like-container">
       <p class="sticky-bar__like-count">10</p>
       <i class="sticky-bar__like-icon fa-solid fa-heart"></i>

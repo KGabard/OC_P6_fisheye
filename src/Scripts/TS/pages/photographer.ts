@@ -36,6 +36,15 @@ const likeCountElmt = document.querySelector(
 const likePriceElmt = document.querySelector(
   '.sticky-bar__price'
 ) as HTMLParagraphElement
+const headerElmt = document.querySelector(
+  '.header'
+) as HTMLElement
+const mainSectionElmt = document.querySelector(
+  '.main-section'
+) as HTMLElement
+const stickyBarElmt = document.querySelector(
+  '.sticky-bar'
+) as HTMLDivElement
 
 // Functions
 const getCurrentPhotographer = async () => {
@@ -75,7 +84,7 @@ const displayphotographerInfos = () => {
   photographerLocationElmt.innerText = currentPhotographer.location
   photographerTaglineElmt.innerText = currentPhotographer.tagline
   photographerPictureElmt.src = currentPhotographer.picture
-  photographerPictureElmt.alt = `Photographer ${currentPhotographer.name}`
+  photographerPictureElmt.alt = `Photographe ${currentPhotographer.name}`
   contactTitleElmt.innerText = `Contactez-moi \n ${currentPhotographer.name}`
 }
 
@@ -134,6 +143,18 @@ export const sortMediaArray: (type: string) => void = (type) => {
 
     default:
       break
+  }
+}
+
+export const ariaHideMainContent = (isHidden: boolean) => {
+  if (isHidden) {
+    headerElmt.setAttribute('aria-hidden', 'true')
+    mainSectionElmt.setAttribute('aria-hidden', 'true')
+    stickyBarElmt.setAttribute('aria-hidden', 'true')
+  } else {
+    headerElmt.setAttribute('aria-hidden', 'false')
+    mainSectionElmt.setAttribute('aria-hidden', 'false')
+    stickyBarElmt.setAttribute('aria-hidden', 'false')
   }
 }
 

@@ -1,5 +1,5 @@
-import { currentMediaArray } from '../Pages/photographer.js';
-import { closeElmt, openElmt } from '../Utils/html-class-functions.js';
+import { ariaHideMainContent, currentMediaArray, } from '../Pages/photographer.js';
+import { closeElmt, openElmt } from '../Utils/html-functions.js';
 //-------------
 // DOM Elements
 //-------------
@@ -32,6 +32,7 @@ const openLightbox = (e) => {
     const targetId = targetThumbnail.getAttribute('data-value') || '';
     const targetMedia = currentMediaArray.find((media) => media.id === parseInt(targetId));
     openElmt(lightboxContainerElmt);
+    ariaHideMainContent(true);
     if (targetMedia) {
         displayTargetMedia(targetMedia);
     }
@@ -85,8 +86,14 @@ export const addMediaCardLink = () => {
     mediaCardLinkElmt.forEach((image) => image.addEventListener('click', (e) => openLightbox(e)));
 };
 export const lightboxHandler = () => {
-    lightboxOverlayElmt.addEventListener('click', () => closeElmt(lightboxContainerElmt));
-    lightboxCloseIconElmt.addEventListener('click', () => closeElmt(lightboxContainerElmt));
+    lightboxOverlayElmt.addEventListener('click', () => {
+        closeElmt(lightboxContainerElmt);
+        ariaHideMainContent(false);
+    });
+    lightboxCloseIconElmt.addEventListener('click', () => {
+        closeElmt(lightboxContainerElmt);
+        ariaHideMainContent(false);
+    });
     lightboxNextButtonElmt.addEventListener('click', () => browseMedia('forward'));
     lightboxPreviousButtonElmt.addEventListener('click', () => browseMedia('backward'));
     document.addEventListener('keydown', (e) => handleKeyboard(e));

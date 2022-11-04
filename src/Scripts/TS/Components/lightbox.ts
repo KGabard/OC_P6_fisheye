@@ -1,6 +1,9 @@
 import { Media } from '../Models/media.js'
-import { currentMediaArray } from '../Pages/photographer.js'
-import { closeElmt, openElmt } from '../Utils/html-class-functions.js'
+import {
+  ariaHideMainContent,
+  currentMediaArray,
+} from '../Pages/photographer.js'
+import { closeElmt, openElmt } from '../Utils/html-functions.js'
 
 //-------------
 // DOM Elements
@@ -56,6 +59,7 @@ const openLightbox: (e: MouseEvent) => void = (e) => {
   )
 
   openElmt(lightboxContainerElmt)
+  ariaHideMainContent(true)
 
   if (targetMedia) {
     displayTargetMedia(targetMedia)
@@ -137,12 +141,14 @@ export const addMediaCardLink = () => {
 }
 
 export const lightboxHandler = () => {
-  lightboxOverlayElmt.addEventListener('click', () =>
+  lightboxOverlayElmt.addEventListener('click', () => {
     closeElmt(lightboxContainerElmt)
-  )
-  lightboxCloseIconElmt.addEventListener('click', () =>
+    ariaHideMainContent(false)
+  })
+  lightboxCloseIconElmt.addEventListener('click', () => {
     closeElmt(lightboxContainerElmt)
-  )
+    ariaHideMainContent(false)
+  })
   lightboxNextButtonElmt.addEventListener('click', () => browseMedia('forward'))
   lightboxPreviousButtonElmt.addEventListener('click', () =>
     browseMedia('backward')

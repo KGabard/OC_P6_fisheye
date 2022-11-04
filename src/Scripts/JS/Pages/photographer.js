@@ -29,6 +29,9 @@ const contactTitleElmt = document.querySelector('.contact-modal__title');
 const mediaSectionElmt = document.querySelector('.media-section');
 const likeCountElmt = document.querySelector('.sticky-bar__like-count');
 const likePriceElmt = document.querySelector('.sticky-bar__price');
+const headerElmt = document.querySelector('.header');
+const mainSectionElmt = document.querySelector('.main-section');
+const stickyBarElmt = document.querySelector('.sticky-bar');
 // Functions
 const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentId = new URLSearchParams(window.location.search).get('id') || '';
@@ -54,7 +57,7 @@ const displayphotographerInfos = () => {
     photographerLocationElmt.innerText = currentPhotographer.location;
     photographerTaglineElmt.innerText = currentPhotographer.tagline;
     photographerPictureElmt.src = currentPhotographer.picture;
-    photographerPictureElmt.alt = `Photographer ${currentPhotographer.name}`;
+    photographerPictureElmt.alt = `Photographe ${currentPhotographer.name}`;
     contactTitleElmt.innerText = `Contactez-moi \n ${currentPhotographer.name}`;
 };
 export const displayMediaCards = () => {
@@ -110,6 +113,18 @@ export const sortMediaArray = (type) => {
             break;
         default:
             break;
+    }
+};
+export const ariaHideMainContent = (isHidden) => {
+    if (isHidden) {
+        headerElmt.setAttribute('aria-hidden', 'true');
+        mainSectionElmt.setAttribute('aria-hidden', 'true');
+        stickyBarElmt.setAttribute('aria-hidden', 'true');
+    }
+    else {
+        headerElmt.setAttribute('aria-hidden', 'false');
+        mainSectionElmt.setAttribute('aria-hidden', 'false');
+        stickyBarElmt.setAttribute('aria-hidden', 'false');
     }
 };
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {

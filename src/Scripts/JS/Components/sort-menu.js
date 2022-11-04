@@ -1,5 +1,5 @@
 import { displayMediaCards, sortMediaArray } from '../Pages/photographer.js';
-import { closeElmt, openElmt } from '../Utils/html-class-functions.js';
+import { closeElmt, openElmt } from '../Utils/html-functions.js';
 // DOM Elements
 const selectorContainerElmt = document.querySelector('.media-sorter__selector-container');
 export const sortButtonElmt = document.querySelector('.media-sorter__sort-button');

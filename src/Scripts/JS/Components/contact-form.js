@@ -1,4 +1,5 @@
-import { closeElmt, openElmt, setElmtToWrong, } from '../Utils/html-class-functions.js';
+import { ariaHideMainContent } from '../Pages/photographer.js';
+import { browseTabElmt, closeElmt, elmtIsActive, openElmt, setElmtToWrong, } from '../Utils/html-functions.js';
 //-------------
 // DOM Elements
 //-------------
@@ -78,21 +79,72 @@ const handleSubmitForm = (event) => {
     if (formValidity) {
         closeElmt(contactModalElmt);
         openElmt(confirmationModalElmt);
+        confirmationModalCloseButtonElmt.focus();
         contactModalFormElmt.reset();
         logFormData(formData);
     }
+};
+// Function that handles keyboard events
+const handleKeyboard = (e) => {
+    const contactModalTabIndex = 100;
+    if (!elmtIsActive(contactModalContainerElmt))
+        return;
+    switch (e.key) {
+        case 'Escape':
+            closeElmt(contactModalContainerElmt);
+            break;
+        case 'Tab':
+            e.preventDefault();
+            let currentActiveModal = null;
+            if (elmtIsActive(contactModalElmt))
+                currentActiveModal = contactModalElmt;
+            if (elmtIsActive(confirmationModalElmt))
+                currentActiveModal = confirmationModalElmt;
+            if (!currentActiveModal)
+                return;
+            if (e.shiftKey) {
+                browseTabElmt(currentActiveModal, 'backward', contactModalTabIndex);
+            }
+            else {
+                browseTabElmt(currentActiveModal, 'forward', contactModalTabIndex);
+            }
+            break;
+        default:
+            break;
+    }
+};
+// Function that open the contact modal
+const openContactModal = () => {
+    var _a;
+    openElmt(contactModalContainerElmt);
+    openElmt(contactModalElmt);
+    closeElmt(confirmationModalElmt);
+    ariaHideMainContent(true);
+    (_a = contactModalContainerElmt.querySelector('input')) === null || _a === void 0 ? void 0 : _a.focus();
+};
+// Function that close the contact modal
+const closeContactModal = () => {
+    closeElmt(contactModalContainerElmt);
+    closeElmt(contactModalElmt);
+    closeElmt(confirmationModalElmt);
+    ariaHideMainContent(false);
 };
 //----------------
 // Event Listeners
 //----------------
 export const contactFormHandler = () => {
     contactButtonElmt.addEventListener('click', () => {
-        openElmt(contactModalContainerElmt);
-        openElmt(contactModalElmt);
-        closeElmt(confirmationModalElmt);
+        openContactModal();
     });
-    contactModalCloseIconElmt.addEventListener('click', () => closeElmt(contactModalContainerElmt));
-    contactModalOverlayElmt.addEventListener('click', () => closeElmt(contactModalContainerElmt));
+    contactModalCloseIconElmt.addEventListener('click', () => {
+        closeContactModal();
+    });
+    contactModalOverlayElmt.addEventListener('click', () => {
+        closeContactModal();
+    });
     contactModalFormElmt.addEventListener('submit', handleSubmitForm);
-    confirmationModalCloseButtonElmt.addEventListener('click', () => closeElmt(contactModalContainerElmt));
+    confirmationModalCloseButtonElmt.addEventListener('click', () => {
+        closeContactModal();
+    });
+    document.addEventListener('keydown', (e) => handleKeyboard(e));
 };

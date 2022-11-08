@@ -1,9 +1,10 @@
-import { ariaHideMainContent, currentMediaArray, } from '../Pages/photographer.js';
-import { closeElmt, openElmt } from '../Utils/html-functions.js';
+import { ariaHideMainContent, currentMediaArray, homepageLinkElmt, } from '../Pages/photographer.js';
+import { browseTabElmts, closeElmt, elmtIsActive, openElmt, } from '../Utils/html-functions.js';
 //-------------
 // DOM Elements
 //-------------
-const lightboxContainerElmt = document.querySelector('.lightbox__container');
+export const lightboxContainerElmt = document.querySelector('.lightbox__container');
+export const lightboxModalElmt = document.querySelector('.lightbox');
 const lightboxOverlayElmt = document.querySelector('.lightbox__overlay');
 const lightboxCloseIconElmt = document.querySelector('.lightbox__close-icon');
 const lightboxPreviousButtonElmt = document.querySelector('.lightbox__previous-button');
@@ -33,6 +34,7 @@ const openLightbox = (e) => {
     const targetMedia = currentMediaArray.find((media) => media.id === parseInt(targetId));
     openElmt(lightboxContainerElmt);
     ariaHideMainContent(true);
+    lightboxNextButtonElmt.focus();
     if (targetMedia) {
         displayTargetMedia(targetMedia);
     }
@@ -60,10 +62,16 @@ const browseMedia = (option) => {
             throw 'Unkowned format type';
     }
 };
+// Function that close the lightbox modal
+const closeLightboxModal = () => {
+    closeElmt(lightboxContainerElmt);
+    ariaHideMainContent(false);
+    homepageLinkElmt.focus();
+};
 const handleKeyboard = (e) => {
-    if (!lightboxContainerElmt.classList.contains(lightboxContainerElmt.classList[0] + '--active'))
+    const lightboxTabIndex = 300;
+    if (!elmtIsActive(lightboxContainerElmt))
         return;
-    e.preventDefault();
     switch (e.key) {
         case 'ArrowRight':
             browseMedia('forward');
@@ -74,6 +82,15 @@ const handleKeyboard = (e) => {
         case 'Escape':
             closeElmt(lightboxContainerElmt);
             break;
+        case 'Tab':
+            e.preventDefault();
+            if (e.shiftKey) {
+                browseTabElmts(lightboxContainerElmt, 'backward', lightboxTabIndex);
+            }
+            else {
+                browseTabElmts(lightboxContainerElmt, 'forward', lightboxTabIndex);
+            }
+            break;
         default:
             break;
     }
@@ -83,18 +100,36 @@ const handleKeyboard = (e) => {
 //----------------
 export const addMediaCardLink = () => {
     const mediaCardLinkElmt = document.querySelectorAll('.media-card__picture');
-    mediaCardLinkElmt.forEach((image) => image.addEventListener('click', (e) => openLightbox(e)));
+    mediaCardLinkElmt.forEach((image) => {
+        image.addEventListener('click', (e) => openLightbox(e));
+        image.addEventListener('keydown', (e) => {
+            e.key === 'Enter' && openLightbox(e);
+        });
+    });
 };
 export const lightboxHandler = () => {
     lightboxOverlayElmt.addEventListener('click', () => {
-        closeElmt(lightboxContainerElmt);
-        ariaHideMainContent(false);
+        closeLightboxModal();
     });
     lightboxCloseIconElmt.addEventListener('click', () => {
-        closeElmt(lightboxContainerElmt);
-        ariaHideMainContent(false);
+        closeLightboxModal();
+    });
+    lightboxCloseIconElmt.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter')
+            return;
+        closeLightboxModal();
     });
     lightboxNextButtonElmt.addEventListener('click', () => browseMedia('forward'));
+    lightboxNextButtonElmt.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter')
+            return;
+        browseMedia('forward');
+    });
     lightboxPreviousButtonElmt.addEventListener('click', () => browseMedia('backward'));
+    lightboxPreviousButtonElmt.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter')
+            return;
+        browseMedia('backward');
+    });
     document.addEventListener('keydown', (e) => handleKeyboard(e));
 };

@@ -1,12 +1,24 @@
 // Imports
-import { contactFormHandler } from '../Components/contact-form.js'
+import {
+  contactFormHandler,
+  contactModalContainerElmt,
+} from '../Components/contact-form.js'
 import { MediaApi, PhotographerApi } from '../Api/api.js'
 import { Photographer } from '../Models/photographer.js'
 import { Media } from '../Models/media.js'
-import { sortButtonElmt, sortMenuHandler } from '../Components/sort-menu.js'
+import {
+  selectorContainerElmt,
+  sortButtonElmt,
+  sortMenuHandler,
+} from '../Components/sort-menu.js'
 import { MediaCard } from '../Templates/media-card.js'
-import { addMediaCardLink, lightboxHandler } from '../Components/lightbox.js'
+import {
+  addMediaCardLink,
+  lightboxContainerElmt,
+  lightboxHandler,
+} from '../Components/lightbox.js'
 import { addLikeIconEventListener } from '../Components/media-card.js'
+import { browseTabElmts, elmtIsActive } from '../Utils/html-functions.js'
 
 // Global variables
 export let currentMediaArray: Media[] = []
@@ -14,6 +26,9 @@ let currentPhotographer: Photographer | null
 let firstLoading = true
 
 // DOM Elements
+export const homepageLinkElmt = document.querySelector(
+  '.header__link'
+) as HTMLAnchorElement
 const photographerNameElmt = document.querySelector(
   '.photographer-infos__name'
 ) as HTMLHeadingElement
@@ -36,15 +51,9 @@ const likeCountElmt = document.querySelector(
 const likePriceElmt = document.querySelector(
   '.sticky-bar__price'
 ) as HTMLParagraphElement
-const headerElmt = document.querySelector(
-  '.header'
-) as HTMLElement
-const mainSectionElmt = document.querySelector(
-  '.main-section'
-) as HTMLElement
-const stickyBarElmt = document.querySelector(
-  '.sticky-bar'
-) as HTMLDivElement
+const headerElmt = document.querySelector('.header') as HTMLElement
+const mainSectionElmt = document.querySelector('.main-section') as HTMLElement
+const stickyBarElmt = document.querySelector('.sticky-bar') as HTMLDivElement
 
 // Functions
 const getCurrentPhotographer = async () => {
@@ -80,6 +89,7 @@ const getCurrentLikeCount = () => {
 
 const displayphotographerInfos = () => {
   if (!currentPhotographer) return
+  document.title = `Photographe - ${currentPhotographer.name}`
   photographerNameElmt.innerText = currentPhotographer.name
   photographerLocationElmt.innerText = currentPhotographer.location
   photographerTaglineElmt.innerText = currentPhotographer.tagline
@@ -158,6 +168,42 @@ export const ariaHideMainContent = (isHidden: boolean) => {
   }
 }
 
+// Function that handles keyboard events
+const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
+  const bodyTabIndex = 0
+  const selectorTabIndex = 100
+  if (
+    elmtIsActive(contactModalContainerElmt) ||
+    elmtIsActive(lightboxContainerElmt)
+  )
+    return
+
+  switch (e.key) {
+    case 'Enter':
+      // (document.activeElement === contactModalCloseIconElmt) && closeContactModal()
+
+      break
+    case 'Tab':
+      e.preventDefault()
+      let currentHtmlElmt = document.body
+      let currentTabIndex = bodyTabIndex
+      if (elmtIsActive(selectorContainerElmt)) {
+        currentHtmlElmt = selectorContainerElmt
+        currentTabIndex = selectorTabIndex
+      }
+
+      if (e.shiftKey) {
+        browseTabElmts(currentHtmlElmt, 'backward', currentTabIndex)
+      } else {
+        browseTabElmts(currentHtmlElmt, 'forward', currentTabIndex)
+      }
+      break
+
+    default:
+      break
+  }
+}
+
 const initPhotographerPage = async () => {
   contactFormHandler()
   sortMenuHandler()
@@ -168,6 +214,7 @@ const initPhotographerPage = async () => {
   displayphotographerInfos()
   displayMediaCards()
   displayStickyBarInfos()
+  document.addEventListener('keydown', (e) => handleKeyboard(e))
 }
 
 initPhotographerPage()

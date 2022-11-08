@@ -6,7 +6,7 @@ export class PhotographerCard {
         const card = document.createElement('article');
         card.classList.add('photographer-card');
         card.innerHTML =
-            `<a class="photographer-card__link" href="photographer.html?id=${this._photographer.id}" aria-label="Link to photographer ${this._photographer.name}">` +
+            `<a class="photographer-card__link" href="photographer.html?id=${this._photographer.id}" aria-label="Lien vers la page photographe de ${this._photographer.name}">` +
                 `<img class="photographer-card__picture" src=${this._photographer.picture} alt="">` +
                 `<h2 class="photographer-card__name">${this._photographer.name}</h2>` +
                 `</a>` +

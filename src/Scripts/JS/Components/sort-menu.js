@@ -1,21 +1,25 @@
 import { displayMediaCards, sortMediaArray } from '../Pages/photographer.js';
-import { closeElmt, openElmt } from '../Utils/html-functions.js';
+import { closeElmt, elmtIsActive, openElmt } from '../Utils/html-functions.js';
 // DOM Elements
-const selectorContainerElmt = document.querySelector('.media-sorter__selector-container');
+export const selectorContainerElmt = document.querySelector('.media-sorter__selector-container');
 export const sortButtonElmt = document.querySelector('.media-sorter__sort-button');
 const dropdownMenuElmt = document.querySelector('.media-sorter__dropdown-menu');
 const chevronElmt = document.querySelector('.media-sorter__chevron');
 export const listItemElmts = document.querySelectorAll('.media-sorter__dropdown-menu__list-item');
 // Functions
 const toggleMenu = () => {
-    if (dropdownMenuElmt.classList.contains(dropdownMenuElmt.classList[0] + '--active')) {
+    if (elmtIsActive(dropdownMenuElmt)) {
         closeElmt(selectorContainerElmt);
+        selectorContainerElmt.setAttribute('aria-hidden', 'false');
+        selectorContainerElmt.setAttribute('aria-expanded', 'false');
         closeElmt(dropdownMenuElmt);
         closeElmt(chevronElmt);
         openElmt(sortButtonElmt);
+        selectorContainerElmt.focus();
     }
     else {
         openElmt(selectorContainerElmt);
+        selectorContainerElmt.setAttribute('aria-expanded', 'true');
         openElmt(dropdownMenuElmt);
         openElmt(chevronElmt);
         closeElmt(sortButtonElmt);
@@ -46,15 +50,25 @@ export const updateLabelsInput = (currentInput) => {
             break;
     }
 };
+const clickOnSelectorItem = (e) => {
+    e.preventDefault();
+    const currentLiEmlt = e.target;
+    const currentInput = currentLiEmlt.getAttribute('data-value') || '';
+    sortMediaArray(currentInput);
+    updateLabelsInput(currentInput);
+    displayMediaCards();
+};
 // Add Eventlisteners
 export const sortMenuHandler = () => {
     selectorContainerElmt.addEventListener('click', toggleMenu);
-    listItemElmts.forEach((item) => item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const currentLiEmlt = e.target;
-        const currentInput = currentLiEmlt.getAttribute('data-value') || '';
-        sortMediaArray(currentInput);
-        updateLabelsInput(currentInput);
-        displayMediaCards();
-    }));
+    selectorContainerElmt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter')
+            toggleMenu();
+    });
+    listItemElmts.forEach((item) => {
+        item.addEventListener('click', (e) => clickOnSelectorItem(e));
+        item.addEventListener('keydown', (e) => {
+            e.key === 'Enter' && clickOnSelectorItem(e);
+        });
+    });
 };

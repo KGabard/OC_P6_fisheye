@@ -1,6 +1,6 @@
-import { ariaHideMainContent } from '../Pages/photographer.js'
+import { ariaHideMainContent, homepageLinkElmt } from '../Pages/photographer.js'
 import {
-  browseTabElmt,
+  browseTabElmts,
   closeElmt,
   elmtIsActive,
   openElmt,
@@ -15,7 +15,7 @@ const contactButtonElmt = document.querySelector(
   '.contact-button'
 ) as HTMLButtonElement
 
-const contactModalContainerElmt = document.querySelector(
+export const contactModalContainerElmt = document.querySelector(
   '.contact-modal__container'
 ) as HTMLDivElement
 const contactModalElmt = document.querySelector(
@@ -35,6 +35,7 @@ const contactModalFormElmt = document.querySelector('.form') as HTMLFormElement
 const confirmationModalElmt = document.querySelector(
   '.form-confirmation'
 ) as HTMLDivElement
+const confirmationModalText = document.querySelector('.form-confirmation__text') as HTMLParagraphElement
 const confirmationModalCloseButtonElmt = document.querySelector(
   '.form-confirmation__close-button'
 ) as HTMLButtonElement
@@ -125,7 +126,7 @@ const handleSubmitForm = (event: SubmitEvent) => {
   if (formValidity) {
     closeElmt(contactModalElmt)
     openElmt(confirmationModalElmt)
-    confirmationModalCloseButtonElmt.focus()
+    confirmationModalText.focus()
     contactModalFormElmt.reset()
     logFormData(formData)
   }
@@ -133,12 +134,15 @@ const handleSubmitForm = (event: SubmitEvent) => {
 
 // Function that handles keyboard events
 const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
-  const contactModalTabIndex = 100
+  const contactModalTabIndex = 200
   if (!elmtIsActive(contactModalContainerElmt)) return
 
   switch (e.key) {
     case 'Escape':
-      closeElmt(contactModalContainerElmt)
+      elmtIsActive(contactModalContainerElmt) && closeContactModal()
+      break
+    case 'Enter':
+      (document.activeElement === contactModalCloseIconElmt) && closeContactModal()
       break
     case 'Tab':
       e.preventDefault()
@@ -150,9 +154,9 @@ const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
       if (!currentActiveModal) return
 
       if (e.shiftKey) {
-        browseTabElmt(currentActiveModal, 'backward', contactModalTabIndex)
+        browseTabElmts(currentActiveModal, 'backward', contactModalTabIndex)
       } else {
-        browseTabElmt(currentActiveModal, 'forward', contactModalTabIndex)
+        browseTabElmts(currentActiveModal, 'forward', contactModalTabIndex)
       }
       break
 
@@ -167,7 +171,7 @@ const openContactModal = () => {
   openElmt(contactModalElmt)
   closeElmt(confirmationModalElmt)
   ariaHideMainContent(true)
-  contactModalContainerElmt.querySelector('input')?.focus()
+  contactModalElmt.querySelector('input')?.focus()
 }
 
 // Function that close the contact modal
@@ -176,6 +180,7 @@ const closeContactModal = () => {
   closeElmt(contactModalElmt)
   closeElmt(confirmationModalElmt)
   ariaHideMainContent(false)
+  homepageLinkElmt.focus()
 }
 
 //----------------

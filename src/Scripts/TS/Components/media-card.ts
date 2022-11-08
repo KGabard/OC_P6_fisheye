@@ -12,8 +12,9 @@ import {
 // Functions
 //----------
 
-const addLike: (e: MouseEvent) => void = (e) => {
+const addLike: (e: Event) => void = (e) => {
   e.preventDefault()
+
   const targetLikeIconElmt = e.target as HTMLElement
   const targetMediaElmt = targetLikeIconElmt
     .closest('.media-card')
@@ -27,7 +28,6 @@ const addLike: (e: MouseEvent) => void = (e) => {
     }
   })
 
-  //! Ne pas re-display tous les médias, juste changer le nombre de like sur la carte concernée
   displayMediaCards()
   displayStickyBarInfos()
 }
@@ -41,9 +41,10 @@ export const addLikeIconEventListener = () => {
     '.media-card__like-icon'
   ) as NodeListOf<HTMLElement>
 
-  mediaCardLikeIconElmt.forEach((icon) =>
+  mediaCardLikeIconElmt.forEach((icon) => {
     icon.addEventListener('click', (e) => addLike(e))
-  )
+    icon.addEventListener('keydown', (e) => {
+      e.key === 'Enter' && addLike(e)
+    })
+  })
 }
-
-export const mediaCardHandler = () => {}

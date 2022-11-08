@@ -25,28 +25,21 @@ export const setElmtToWrong = (input: HTMLElement, isWrong: boolean) => {
   }
 }
 
-export const browseTabElmt = (
+export const browseTabElmts = (
   elmt: HTMLElement,
   option: 'forward' | 'backward',
   tabIndex: number
 ) => {
-  const tabElmts = elmt.querySelectorAll(
-    `[tabindex = "${tabIndex.toString()}"`
-  ) as NodeListOf<HTMLElement>
+  const tabElmts = Array.from(
+    elmt.querySelectorAll(
+      `[tabindex = "${tabIndex.toString()}"]`
+    ) as NodeListOf<HTMLElement>
+  )
 
+  if (tabElmts.length === 0) return
   const currentElmt = document.activeElement
-  let currentIndex = 0
-  let elmtIsFound = false
-
-  tabElmts.forEach((elmt) => {
-    if (!elmtIsFound) {
-      if (elmt === currentElmt) {
-        elmtIsFound = true
-      } else {
-        currentIndex += 1
-      }
-    }
-  })
+  let currentIndex = tabElmts.findIndex((elmt) => elmt === currentElmt)
+  if (currentIndex < 0) currentIndex = 0
 
   const nextElmt =
     currentIndex === tabElmts.length - 1

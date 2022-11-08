@@ -26,7 +26,7 @@
 
 <body>
   <header class="header" aria-hidden="false">
-    <a href="./" class="header__link" aria-label="Fisheye Home page">
+    <a href="./" class="header__link" aria-label="Retour à la page d'accueil" tabindex="0">
       <img class="header__logo" src="src/Assets/Logos/logo.png" alt="Logo du site">
     </a>
   </header>
@@ -38,22 +38,24 @@
         <p class="photographer-infos__location">Localisation</p>
         <p class="photographer-infos__tagline">Citation</p>
       </div>
-      <button class="contact-button">Contactez-moi</button>
+      <button class="contact-button" aria-label="Ouverture de la modale de contact" tabindex="0">Contactez-moi</button>
       <img class="photographer-header__picture" src="./src/Assets/Photographers/account.png" alt="Photographer">
     </section>
 
     <div class="media-sorter">
       <span class="media-sorter__label">Trier par</span>
-      <div class="media-sorter__selector-container">
-        <i class="fa-solid fa-chevron-down media-sorter__chevron"></i>
-        <button data-value="popularité" class="media-sorter__sort-button media-sorter__sort-button--active">
+      <div class="media-sorter__selector-container" aria-label="Tri des médias" role="button" aria-expanded="false"
+        tabindex="0">
+        <i class="fa-solid fa-chevron-down media-sorter__chevron" aria-hidden="true"></i>
+        <button data-value="popularité" class="media-sorter__sort-button media-sorter__sort-button--active"
+          aria-hidden="false">
           Popularité
         </button>
         <div class="media-sorter__dropdown-menu">
           <ul class="media-sorter__dropdown-menu__list">
-            <li data-value="popularité" class="media-sorter__dropdown-menu__list-item">Popularité</li>
-            <li data-value="date" class="media-sorter__dropdown-menu__list-item">Date</li>
-            <li data-value="titre" class="media-sorter__dropdown-menu__list-item">Titre</li>
+            <li data-value="popularité" class="media-sorter__dropdown-menu__list-item" tabindex="100">Popularité</li>
+            <li data-value="date" class="media-sorter__dropdown-menu__list-item" tabindex="100">Date</li>
+            <li data-value="titre" class="media-sorter__dropdown-menu__list-item" tabindex="100">Titre</li>
           </ul>
         </div>
       </div>
@@ -62,12 +64,12 @@
     <section class="media-section media-section--first-loading">
       <div class="media-card">
         <img data-value="456127" src="./src/Assets/Media/Thumbnails/Animals_Majesty.jpg" alt="Titre du media"
-          class="media-card__picture">
+          class="media-card__picture" tabindex="0">
         <div class="media-card__infos">
           <h2 class="media-card__title">Titre</h2>
           <div class="media-card__like-container">
             <p class="media-card__like-count">10</p>
-            <i class="media-card__like-icon fa-solid fa-heart"></i>
+            <i class="media-card__like-icon fa-solid fa-heart" aria-label="Aimer le média [TITRE]" tabindex="0"></i>
           </div>
         </div>
       </div>
@@ -81,39 +83,40 @@
       aria-describedby="contact-modal__title">
       <header class="contact-modal__header">
         <h2 class="contact-modal__title" id="contact-modal__title">Contactez-moi <br> Mimi Keel</h2>
-        <i class="fa-solid fa-xmark contact-modal__close-icon" tabindex="100"></i>
+        <i class="fa-solid fa-xmark contact-modal__close-icon" aria-label="Fermer la modale de contact"
+          tabindex="200"></i>
       </header>
       <form class="form">
         <div class="form__data">
           <label class="form__label" for="first">Prénom</label>
           <input class="form__input" type="text" id="first" name="first" aria-required='true' aria-invalid='false'
-            tabindex="100">
-          <span class="form__error-message"></span>
+            aria-labelledby="first-error-message" tabindex="200">
+          <span class="form__error-message" id="first-error-message" role="alert"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="last">Nom</label>
           <input class="form__input" type="text" id="last" name="last" aria-required='true' aria-invalid='false'
-            tabindex="100">
-          <span class="form__error-message"></span>
+            aria-labelledby="last-error-message" tabindex="200">
+          <span class="form__error-message" id="last-error-message" role="alert"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="email">Email</label>
           <input class="form__input" type="text" id="email" name="email" aria-required='true' aria-invalid='false'
-            tabindex="100">
-          <span class="form__error-message"></span>
+            aria-labelledby="email-error-message" tabindex="200">
+          <span class="form__error-message" id="email-error-message" role="alert"></span>
         </div>
         <div class="form__data">
           <label class="form__label" for="message">Votre message</label>
           <textarea class="form__input form__input--large" id="message" name="message" aria-required='true'
-            aria-invalid='false' tabindex="100"></textarea>
-          <span class="form__error-message"></span>
+            aria-labelledby="message-error-message" aria-invalid='false' tabindex="200"></textarea>
+          <span class="form__error-message" id="message-error-message" role="alert"></span>
         </div>
-        <button class="submit-button" tabindex="100">Envoyer</button>
+        <button class="submit-button" aria-label="Soumettre le formulaire de contact" tabindex="200">Envoyer</button>
       </form>
     </div>
     <div class="form-confirmation" aria-hidden="true" role="dialog">
-      <p class="form-confirmation__text">Merci pour<br>votre message</p>
-      <button class="form-confirmation__close-button" tabindex="100">
+      <p class="form-confirmation__text" tabindex="200">Merci pour<br>votre message</p>
+      <button class="form-confirmation__close-button" aria-label="Fermer la modale de contact" tabindex="200">
         Fermer
       </button>
     </div>
@@ -121,17 +124,17 @@
 
   <div class="lightbox__container" aria-hidden="true">
     <div class="lightbox__overlay"></div>
-    <div class="lightbox" aria-hidden="true" role="dialog" aria-describedby="lightbox__title">
-      <i class="fa-solid fa-xmark lightbox__close-icon"></i>
+    <div class="lightbox" role="dialog" aria-label="Modale d'affichage des médias">
+      <i class="fa-solid fa-xmark lightbox__close-icon" aria-label="Fermer la modale d'affichage" tabindex="300"></i>
       <div class="lightbox__media-selector">
-        <i class="fa-solid fa-chevron-left lightbox__previous-button"></i>
+        <i class="fa-solid fa-chevron-left lightbox__previous-button" aria-label="média précédent" tabindex="300"></i>
         <div class="lightbox__media-container">
           <!-- <img src="" alt="Titre de la photo" class="lightbox__media">
           <video src="" controls class="lightbox__media"></video> -->
         </div>
-        <i class="fa-solid fa-chevron-right lightbox__next-button"></i>
+        <i class="fa-solid fa-chevron-right lightbox__next-button" aria-label="média suivant" tabindex="300"></i>
       </div>
-      <p class="lightbox__title" id="lightbox__title">Titre</p>
+      <p class="lightbox__title" id="lightbox__title" tabindex="300">Titre</p>
     </div>
   </div>
 

@@ -2,15 +2,24 @@ import { Media } from '../Models/media.js'
 import {
   ariaHideMainContent,
   currentMediaArray,
+  homepageLinkElmt,
 } from '../Pages/photographer.js'
-import { closeElmt, openElmt } from '../Utils/html-functions.js'
+import {
+  browseTabElmts,
+  closeElmt,
+  elmtIsActive,
+  openElmt,
+} from '../Utils/html-functions.js'
 
 //-------------
 // DOM Elements
 //-------------
 
-const lightboxContainerElmt = document.querySelector(
+export const lightboxContainerElmt = document.querySelector(
   '.lightbox__container'
+) as HTMLDivElement
+export const lightboxModalElmt = document.querySelector(
+  '.lightbox'
 ) as HTMLDivElement
 const lightboxOverlayElmt = document.querySelector(
   '.lightbox__overlay'
@@ -50,7 +59,7 @@ const displayTargetMedia: (targetMedia: Media) => void = (targetMedia) => {
   }
 }
 
-const openLightbox: (e: MouseEvent) => void = (e) => {
+const openLightbox: (e: Event) => void = (e) => {
   e.preventDefault()
   const targetThumbnail = e.target as HTMLImageElement
   const targetId = targetThumbnail.getAttribute('data-value') || ''
@@ -60,6 +69,8 @@ const openLightbox: (e: MouseEvent) => void = (e) => {
 
   openElmt(lightboxContainerElmt)
   ariaHideMainContent(true)
+
+  lightboxNextButtonElmt.focus()
 
   if (targetMedia) {
     displayTargetMedia(targetMedia)
@@ -100,15 +111,16 @@ const browseMedia: (option: 'forward' | 'backward') => void = (option) => {
   }
 }
 
-const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
-  if (
-    !lightboxContainerElmt.classList.contains(
-      lightboxContainerElmt.classList[0] + '--active'
-    )
-  )
-    return
+// Function that close the lightbox modal
+const closeLightboxModal = () => {
+  closeElmt(lightboxContainerElmt)
+  ariaHideMainContent(false)
+  homepageLinkElmt.focus()
+}
 
-  e.preventDefault()
+const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
+  const lightboxTabIndex = 300
+  if (!elmtIsActive(lightboxContainerElmt)) return
 
   switch (e.key) {
     case 'ArrowRight':
@@ -119,6 +131,15 @@ const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
       break
     case 'Escape':
       closeElmt(lightboxContainerElmt)
+      break
+    case 'Tab':
+      e.preventDefault()
+
+      if (e.shiftKey) {
+        browseTabElmts(lightboxContainerElmt, 'backward', lightboxTabIndex)
+      } else {
+        browseTabElmts(lightboxContainerElmt, 'forward', lightboxTabIndex)
+      }
       break
 
     default:
@@ -135,23 +156,36 @@ export const addMediaCardLink = () => {
     '.media-card__picture'
   ) as NodeListOf<HTMLImageElement>
 
-  mediaCardLinkElmt.forEach((image) =>
+  mediaCardLinkElmt.forEach((image) => {
     image.addEventListener('click', (e) => openLightbox(e))
-  )
+    image.addEventListener('keydown', (e) => {
+      e.key === 'Enter' && openLightbox(e)
+    })
+  })
 }
 
 export const lightboxHandler = () => {
   lightboxOverlayElmt.addEventListener('click', () => {
-    closeElmt(lightboxContainerElmt)
-    ariaHideMainContent(false)
+    closeLightboxModal()
   })
   lightboxCloseIconElmt.addEventListener('click', () => {
-    closeElmt(lightboxContainerElmt)
-    ariaHideMainContent(false)
+    closeLightboxModal()
+  })
+  lightboxCloseIconElmt.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return
+    closeLightboxModal()
   })
   lightboxNextButtonElmt.addEventListener('click', () => browseMedia('forward'))
+  lightboxNextButtonElmt.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return
+    browseMedia('forward')
+  })
   lightboxPreviousButtonElmt.addEventListener('click', () =>
     browseMedia('backward')
   )
+  lightboxPreviousButtonElmt.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return
+    browseMedia('backward')
+  })
   document.addEventListener('keydown', (e) => handleKeyboard(e))
 }

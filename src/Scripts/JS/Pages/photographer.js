@@ -8,19 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 // Imports
-import { contactFormHandler } from '../Components/contact-form.js';
+import { contactFormHandler, contactModalContainerElmt, } from '../Components/contact-form.js';
 import { MediaApi, PhotographerApi } from '../Api/api.js';
 import { Photographer } from '../Models/photographer.js';
 import { Media } from '../Models/media.js';
-import { sortButtonElmt, sortMenuHandler } from '../Components/sort-menu.js';
+import { selectorContainerElmt, sortButtonElmt, sortMenuHandler, } from '../Components/sort-menu.js';
 import { MediaCard } from '../Templates/media-card.js';
-import { addMediaCardLink, lightboxHandler } from '../Components/lightbox.js';
+import { addMediaCardLink, lightboxContainerElmt, lightboxHandler, } from '../Components/lightbox.js';
 import { addLikeIconEventListener } from '../Components/media-card.js';
+import { browseTabElmts, elmtIsActive } from '../Utils/html-functions.js';
 // Global variables
 export let currentMediaArray = [];
 let currentPhotographer;
 let firstLoading = true;
 // DOM Elements
+export const homepageLinkElmt = document.querySelector('.header__link');
 const photographerNameElmt = document.querySelector('.photographer-infos__name');
 const photographerLocationElmt = document.querySelector('.photographer-infos__location');
 const photographerTaglineElmt = document.querySelector('.photographer-infos__tagline');
@@ -53,6 +55,7 @@ const getCurrentLikeCount = () => {
 const displayphotographerInfos = () => {
     if (!currentPhotographer)
         return;
+    document.title = `Photographe - ${currentPhotographer.name}`;
     photographerNameElmt.innerText = currentPhotographer.name;
     photographerLocationElmt.innerText = currentPhotographer.location;
     photographerTaglineElmt.innerText = currentPhotographer.tagline;
@@ -127,6 +130,36 @@ export const ariaHideMainContent = (isHidden) => {
         stickyBarElmt.setAttribute('aria-hidden', 'false');
     }
 };
+// Function that handles keyboard events
+const handleKeyboard = (e) => {
+    const bodyTabIndex = 0;
+    const selectorTabIndex = 100;
+    if (elmtIsActive(contactModalContainerElmt) ||
+        elmtIsActive(lightboxContainerElmt))
+        return;
+    switch (e.key) {
+        case 'Enter':
+            // (document.activeElement === contactModalCloseIconElmt) && closeContactModal()
+            break;
+        case 'Tab':
+            e.preventDefault();
+            let currentHtmlElmt = document.body;
+            let currentTabIndex = bodyTabIndex;
+            if (elmtIsActive(selectorContainerElmt)) {
+                currentHtmlElmt = selectorContainerElmt;
+                currentTabIndex = selectorTabIndex;
+            }
+            if (e.shiftKey) {
+                browseTabElmts(currentHtmlElmt, 'backward', currentTabIndex);
+            }
+            else {
+                browseTabElmts(currentHtmlElmt, 'forward', currentTabIndex);
+            }
+            break;
+        default:
+            break;
+    }
+};
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
     contactFormHandler();
     sortMenuHandler();
@@ -137,5 +170,6 @@ const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* (
     displayphotographerInfos();
     displayMediaCards();
     displayStickyBarInfos();
+    document.addEventListener('keydown', (e) => handleKeyboard(e));
 });
 initPhotographerPage();

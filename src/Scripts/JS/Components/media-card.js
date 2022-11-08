@@ -18,7 +18,6 @@ const addLike = (e) => {
             media.toggleIsLiked();
         }
     });
-    //! Ne pas re-display tous les médias, juste changer le nombre de like sur la carte concernée
     displayMediaCards();
     displayStickyBarInfos();
 };
@@ -27,6 +26,10 @@ const addLike = (e) => {
 //----------------
 export const addLikeIconEventListener = () => {
     const mediaCardLikeIconElmt = document.querySelectorAll('.media-card__like-icon');
-    mediaCardLikeIconElmt.forEach((icon) => icon.addEventListener('click', (e) => addLike(e)));
+    mediaCardLikeIconElmt.forEach((icon) => {
+        icon.addEventListener('click', (e) => addLike(e));
+        icon.addEventListener('keydown', (e) => {
+            e.key === 'Enter' && addLike(e);
+        });
+    });
 };
-export const mediaCardHandler = () => { };

@@ -43,15 +43,15 @@
     </section>
 
     <div class="media-sorter">
-      <span class="media-sorter__label">Trier par</span>
-      <div class="media-sorter__selector-container" aria-label="Tri des médias" role="button" aria-expanded="false"
+      <span class="media-sorter__label" id="media-sorter__label">Trier par</span>
+      <div class="media-sorter__selector-container" aria-label="Tri des médias" role="button" aria-expanded="false" aria-haspopup="listbox"
         tabindex="0">
         <i class="fa-solid fa-chevron-down media-sorter__chevron" aria-hidden="true"></i>
         <button data-value="popularité" class="media-sorter__sort-button media-sorter__sort-button--active"
           aria-hidden="false">
           Popularité
         </button>
-        <div class="media-sorter__dropdown-menu">
+        <div class="media-sorter__dropdown-menu" role="listbox" aria-labelledby="media-sorter__label">
           <ul class="media-sorter__dropdown-menu__list">
             <li data-value="popularité" class="media-sorter__dropdown-menu__list-item" tabindex="100">Popularité</li>
             <li data-value="date" class="media-sorter__dropdown-menu__list-item" tabindex="100">Date</li>
@@ -88,27 +88,27 @@
       </header>
       <form class="form">
         <div class="form__data">
-          <label class="form__label" for="first">Prénom</label>
+          <label class="form__label" id="first-label" for="first">Prénom</label>
           <input class="form__input" type="text" id="first" name="first" aria-required='true' aria-invalid='false'
-            aria-labelledby="first-error-message" tabindex="200">
+            aria-labelledby="first-label" tabindex="200">
           <span class="form__error-message" id="first-error-message" role="alert"></span>
         </div>
         <div class="form__data">
-          <label class="form__label" for="last">Nom</label>
+          <label class="form__label" id="last-label" for="last">Nom</label>
           <input class="form__input" type="text" id="last" name="last" aria-required='true' aria-invalid='false'
-            aria-labelledby="last-error-message" tabindex="200">
+            aria-labelledby="last-label" tabindex="200">
           <span class="form__error-message" id="last-error-message" role="alert"></span>
         </div>
         <div class="form__data">
-          <label class="form__label" for="email">Email</label>
+          <label class="form__label" id="email-label" for="email">Email</label>
           <input class="form__input" type="text" id="email" name="email" aria-required='true' aria-invalid='false'
-            aria-labelledby="email-error-message" tabindex="200">
+            aria-labelledby="email-label" tabindex="200">
           <span class="form__error-message" id="email-error-message" role="alert"></span>
         </div>
         <div class="form__data">
-          <label class="form__label" for="message">Votre message</label>
+          <label class="form__label" id="message-label" for="message">Votre message</label>
           <textarea class="form__input form__input--large" id="message" name="message" aria-required='true'
-            aria-labelledby="message-error-message" aria-invalid='false' tabindex="200"></textarea>
+            aria-labelledby="message-label" aria-invalid='false' tabindex="200"></textarea>
           <span class="form__error-message" id="message-error-message" role="alert"></span>
         </div>
         <button class="submit-button" aria-label="Soumettre le formulaire de contact" tabindex="200">Envoyer</button>

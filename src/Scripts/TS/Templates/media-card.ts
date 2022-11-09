@@ -13,7 +13,7 @@ export class MediaCard {
     card.innerHTML =
       `<img data-value="${this._media.id.toString()}" src="${
         this._media.thumbnailSrc
-      }" alt="${this._media.title}" class="media-card__picture" tabindex="0">` +
+      }" alt="Afficher ${this._media.title} en grand" class="media-card__picture" tabindex="0">` +
       `<div class="media-card__infos">` +
       `<h2 class="media-card__title">${this._media.title}</h2>` +
       `<div class="media-card__like-container ${

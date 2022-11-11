@@ -20,7 +20,7 @@ const confirmationModalCloseButtonElmt = document.querySelector('.form-confirmat
 const isInputValid = (key, value) => {
     let validity = false;
     let errorMessage = '';
-    if (value instanceof String) {
+    if (typeof value === 'string') {
         switch (key) {
             case 'first':
                 validity = /[a-z]{2,15}/gi.test(value.toString());

@@ -85,7 +85,7 @@ export class Media {
 
   removeLike() {
     if (this._media.likes > 0) {
-      this._media.likes = this._media.likes + 1
+      this._media.likes = this._media.likes - 1
     }
   }
 

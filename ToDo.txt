@@ -1,3 +1,0 @@
-- Réparer likes
-- Réparer messages d'erreur formulaire
-- Réparer envoi formulaire

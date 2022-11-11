@@ -1,10 +1,10 @@
-import { mediaDataType } from '../Types/types.js'
+import type { MediaDataType } from '../Types/types.js'
 
 export class Media {
-  _media: mediaDataType
+  _media: MediaDataType
   _isLiked: boolean
 
-  constructor(media: mediaDataType) {
+  constructor(media: MediaDataType) {
     this._media = media
     this._isLiked = false
   }
@@ -22,42 +22,44 @@ export class Media {
   }
 
   get type() {
-    if (this._media.hasOwnProperty('image')) {
+    if (this._media.image) {
       return 'picture'
-    } else if (this._media.hasOwnProperty('video')) {
-      return 'video'
-    } else {
-      throw 'Unknonw type format'
     }
+
+    if (this._media.video) {
+      return 'video'
+    }
+
+    throw new Error('Unknonw type format')
   }
 
   get originalSrc() {
     switch (this.type) {
       case 'picture':
-        return `./src/Assets/Media/Originals/Pictures/${this._media.image}`
+        return `./src/Assets/Media/Originals/Pictures/${
+          this._media.image ?? ''
+        }`
       case 'video':
-        return `./src/Assets/Media/Originals/Movies/${this._media.video}`
+        return `./src/Assets/Media/Originals/Movies/${this._media.video ?? ''}`
 
       default:
-        return
+        return ''
     }
   }
 
   get thumbnailSrc() {
     switch (this.type) {
       case 'picture':
-        return `./src/Assets/Media/Thumbnails/${this._media.image?.slice(
-          0,
-          -4
-        )}.jpg`
+        return `./src/Assets/Media/Thumbnails/${
+          this._media.image?.slice(0, -4) ?? ''
+        }.jpg`
       case 'video':
-        return `./src/Assets/Media/Thumbnails/${this._media.video?.slice(
-          0,
-          -4
-        )}.jpg`
+        return `./src/Assets/Media/Thumbnails/${
+          this._media.video?.slice(0, -4) ?? ''
+        }.jpg`
 
       default:
-        return
+        return ''
     }
   }
 
@@ -82,7 +84,9 @@ export class Media {
   }
 
   removeLike() {
-    if (this._media.likes > 0) this._media.likes = this._media.likes - 1
+    if (this._media.likes > 0) {
+      this._media.likes = this._media.likes + 1
+    }
   }
 
   toggleIsLiked() {

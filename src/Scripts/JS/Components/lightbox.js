@@ -15,22 +15,24 @@ const lightboxTitleElmt = document.querySelector('.lightbox__title');
 // Functions
 //----------
 const displayTargetMedia = (targetMedia) => {
+    var _a, _b;
     lightboxTitleElmt.innerText = `${targetMedia.title}`;
     switch (targetMedia.type) {
         case 'picture':
-            lightboxMediaContainerElmt.innerHTML = `<img src="${targetMedia.originalSrc}" alt="${targetMedia.title}" class="lightbox__media" data-value="${targetMedia.id}">`;
+            lightboxMediaContainerElmt.innerHTML = `<img src="${(_a = targetMedia.originalSrc) !== null && _a !== void 0 ? _a : ''}" alt="${targetMedia.title}" class="lightbox__media" data-value="${targetMedia.id}">`;
             break;
         case 'video':
-            lightboxMediaContainerElmt.innerHTML = `<video src="${targetMedia.originalSrc}" controls class="lightbox__media" data-value="${targetMedia.id}">`;
+            lightboxMediaContainerElmt.innerHTML = `<video src="${(_b = targetMedia.originalSrc) !== null && _b !== void 0 ? _b : ''}" controls class="lightbox__media" data-value="${targetMedia.id}">`;
             break;
         default:
-            throw 'Unkowned format type';
+            throw new Error('Unkowned format type');
     }
 };
 const openLightbox = (e) => {
+    var _a;
     e.preventDefault();
     const targetThumbnail = e.target;
-    const targetId = targetThumbnail.getAttribute('data-value') || '';
+    const targetId = (_a = targetThumbnail.getAttribute('data-value')) !== null && _a !== void 0 ? _a : '';
     const targetMedia = currentMediaArray.find((media) => media.id === parseInt(targetId));
     openElmt(lightboxContainerElmt);
     ariaHideMainContent(true);
@@ -40,11 +42,13 @@ const openLightbox = (e) => {
     }
 };
 const browseMedia = (option) => {
+    var _a;
     const currentDisplayedMedia = document.querySelector('.lightbox__media');
-    const currentId = parseInt(currentDisplayedMedia.getAttribute('data-value') || '');
+    const currentId = parseInt((_a = currentDisplayedMedia.getAttribute('data-value')) !== null && _a !== void 0 ? _a : '');
     const currentIndex = currentMediaArray.findIndex((media) => media.id === currentId);
-    if (isNaN(currentIndex) || currentIndex === -1)
+    if (isNaN(currentIndex) || currentIndex === -1) {
         return;
+    }
     const nextMedia = currentIndex === currentMediaArray.length - 1
         ? currentMediaArray[0]
         : currentMediaArray[currentIndex + 1];
@@ -59,7 +63,7 @@ const browseMedia = (option) => {
             displayTargetMedia(previousMedia);
             break;
         default:
-            throw 'Unkowned format type';
+            throw new Error('Unkowned format type');
     }
 };
 // Function that close the lightbox modal
@@ -70,8 +74,9 @@ const closeLightboxModal = () => {
 };
 const handleKeyboard = (e) => {
     const lightboxTabIndex = 300;
-    if (!elmtIsActive(lightboxContainerElmt))
+    if (!elmtIsActive(lightboxContainerElmt)) {
         return;
+    }
     switch (e.key) {
         case 'ArrowRight':
             browseMedia('forward');
@@ -101,9 +106,12 @@ const handleKeyboard = (e) => {
 export const addMediaCardLink = () => {
     const mediaCardLinkElmt = document.querySelectorAll('.media-card__picture');
     mediaCardLinkElmt.forEach((image) => {
-        image.addEventListener('click', (e) => openLightbox(e));
+        image.addEventListener('click', (e) => {
+            openLightbox(e);
+        });
         image.addEventListener('keydown', (e) => {
-            e.key === 'Enter' && openLightbox(e);
+            if (e instanceof KeyboardEvent && e.key === 'Enter')
+                openLightbox(e);
         });
     });
 };
@@ -115,21 +123,30 @@ export const lightboxHandler = () => {
         closeLightboxModal();
     });
     lightboxCloseIconElmt.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter')
+        if (e.key !== 'Enter') {
             return;
+        }
         closeLightboxModal();
     });
-    lightboxNextButtonElmt.addEventListener('click', () => browseMedia('forward'));
-    lightboxNextButtonElmt.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter')
-            return;
+    lightboxNextButtonElmt.addEventListener('click', () => {
         browseMedia('forward');
     });
-    lightboxPreviousButtonElmt.addEventListener('click', () => browseMedia('backward'));
-    lightboxPreviousButtonElmt.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter')
+    lightboxNextButtonElmt.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') {
             return;
+        }
+        browseMedia('forward');
+    });
+    lightboxPreviousButtonElmt.addEventListener('click', () => {
         browseMedia('backward');
     });
-    document.addEventListener('keydown', (e) => handleKeyboard(e));
+    lightboxPreviousButtonElmt.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') {
+            return;
+        }
+        browseMedia('backward');
+    });
+    document.addEventListener('keydown', (e) => {
+        handleKeyboard(e);
+    });
 };

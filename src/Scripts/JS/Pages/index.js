@@ -21,7 +21,8 @@ const displayPhotographersCards = (photographersArray) => {
     });
 };
 const initIndexPage = () => __awaiter(void 0, void 0, void 0, function* () {
-    const photographersArray = (yield new PhotographerApi('./src/Data/photographers.json').getPhotographers()) || [];
+    var _a;
+    const photographersArray = (_a = (yield new PhotographerApi('./src/Data/photographers.json').getPhotographers())) !== null && _a !== void 0 ? _a : [];
     displayPhotographersCards(photographersArray);
 });
 initIndexPage();

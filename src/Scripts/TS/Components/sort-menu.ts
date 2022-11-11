@@ -4,19 +4,19 @@ import { closeElmt, elmtIsActive, openElmt } from '../Utils/html-functions.js'
 // DOM Elements
 export const selectorContainerElmt = document.querySelector(
   '.media-sorter__selector-container'
-) as HTMLDivElement
+)! as HTMLDivElement
 export const sortButtonElmt = document.querySelector(
   '.media-sorter__sort-button'
-) as HTMLButtonElement
+)! as HTMLButtonElement
 const dropdownMenuElmt = document.querySelector(
   '.media-sorter__dropdown-menu'
-) as HTMLDivElement
+)! as HTMLDivElement
 const chevronElmt = document.querySelector(
   '.media-sorter__chevron'
-) as HTMLElement
+)! as HTMLElement
 export const listItemElmts = document.querySelectorAll(
   '.media-sorter__dropdown-menu__list-item'
-) as NodeListOf<HTMLLIElement>
+)! as NodeListOf<HTMLLIElement>
 
 // Functions
 const toggleMenu = () => {
@@ -77,7 +77,7 @@ const clickOnSelectorItem = (e: Event) => {
   e.preventDefault()
 
   const currentLiEmlt = e.target as HTMLLIElement
-  const currentInput = currentLiEmlt.getAttribute('data-value') || ''
+  const currentInput = currentLiEmlt.getAttribute('data-value') ?? ''
 
   sortMediaArray(currentInput)
   updateLabelsInput(currentInput)
@@ -88,12 +88,16 @@ const clickOnSelectorItem = (e: Event) => {
 export const sortMenuHandler = () => {
   selectorContainerElmt.addEventListener('click', toggleMenu)
   selectorContainerElmt.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') toggleMenu()
+    if (e.key === 'Enter') {
+      toggleMenu()
+    }
   })
   listItemElmts.forEach((item) => {
-    item.addEventListener('click', (e) => clickOnSelectorItem(e))
+    item.addEventListener('click', (e) => {
+      clickOnSelectorItem(e)
+    })
     item.addEventListener('keydown', (e) => {
-      e.key === 'Enter' && clickOnSelectorItem(e)
+      if (e.key === 'Enter') clickOnSelectorItem(e)
     })
   })
 }

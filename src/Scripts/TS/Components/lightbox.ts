@@ -1,4 +1,4 @@
-import { Media } from '../Models/media.js'
+import type { Media } from '../Models/media.js'
 import {
   ariaHideMainContent,
   currentMediaArray,
@@ -17,28 +17,28 @@ import {
 
 export const lightboxContainerElmt = document.querySelector(
   '.lightbox__container'
-) as HTMLDivElement
+)! as HTMLDivElement
 export const lightboxModalElmt = document.querySelector(
   '.lightbox'
-) as HTMLDivElement
+)! as HTMLDivElement
 const lightboxOverlayElmt = document.querySelector(
   '.lightbox__overlay'
-) as HTMLDivElement
+)! as HTMLDivElement
 const lightboxCloseIconElmt = document.querySelector(
   '.lightbox__close-icon'
-) as HTMLElement
+)! as HTMLElement
 const lightboxPreviousButtonElmt = document.querySelector(
   '.lightbox__previous-button'
-) as HTMLElement
+)! as HTMLElement
 const lightboxNextButtonElmt = document.querySelector(
   '.lightbox__next-button'
-) as HTMLElement
+)! as HTMLElement
 const lightboxMediaContainerElmt = document.querySelector(
   '.lightbox__media-container'
-) as HTMLDivElement
+)! as HTMLDivElement
 const lightboxTitleElmt = document.querySelector(
   '.lightbox__title'
-) as HTMLParagraphElement
+)! as HTMLParagraphElement
 
 //----------
 // Functions
@@ -48,21 +48,27 @@ const displayTargetMedia: (targetMedia: Media) => void = (targetMedia) => {
   lightboxTitleElmt.innerText = `${targetMedia.title}`
   switch (targetMedia.type) {
     case 'picture':
-      lightboxMediaContainerElmt.innerHTML = `<img src="${targetMedia.originalSrc}" alt="${targetMedia.title}" class="lightbox__media" data-value="${targetMedia.id}">`
+      lightboxMediaContainerElmt.innerHTML = `<img src="${
+        targetMedia.originalSrc ?? ''
+      }" alt="${targetMedia.title}" class="lightbox__media" data-value="${
+        targetMedia.id
+      }">`
       break
     case 'video':
-      lightboxMediaContainerElmt.innerHTML = `<video src="${targetMedia.originalSrc}" controls class="lightbox__media" data-value="${targetMedia.id}">`
+      lightboxMediaContainerElmt.innerHTML = `<video src="${
+        targetMedia.originalSrc ?? ''
+      }" controls class="lightbox__media" data-value="${targetMedia.id}">`
       break
 
     default:
-      throw 'Unkowned format type'
+      throw new Error('Unkowned format type')
   }
 }
 
 const openLightbox: (e: Event) => void = (e) => {
   e.preventDefault()
   const targetThumbnail = e.target as HTMLImageElement
-  const targetId = targetThumbnail.getAttribute('data-value') || ''
+  const targetId = targetThumbnail.getAttribute('data-value') ?? ''
   const targetMedia = currentMediaArray.find(
     (media) => media.id === parseInt(targetId)
   )
@@ -78,16 +84,16 @@ const openLightbox: (e: Event) => void = (e) => {
 }
 
 const browseMedia: (option: 'forward' | 'backward') => void = (option) => {
-  const currentDisplayedMedia = document.querySelector('.lightbox__media') as
-    | HTMLImageElement
-    | HTMLVideoElement
+  const currentDisplayedMedia = document.querySelector('.lightbox__media')!
   const currentId = parseInt(
-    currentDisplayedMedia.getAttribute('data-value') || ''
+    currentDisplayedMedia.getAttribute('data-value') ?? ''
   )
   const currentIndex = currentMediaArray.findIndex(
     (media) => media.id === currentId
   )
-  if (isNaN(currentIndex) || currentIndex === -1) return
+  if (isNaN(currentIndex) || currentIndex === -1) {
+    return
+  }
 
   const nextMedia =
     currentIndex === currentMediaArray.length - 1
@@ -107,7 +113,7 @@ const browseMedia: (option: 'forward' | 'backward') => void = (option) => {
       break
 
     default:
-      throw 'Unkowned format type'
+      throw new Error('Unkowned format type')
   }
 }
 
@@ -120,7 +126,9 @@ const closeLightboxModal = () => {
 
 const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
   const lightboxTabIndex = 300
-  if (!elmtIsActive(lightboxContainerElmt)) return
+  if (!elmtIsActive(lightboxContainerElmt)) {
+    return
+  }
 
   switch (e.key) {
     case 'ArrowRight':
@@ -140,6 +148,7 @@ const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
       } else {
         browseTabElmts(lightboxContainerElmt, 'forward', lightboxTabIndex)
       }
+
       break
 
     default:
@@ -152,14 +161,14 @@ const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
 //----------------
 
 export const addMediaCardLink = () => {
-  const mediaCardLinkElmt = document.querySelectorAll(
-    '.media-card__picture'
-  ) as NodeListOf<HTMLImageElement>
+  const mediaCardLinkElmt = document.querySelectorAll('.media-card__picture')
 
   mediaCardLinkElmt.forEach((image) => {
-    image.addEventListener('click', (e) => openLightbox(e))
+    image.addEventListener('click', (e) => {
+      openLightbox(e)
+    })
     image.addEventListener('keydown', (e) => {
-      e.key === 'Enter' && openLightbox(e)
+      if (e instanceof KeyboardEvent && e.key === 'Enter') openLightbox(e)
     })
   })
 }
@@ -172,20 +181,33 @@ export const lightboxHandler = () => {
     closeLightboxModal()
   })
   lightboxCloseIconElmt.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter') return
+    if (e.key !== 'Enter') {
+      return
+    }
+
     closeLightboxModal()
   })
-  lightboxNextButtonElmt.addEventListener('click', () => browseMedia('forward'))
-  lightboxNextButtonElmt.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter') return
+  lightboxNextButtonElmt.addEventListener('click', () => {
     browseMedia('forward')
   })
-  lightboxPreviousButtonElmt.addEventListener('click', () =>
-    browseMedia('backward')
-  )
-  lightboxPreviousButtonElmt.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter') return
+  lightboxNextButtonElmt.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') {
+      return
+    }
+
+    browseMedia('forward')
+  })
+  lightboxPreviousButtonElmt.addEventListener('click', () => {
     browseMedia('backward')
   })
-  document.addEventListener('keydown', (e) => handleKeyboard(e))
+  lightboxPreviousButtonElmt.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') {
+      return
+    }
+
+    browseMedia('backward')
+  })
+  document.addEventListener('keydown', (e) => {
+    handleKeyboard(e)
+  })
 }

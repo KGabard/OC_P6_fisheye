@@ -36,25 +36,26 @@ const mainSectionElmt = document.querySelector('.main-section');
 const stickyBarElmt = document.querySelector('.sticky-bar');
 // Functions
 const getCurrentPhotographer = () => __awaiter(void 0, void 0, void 0, function* () {
-    const currentId = new URLSearchParams(window.location.search).get('id') || '';
+    var _a;
+    const currentId = (_a = new URLSearchParams(window.location.search).get('id')) !== null && _a !== void 0 ? _a : '';
     const currentPhotographerData = yield new PhotographerApi('./src/Data/photographers.json').getCurrentPhotographer(currentId);
     return currentPhotographerData
         ? new Photographer(currentPhotographerData)
-        : null;
+        : undefined;
 });
 const getCurrentMedia = () => __awaiter(void 0, void 0, void 0, function* () {
-    const currentId = new URLSearchParams(window.location.search).get('id') || '';
+    var _b;
+    const currentId = (_b = new URLSearchParams(window.location.search).get('id')) !== null && _b !== void 0 ? _b : '';
     const currentMediaData = yield new MediaApi('./src/Data/photographers.json').getCurrentMedia(currentId);
     return currentMediaData
         ? currentMediaData.map((media) => new Media(media))
-        : null;
+        : undefined;
 });
-const getCurrentLikeCount = () => {
-    return currentMediaArray.reduce((totalLikes, media) => totalLikes + media.likes, 0);
-};
+const getCurrentLikeCount = () => currentMediaArray.reduce((totalLikes, media) => totalLikes + media.likes, 0);
 const displayphotographerInfos = () => {
-    if (!currentPhotographer)
+    if (!currentPhotographer) {
         return;
+    }
     document.title = `Photographe - ${currentPhotographer.name}`;
     photographerNameElmt.innerText = currentPhotographer.name;
     photographerLocationElmt.innerText = currentPhotographer.location;
@@ -71,18 +72,17 @@ export const displayMediaCards = () => {
     });
     addMediaCardLink();
     addLikeIconEventListener();
-    !firstLoading &&
+    if (!firstLoading)
         mediaSectionElmt.classList.remove('media-section--first-loading');
     firstLoading = false;
 };
 export const displayStickyBarInfos = () => {
     likeCountElmt.innerText = getCurrentLikeCount().toString();
-    if (currentPhotographer)
+    if (currentPhotographer) {
         likePriceElmt.innerText = currentPhotographer.price;
+    }
 };
-const likesComparator = (a, b) => {
-    return b.likes - a.likes;
-};
+const likesComparator = (a, b) => b.likes - a.likes;
 const datesComparator = (a, b) => {
     const aDate = a.date.split('-');
     const bDate = b.date.split('-');
@@ -92,17 +92,18 @@ const datesComparator = (a, b) => {
     const bMonth = parseInt(bDate[1]);
     const aDay = parseInt(aDate[2]);
     const bDay = parseInt(bDate[2]);
-    if (aYear !== bYear)
+    if (aYear !== bYear) {
         return bYear - aYear;
-    if (aMonth !== bMonth)
+    }
+    if (aMonth !== bMonth) {
         return bMonth - aMonth;
-    if (aDay !== bDay)
+    }
+    if (aDay !== bDay) {
         return bDay - aDay;
+    }
     return 0;
 };
-const titlesComparator = (a, b) => {
-    return a.title.localeCompare(b.title);
-};
+const titlesComparator = (a, b) => a.title.localeCompare(b.title);
 export const sortMediaArray = (type) => {
     switch (type) {
         case 'popularité':
@@ -135,16 +136,14 @@ const handleKeyboard = (e) => {
     const bodyTabIndex = 0;
     const selectorTabIndex = 100;
     if (elmtIsActive(contactModalContainerElmt) ||
-        elmtIsActive(lightboxContainerElmt))
+        elmtIsActive(lightboxContainerElmt)) {
         return;
+    }
+    let currentHtmlElmt = document.body;
+    let currentTabIndex = bodyTabIndex;
     switch (e.key) {
-        case 'Enter':
-            // (document.activeElement === contactModalCloseIconElmt) && closeContactModal()
-            break;
         case 'Tab':
             e.preventDefault();
-            let currentHtmlElmt = document.body;
-            let currentTabIndex = bodyTabIndex;
             if (elmtIsActive(selectorContainerElmt)) {
                 currentHtmlElmt = selectorContainerElmt;
                 currentTabIndex = selectorTabIndex;
@@ -161,15 +160,18 @@ const handleKeyboard = (e) => {
     }
 };
 const initPhotographerPage = () => __awaiter(void 0, void 0, void 0, function* () {
+    var _c, _d;
     contactFormHandler();
     sortMenuHandler();
     lightboxHandler();
     currentPhotographer = yield getCurrentPhotographer();
-    currentMediaArray = (yield getCurrentMedia()) || [];
-    sortMediaArray(sortButtonElmt.getAttribute('data-value') || '');
+    currentMediaArray = (_c = (yield getCurrentMedia())) !== null && _c !== void 0 ? _c : [];
+    sortMediaArray((_d = sortButtonElmt.getAttribute('data-value')) !== null && _d !== void 0 ? _d : '');
     displayphotographerInfos();
     displayMediaCards();
     displayStickyBarInfos();
-    document.addEventListener('keydown', (e) => handleKeyboard(e));
+    document.addEventListener('keydown', (e) => {
+        handleKeyboard(e);
+    });
 });
 initPhotographerPage();

@@ -1,4 +1,4 @@
-import { fullDataType } from '../Types/types.js'
+import type { FullDataType } from '../Types/types.js'
 
 class Api {
   _url: string
@@ -7,46 +7,48 @@ class Api {
     this._url = url
   }
 
-  async getData(): Promise<fullDataType | undefined> {
+  async getData(): Promise<FullDataType | undefined> {
     try {
       const res = await fetch(this._url)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const data = await res.json()
 
       if (!res.ok) {
-        Promise.reject('Error in 4xx or 5xx range')
+        Promise.reject(new Error('Error in 4xx or 5xx range'))
         return
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return data
-    } catch (error) {
+    } catch (error: unknown) {
       console.log(error)
     }
   }
 }
 
 export class PhotographerApi extends Api {
-  constructor(_url: string) {
-    super(_url)
-  }
-
   async getPhotographers() {
     const fullData = await this.getData()
-    if (!fullData) return
+    if (!fullData) {
+      return
+    }
+
     return fullData.photographers
   }
 
   async getCurrentPhotographer(currentId: string) {
     const photographers = await this.getPhotographers()
-    if (!photographers) return
-    return photographers.find(photographer => photographer.id.toString() === currentId)
+    if (!photographers) {
+      return
+    }
+
+    return photographers.find(
+      (photographer) => photographer.id.toString() === currentId
+    )
   }
 }
 
 export class MediaApi extends Api {
-  constructor(url: string) {
-    super(url)
-  }
-
   async getAllMedia() {
     const fullData = await this.getData()
     return fullData ? fullData.media : undefined
@@ -54,6 +56,10 @@ export class MediaApi extends Api {
 
   async getCurrentMedia(currentId: string) {
     const mediaArray = await this.getAllMedia()
-    return mediaArray ? mediaArray.filter(media => media.photographerId.toString() === currentId) : undefined
+    return mediaArray
+      ? mediaArray.filter(
+          (media) => media.photographerId.toString() === currentId
+        )
+      : undefined
   }
 }

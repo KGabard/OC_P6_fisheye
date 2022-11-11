@@ -1,9 +1,9 @@
-import { photographerDataType } from '../Types/types.js'
+import type { PhotographerDataType } from '../Types/types.js'
 
 export class Photographer {
-  _photographer: photographerDataType
+  _photographer: PhotographerDataType
 
-  constructor(photographer: photographerDataType) {
+  constructor(photographer: PhotographerDataType) {
     this._photographer = photographer
   }
 

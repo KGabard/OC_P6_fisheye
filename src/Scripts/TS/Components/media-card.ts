@@ -16,14 +16,22 @@ const addLike: (e: Event) => void = (e) => {
   e.preventDefault()
 
   const targetLikeIconElmt = e.target as HTMLElement
-  const targetMediaElmt = targetLikeIconElmt
-    .closest('.media-card')
-    ?.querySelector('.media-card__picture') as HTMLImageElement
-  const targetId = parseInt(targetMediaElmt.getAttribute('data-value') || '')
+  const targetMediaCardElmt = targetLikeIconElmt.closest(
+    '.media-card'
+  )! as HTMLDivElement
+  const targetMediaElmt = targetMediaCardElmt.querySelector(
+    '.media-card__picture'
+  )! as HTMLImageElement
+  const targetId = parseInt(targetMediaElmt.getAttribute('data-value') ?? '')
 
-  currentMediaArray.map((media) => {
+  currentMediaArray.forEach((media) => {
     if (media.id === targetId) {
-      media.isLiked ? media.removeLike() : media.addLike()
+      if (media.isLiked) {
+        media.removeLike()
+      } else {
+        media.addLike()
+      }
+
       media.toggleIsLiked()
     }
   })
@@ -39,12 +47,14 @@ const addLike: (e: Event) => void = (e) => {
 export const addLikeIconEventListener = () => {
   const mediaCardLikeIconElmt = document.querySelectorAll(
     '.media-card__like-icon'
-  ) as NodeListOf<HTMLElement>
+  )
 
   mediaCardLikeIconElmt.forEach((icon) => {
-    icon.addEventListener('click', (e) => addLike(e))
+    icon.addEventListener('click', (e) => {
+      addLike(e)
+    })
     icon.addEventListener('keydown', (e) => {
-      e.key === 'Enter' && addLike(e)
+      if (e instanceof KeyboardEvent && e.key === 'Enter') addLike(e)
     })
   })
 }

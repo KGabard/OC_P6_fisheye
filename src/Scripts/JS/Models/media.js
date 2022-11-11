@@ -13,35 +13,34 @@ export class Media {
         return this._media.title;
     }
     get type() {
-        if (this._media.hasOwnProperty('image')) {
+        if (this._media.image) {
             return 'picture';
         }
-        else if (this._media.hasOwnProperty('video')) {
+        if (this._media.video) {
             return 'video';
         }
-        else {
-            throw 'Unknonw type format';
-        }
+        throw new Error('Unknonw type format');
     }
     get originalSrc() {
-        switch (this.type) {
-            case 'picture':
-                return `./src/Assets/Media/Originals/Pictures/${this._media.image}`;
-            case 'video':
-                return `./src/Assets/Media/Originals/Movies/${this._media.video}`;
-            default:
-                return;
-        }
-    }
-    get thumbnailSrc() {
         var _a, _b;
         switch (this.type) {
             case 'picture':
-                return `./src/Assets/Media/Thumbnails/${(_a = this._media.image) === null || _a === void 0 ? void 0 : _a.slice(0, -4)}.jpg`;
+                return `./src/Assets/Media/Originals/Pictures/${(_a = this._media.image) !== null && _a !== void 0 ? _a : ''}`;
             case 'video':
-                return `./src/Assets/Media/Thumbnails/${(_b = this._media.video) === null || _b === void 0 ? void 0 : _b.slice(0, -4)}.jpg`;
+                return `./src/Assets/Media/Originals/Movies/${(_b = this._media.video) !== null && _b !== void 0 ? _b : ''}`;
             default:
-                return;
+                return '';
+        }
+    }
+    get thumbnailSrc() {
+        var _a, _b, _c, _d;
+        switch (this.type) {
+            case 'picture':
+                return `./src/Assets/Media/Thumbnails/${(_b = (_a = this._media.image) === null || _a === void 0 ? void 0 : _a.slice(0, -4)) !== null && _b !== void 0 ? _b : ''}.jpg`;
+            case 'video':
+                return `./src/Assets/Media/Thumbnails/${(_d = (_c = this._media.video) === null || _c === void 0 ? void 0 : _c.slice(0, -4)) !== null && _d !== void 0 ? _d : ''}.jpg`;
+            default:
+                return '';
         }
     }
     get likes() {
@@ -60,8 +59,9 @@ export class Media {
         this._media.likes = this._media.likes + 1;
     }
     removeLike() {
-        if (this._media.likes > 0)
-            this._media.likes = this._media.likes - 1;
+        if (this._media.likes > 0) {
+            this._media.likes = this._media.likes + 1;
+        }
     }
     toggleIsLiked() {
         this._isLiked = !this.isLiked;

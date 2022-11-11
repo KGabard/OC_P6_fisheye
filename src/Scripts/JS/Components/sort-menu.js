@@ -51,9 +51,10 @@ export const updateLabelsInput = (currentInput) => {
     }
 };
 const clickOnSelectorItem = (e) => {
+    var _a;
     e.preventDefault();
     const currentLiEmlt = e.target;
-    const currentInput = currentLiEmlt.getAttribute('data-value') || '';
+    const currentInput = (_a = currentLiEmlt.getAttribute('data-value')) !== null && _a !== void 0 ? _a : '';
     sortMediaArray(currentInput);
     updateLabelsInput(currentInput);
     displayMediaCards();
@@ -62,13 +63,17 @@ const clickOnSelectorItem = (e) => {
 export const sortMenuHandler = () => {
     selectorContainerElmt.addEventListener('click', toggleMenu);
     selectorContainerElmt.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter')
+        if (e.key === 'Enter') {
             toggleMenu();
+        }
     });
     listItemElmts.forEach((item) => {
-        item.addEventListener('click', (e) => clickOnSelectorItem(e));
+        item.addEventListener('click', (e) => {
+            clickOnSelectorItem(e);
+        });
         item.addEventListener('keydown', (e) => {
-            e.key === 'Enter' && clickOnSelectorItem(e);
+            if (e.key === 'Enter')
+                clickOnSelectorItem(e);
         });
     });
 };

@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["xo"],
+  "overrides": [
+    {
+      "extends": ["xo-typescript", "prettier"],
+      "plugins": ["prettier"],
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unnecessary-type-assertion": "off",
+        "no-useless-escape": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "operator-assignment": "off",
+        "radix": "off",
+        "prettier/prettier": "error"
+      }
+    }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+  }
+}

@@ -1,2 +1,3 @@
-Accessibilité :
-- Entêtes de page uniques
+- Réparer likes
+- Réparer messages d'erreur formulaire
+- Réparer envoi formulaire

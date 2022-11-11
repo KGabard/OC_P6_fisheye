@@ -15,11 +15,13 @@ class Api {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const res = yield fetch(this._url);
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const data = yield res.json();
                 if (!res.ok) {
-                    Promise.reject('Error in 4xx or 5xx range');
+                    Promise.reject(new Error('Error in 4xx or 5xx range'));
                     return;
                 }
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                 return data;
             }
             catch (error) {
@@ -29,30 +31,26 @@ class Api {
     }
 }
 export class PhotographerApi extends Api {
-    constructor(_url) {
-        super(_url);
-    }
     getPhotographers() {
         return __awaiter(this, void 0, void 0, function* () {
             const fullData = yield this.getData();
-            if (!fullData)
+            if (!fullData) {
                 return;
+            }
             return fullData.photographers;
         });
     }
     getCurrentPhotographer(currentId) {
         return __awaiter(this, void 0, void 0, function* () {
             const photographers = yield this.getPhotographers();
-            if (!photographers)
+            if (!photographers) {
                 return;
-            return photographers.find(photographer => photographer.id.toString() === currentId);
+            }
+            return photographers.find((photographer) => photographer.id.toString() === currentId);
         });
     }
 }
 export class MediaApi extends Api {
-    constructor(url) {
-        super(url);
-    }
     getAllMedia() {
         return __awaiter(this, void 0, void 0, function* () {
             const fullData = yield this.getData();
@@ -62,7 +60,9 @@ export class MediaApi extends Api {
     getCurrentMedia(currentId) {
         return __awaiter(this, void 0, void 0, function* () {
             const mediaArray = yield this.getAllMedia();
-            return mediaArray ? mediaArray.filter(media => media.photographerId.toString() === currentId) : undefined;
+            return mediaArray
+                ? mediaArray.filter((media) => media.photographerId.toString() === currentId)
+                : undefined;
         });
     }
 }

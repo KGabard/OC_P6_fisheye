@@ -1,14 +1,14 @@
 import { PhotographerApi } from '../Api/api.js'
 import { Photographer } from '../Models/photographer.js'
 import { PhotographerCard } from '../Templates/photographer-card.js'
-import { photographerDataType } from '../Types/types.js'
+import type { PhotographerDataType } from '../Types/types.js'
 
 const photographersSectionElmt = document.querySelector(
   '.photographer-section'
-) as HTMLDivElement
+)!
 
 const displayPhotographersCards: (
-  photographersArray: photographerDataType[]
+  photographersArray: PhotographerDataType[]
 ) => void = (photographersArray) => {
   photographersSectionElmt.innerHTML = ''
   photographersArray
@@ -23,7 +23,7 @@ const initIndexPage = async () => {
   const photographersArray =
     (await new PhotographerApi(
       './src/Data/photographers.json'
-    ).getPhotographers()) || []
+    ).getPhotographers()) ?? []
   displayPhotographersCards(photographersArray)
 }
 

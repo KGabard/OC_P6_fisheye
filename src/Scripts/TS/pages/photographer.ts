@@ -22,42 +22,44 @@ import { browseTabElmts, elmtIsActive } from '../Utils/html-functions.js'
 
 // Global variables
 export let currentMediaArray: Media[] = []
-let currentPhotographer: Photographer | null
+let currentPhotographer: Photographer | undefined
 let firstLoading = true
 
 // DOM Elements
 export const homepageLinkElmt = document.querySelector(
   '.header__link'
-) as HTMLAnchorElement
+)! as HTMLAnchorElement
 const photographerNameElmt = document.querySelector(
   '.photographer-infos__name'
-) as HTMLHeadingElement
+)! as HTMLHeadingElement
 const photographerLocationElmt = document.querySelector(
   '.photographer-infos__location'
-) as HTMLParagraphElement
+)! as HTMLParagraphElement
 const photographerTaglineElmt = document.querySelector(
   '.photographer-infos__tagline'
-) as HTMLParagraphElement
+)! as HTMLParagraphElement
 const photographerPictureElmt = document.querySelector(
   '.photographer-header__picture'
-) as HTMLImageElement
+)! as HTMLImageElement
 const contactTitleElmt = document.querySelector(
   '.contact-modal__title'
-) as HTMLHeadingElement
-const mediaSectionElmt = document.querySelector('.media-section') as HTMLElement
+)! as HTMLHeadingElement
+const mediaSectionElmt = document.querySelector(
+  '.media-section'
+)! as HTMLElement
 const likeCountElmt = document.querySelector(
   '.sticky-bar__like-count'
-) as HTMLParagraphElement
+)! as HTMLParagraphElement
 const likePriceElmt = document.querySelector(
   '.sticky-bar__price'
-) as HTMLParagraphElement
-const headerElmt = document.querySelector('.header') as HTMLElement
-const mainSectionElmt = document.querySelector('.main-section') as HTMLElement
-const stickyBarElmt = document.querySelector('.sticky-bar') as HTMLDivElement
+)! as HTMLParagraphElement
+const headerElmt = document.querySelector('.header')! as HTMLElement
+const mainSectionElmt = document.querySelector('.main-section')! as HTMLElement
+const stickyBarElmt = document.querySelector('.sticky-bar')! as HTMLDivElement
 
 // Functions
 const getCurrentPhotographer = async () => {
-  const currentId = new URLSearchParams(window.location.search).get('id') || ''
+  const currentId = new URLSearchParams(window.location.search).get('id') ?? ''
 
   const currentPhotographerData = await new PhotographerApi(
     './src/Data/photographers.json'
@@ -65,11 +67,11 @@ const getCurrentPhotographer = async () => {
 
   return currentPhotographerData
     ? new Photographer(currentPhotographerData)
-    : null
+    : undefined
 }
 
 const getCurrentMedia = async () => {
-  const currentId = new URLSearchParams(window.location.search).get('id') || ''
+  const currentId = new URLSearchParams(window.location.search).get('id') ?? ''
 
   const currentMediaData = await new MediaApi(
     './src/Data/photographers.json'
@@ -77,18 +79,17 @@ const getCurrentMedia = async () => {
 
   return currentMediaData
     ? currentMediaData.map((media) => new Media(media))
-    : null
+    : undefined
 }
 
-const getCurrentLikeCount = () => {
-  return currentMediaArray.reduce(
-    (totalLikes, media) => totalLikes + media.likes,
-    0
-  )
-}
+const getCurrentLikeCount = () =>
+  currentMediaArray.reduce((totalLikes, media) => totalLikes + media.likes, 0)
 
 const displayphotographerInfos = () => {
-  if (!currentPhotographer) return
+  if (!currentPhotographer) {
+    return
+  }
+
   document.title = `Photographe - ${currentPhotographer.name}`
   photographerNameElmt.innerText = currentPhotographer.name
   photographerLocationElmt.innerText = currentPhotographer.location
@@ -106,19 +107,20 @@ export const displayMediaCards = () => {
   })
   addMediaCardLink()
   addLikeIconEventListener()
-  !firstLoading &&
+  if (!firstLoading)
     mediaSectionElmt.classList.remove('media-section--first-loading')
   firstLoading = false
 }
 
 export const displayStickyBarInfos = () => {
   likeCountElmt.innerText = getCurrentLikeCount().toString()
-  if (currentPhotographer) likePriceElmt.innerText = currentPhotographer.price
+  if (currentPhotographer) {
+    likePriceElmt.innerText = currentPhotographer.price
+  }
 }
 
-const likesComparator: (a: Media, b: Media) => number = (a, b) => {
-  return b.likes - a.likes
-}
+const likesComparator: (a: Media, b: Media) => number = (a, b) =>
+  b.likes - a.likes
 
 const datesComparator: (a: Media, b: Media) => number = (a, b) => {
   const aDate = a.date.split('-')
@@ -129,15 +131,23 @@ const datesComparator: (a: Media, b: Media) => number = (a, b) => {
   const bMonth = parseInt(bDate[1])
   const aDay = parseInt(aDate[2])
   const bDay = parseInt(bDate[2])
-  if (aYear !== bYear) return bYear - aYear
-  if (aMonth !== bMonth) return bMonth - aMonth
-  if (aDay !== bDay) return bDay - aDay
+  if (aYear !== bYear) {
+    return bYear - aYear
+  }
+
+  if (aMonth !== bMonth) {
+    return bMonth - aMonth
+  }
+
+  if (aDay !== bDay) {
+    return bDay - aDay
+  }
+
   return 0
 }
 
-const titlesComparator: (a: Media, b: Media) => number = (a, b) => {
-  return a.title.localeCompare(b.title)
-}
+const titlesComparator: (a: Media, b: Media) => number = (a, b) =>
+  a.title.localeCompare(b.title)
 
 export const sortMediaArray: (type: string) => void = (type) => {
   switch (type) {
@@ -175,18 +185,15 @@ const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
   if (
     elmtIsActive(contactModalContainerElmt) ||
     elmtIsActive(lightboxContainerElmt)
-  )
+  ) {
     return
+  }
 
+  let currentHtmlElmt = document.body
+  let currentTabIndex = bodyTabIndex
   switch (e.key) {
-    case 'Enter':
-      // (document.activeElement === contactModalCloseIconElmt) && closeContactModal()
-
-      break
     case 'Tab':
       e.preventDefault()
-      let currentHtmlElmt = document.body
-      let currentTabIndex = bodyTabIndex
       if (elmtIsActive(selectorContainerElmt)) {
         currentHtmlElmt = selectorContainerElmt
         currentTabIndex = selectorTabIndex
@@ -197,6 +204,7 @@ const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
       } else {
         browseTabElmts(currentHtmlElmt, 'forward', currentTabIndex)
       }
+
       break
 
     default:
@@ -209,12 +217,14 @@ const initPhotographerPage = async () => {
   sortMenuHandler()
   lightboxHandler()
   currentPhotographer = await getCurrentPhotographer()
-  currentMediaArray = (await getCurrentMedia()) || []
-  sortMediaArray(sortButtonElmt.getAttribute('data-value') || '')
+  currentMediaArray = (await getCurrentMedia()) ?? []
+  sortMediaArray(sortButtonElmt.getAttribute('data-value') ?? '')
   displayphotographerInfos()
   displayMediaCards()
   displayStickyBarInfos()
-  document.addEventListener('keydown', (e) => handleKeyboard(e))
+  document.addEventListener('keydown', (e) => {
+    handleKeyboard(e)
+  })
 }
 
 initPhotographerPage()

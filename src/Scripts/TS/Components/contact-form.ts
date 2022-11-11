@@ -11,34 +11,34 @@ import {
 // DOM Elements
 //-------------
 
-const contactButtonElmt = document.querySelector(
-  '.contact-button'
-) as HTMLButtonElement
+const contactButtonElmt = document.querySelector('.contact-button')!
 
 export const contactModalContainerElmt = document.querySelector(
   '.contact-modal__container'
-) as HTMLDivElement
+)! as HTMLDivElement
 const contactModalElmt = document.querySelector(
   '.contact-modal'
-) as HTMLDivElement
+)! as HTMLDivElement
 const contactModalOverlayElmt = document.querySelector(
   '.contact-modal__overlay'
-) as HTMLDivElement
+)! as HTMLDivElement
 const contactModalCloseIconElmt = document.querySelector(
   '.contact-modal__close-icon'
-) as HTMLImageElement
+)! as HTMLElement
 const contactModalSubmitButtonElmt = document.querySelector(
   '.submit-button'
-) as HTMLButtonElement
-const contactModalFormElmt = document.querySelector('.form') as HTMLFormElement
+)! as HTMLButtonElement
+const contactModalFormElmt = document.querySelector('.form')! as HTMLFormElement
 
 const confirmationModalElmt = document.querySelector(
   '.form-confirmation'
-) as HTMLDivElement
-const confirmationModalText = document.querySelector('.form-confirmation__text') as HTMLParagraphElement
+)! as HTMLDivElement
+const confirmationModalText = document.querySelector(
+  '.form-confirmation__text'
+)! as HTMLParagraphElement
 const confirmationModalCloseButtonElmt = document.querySelector(
   '.form-confirmation__close-button'
-) as HTMLButtonElement
+)! as HTMLButtonElement
 
 //----------
 // Functions
@@ -49,47 +49,51 @@ const isInputValid: (
   key: string,
   value: FormDataEntryValue
 ) => { validity: boolean; errorMessage: string } = (key, value) => {
-  let validity: boolean
-  let errorMessage: string
-  switch (key) {
-    case 'first':
-      validity = /[a-z]{2,15}/gi.test(value.toString())
-      errorMessage =
-        'Veuillez entrer un prénom contenant entre 2 et 15 caratères.'
-      break
-    case 'last':
-      validity = /[a-z]{2,15}/gi.test(value.toString())
-      errorMessage = 'Veuillez entrer un nom contenant entre 2 et 15 caratères.'
-      break
-    case 'email':
-      validity = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value.toString())
-      errorMessage = 'Veuillez entrer une adresse mail valide.'
-      break
-    case 'message':
-      validity = value.toString().length >= 10 && value.toString().length <= 300
-      errorMessage =
-        'Veuillez entrer un message contenant entre 10 et 300 caratères.'
-      break
+  let validity = false
+  let errorMessage = ''
+  if (value instanceof String) {
+    switch (key) {
+      case 'first':
+        validity = /[a-z]{2,15}/gi.test(value.toString())
+        errorMessage =
+          'Veuillez entrer un prénom contenant entre 2 et 15 caratères.'
+        break
+      case 'last':
+        validity = /[a-z]{2,15}/gi.test(value.toString())
+        errorMessage =
+          'Veuillez entrer un nom contenant entre 2 et 15 caratères.'
+        break
+      case 'email':
+        validity = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value.toString())
+        errorMessage = 'Veuillez entrer une adresse mail valide.'
+        break
+      case 'message':
+        validity =
+          value.toString().length >= 10 && value.toString().length <= 300
+        errorMessage =
+          'Veuillez entrer un message contenant entre 10 et 300 caratères.'
+        break
 
-    default:
-      validity = false
-      errorMessage = ''
-      break
+      default:
+        validity = false
+        errorMessage = ''
+        break
+    }
   }
 
-  return { validity: validity, errorMessage: errorMessage }
+  return { validity, errorMessage }
 }
 
 // Function that logs the form data
 const logFormData: (formData: FormData) => void = (formData) => {
   for (const [key, value] of formData.entries()) {
-    console.log(`${key}: ${value}`)
+    if (value instanceof String) console.log(`${key}: ${value.toString()}`)
   }
 }
 
 // Function that gets all the data from the form, checks their validity and submits the form if everything is valid
 const handleSubmitForm = (event: SubmitEvent) => {
-  let formData = new FormData(contactModalFormElmt)
+  const formData = new FormData(contactModalFormElmt)
   let formValidity = true
 
   event.preventDefault()
@@ -98,18 +102,15 @@ const handleSubmitForm = (event: SubmitEvent) => {
     let currentInputElem: HTMLInputElement | HTMLTextAreaElement
 
     if (key === 'message') {
-      currentInputElem = document.querySelector(
-        `textarea[name=${key}]`
-      ) as HTMLTextAreaElement
+      currentInputElem = document.querySelector(`textarea[name=${key}]`)!
     } else {
-      currentInputElem = document.querySelector(
-        `input[name=${key}]`
-      ) as HTMLInputElement
+      currentInputElem = document.querySelector(`input[name=${key}]`)!
     }
 
-    const currentErrorElem = currentInputElem.parentElement?.querySelector(
+    const currentParentElem = currentInputElem.parentElement! as HTMLElement
+    const currentErrorElem = currentParentElem.querySelector(
       'span[class*="form__error-message"]'
-    ) as HTMLSpanElement
+    )! as HTMLSpanElement
 
     setElmtToWrong(currentInputElem, false)
     closeElmt(currentErrorElem)
@@ -135,29 +136,37 @@ const handleSubmitForm = (event: SubmitEvent) => {
 // Function that handles keyboard events
 const handleKeyboard: (e: KeyboardEvent) => void = (e) => {
   const contactModalTabIndex = 200
-  if (!elmtIsActive(contactModalContainerElmt)) return
+  if (!elmtIsActive(contactModalContainerElmt)) {
+    return
+  }
 
+  let currentActiveModal: HTMLDivElement | undefined
   switch (e.key) {
     case 'Escape':
-      elmtIsActive(contactModalContainerElmt) && closeContactModal()
+      if (elmtIsActive(contactModalContainerElmt)) closeContactModal()
       break
     case 'Enter':
-      (document.activeElement === contactModalCloseIconElmt) && closeContactModal()
+      if (document.activeElement === contactModalCloseIconElmt)
+        closeContactModal()
       break
     case 'Tab':
       e.preventDefault()
-      let currentActiveModal: HTMLDivElement | null = null
-      if (elmtIsActive(contactModalElmt)) currentActiveModal = contactModalElmt
-      if (elmtIsActive(confirmationModalElmt))
-        currentActiveModal = confirmationModalElmt
-
-      if (!currentActiveModal) return
-
-      if (e.shiftKey) {
-        browseTabElmts(currentActiveModal, 'backward', contactModalTabIndex)
-      } else {
-        browseTabElmts(currentActiveModal, 'forward', contactModalTabIndex)
+      if (elmtIsActive(contactModalElmt)) {
+        currentActiveModal = contactModalElmt
       }
+
+      if (elmtIsActive(confirmationModalElmt)) {
+        currentActiveModal = confirmationModalElmt
+      }
+
+      if (currentActiveModal) {
+        if (e.shiftKey) {
+          browseTabElmts(currentActiveModal, 'backward', contactModalTabIndex)
+        } else {
+          browseTabElmts(currentActiveModal, 'forward', contactModalTabIndex)
+        }
+      }
+
       break
 
     default:
@@ -201,5 +210,7 @@ export const contactFormHandler = () => {
   confirmationModalCloseButtonElmt.addEventListener('click', () => {
     closeContactModal()
   })
-  document.addEventListener('keydown', (e) => handleKeyboard(e))
+  document.addEventListener('keydown', (e) => {
+    handleKeyboard(e)
+  })
 }

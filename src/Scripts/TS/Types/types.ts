@@ -1,4 +1,4 @@
-export type photographerDataType = {
+export type PhotographerDataType = {
   name: string
   id: number
   city: string
@@ -8,7 +8,7 @@ export type photographerDataType = {
   portrait: string
 }
 
-export type mediaDataType = {
+export type MediaDataType = {
   id: number
   photographerId: number
   title: string
@@ -19,7 +19,7 @@ export type mediaDataType = {
   price: number
 }
 
-export type fullDataType = {
-  photographers: photographerDataType[]
-  media: mediaDataType[]
+export type FullDataType = {
+  photographers: PhotographerDataType[]
+  media: MediaDataType[]
 }

@@ -1,6 +1,5 @@
-export const elmtIsActive = (elmt: HTMLElement) => {
-  return elmt.classList.contains(elmt.classList[0] + '--active')
-}
+export const elmtIsActive = (elmt: HTMLElement) =>
+  elmt.classList.contains(elmt.classList[0] + '--active')
 
 // Function that removes 'main-class--active' class
 export const closeElmt = (elmt: HTMLElement) => {
@@ -30,25 +29,29 @@ export const browseTabElmts = (
   option: 'forward' | 'backward',
   tabIndex: number
 ) => {
-  const tabElmts = Array.from(
-    elmt.querySelectorAll(
-      `[tabindex = "${tabIndex.toString()}"]`
-    ) as NodeListOf<HTMLElement>
-  )
+  const tabElmts = elmt.querySelectorAll(
+    `[tabindex = "${tabIndex.toString()}"]`
+  ) as NodeListOf<HTMLElement>
+  const arrayTabElmts = Array.from(tabElmts)
 
-  if (tabElmts.length === 0) return
+  if (arrayTabElmts.length === 0) {
+    return
+  }
+
   const currentElmt = document.activeElement
-  let currentIndex = tabElmts.findIndex((elmt) => elmt === currentElmt)
-  if (currentIndex < 0) currentIndex = 0
+  let currentIndex = arrayTabElmts.findIndex((elmt) => elmt === currentElmt)
+  if (currentIndex < 0) {
+    currentIndex = 0
+  }
 
   const nextElmt =
-    currentIndex === tabElmts.length - 1
-      ? tabElmts[0]
-      : tabElmts[currentIndex + 1]
+    currentIndex === arrayTabElmts.length - 1
+      ? arrayTabElmts[0]
+      : arrayTabElmts[currentIndex + 1]
   const previousElmt =
     currentIndex === 0
-      ? tabElmts[tabElmts.length - 1]
-      : tabElmts[currentIndex - 1]
+      ? arrayTabElmts[arrayTabElmts.length - 1]
+      : arrayTabElmts[currentIndex - 1]
 
   switch (option) {
     case 'forward':

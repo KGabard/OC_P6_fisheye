@@ -279,12 +279,17 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.photographer-card__link:hover .photographer-card__name {
+  color: #901c1c;
+  transition: color 300ms ease-out;
+}
 .photographer-card__picture {
   height: 200px;
   width: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
 }
 .photographer-card__name {
   color: #d3573c;

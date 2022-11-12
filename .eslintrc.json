@@ -14,7 +14,7 @@
         "no-useless-escape": "off",
         "@typescript-eslint/no-floating-promises": "off",
         "operator-assignment": "off",
-        "radix": "warn",
+        "radix": "off",
         "prettier/prettier": "error"
       }
     }

@@ -40,7 +40,7 @@ const isInputValid = (key, value) => {
                 validity =
                     value.toString().length >= 10 && value.toString().length <= 300;
                 errorMessage =
-                    'Veuillez entrer un message contenant entre 10 et 300 caratères.';
+                    'Veuillez entrer un message contenant entre 10 et 300 caractères.';
                 break;
             default:
                 validity = false;

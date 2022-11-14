@@ -12,7 +12,7 @@ import { contactFormHandler, contactModalContainerElmt, } from '../Components/co
 import { MediaApi, PhotographerApi } from '../Api/api.js';
 import { Photographer } from '../Models/photographer.js';
 import { Media } from '../Models/media.js';
-import { selectorContainerElmt, sortButtonElmt, sortMenuHandler, } from '../Components/sort-menu.js';
+import { selectorContainerElmt, sortButtonElmt, sortMediaArray, sortMenuHandler, } from '../Components/sort-menu.js';
 import { MediaCard } from '../Templates/media-card.js';
 import { addMediaCardLink, lightboxContainerElmt, lightboxHandler, } from '../Components/lightbox.js';
 import { addLikeIconEventListener } from '../Components/media-card.js';
@@ -80,43 +80,6 @@ export const displayStickyBarInfos = () => {
     likeCountElmt.innerText = getCurrentLikeCount().toString();
     if (currentPhotographer) {
         likePriceElmt.innerText = currentPhotographer.price;
-    }
-};
-const likesComparator = (a, b) => b.likes - a.likes;
-const datesComparator = (a, b) => {
-    const aDate = a.date.split('-');
-    const bDate = b.date.split('-');
-    const aYear = parseInt(aDate[0]);
-    const bYear = parseInt(bDate[0]);
-    const aMonth = parseInt(aDate[1]);
-    const bMonth = parseInt(bDate[1]);
-    const aDay = parseInt(aDate[2]);
-    const bDay = parseInt(bDate[2]);
-    if (aYear !== bYear) {
-        return bYear - aYear;
-    }
-    if (aMonth !== bMonth) {
-        return bMonth - aMonth;
-    }
-    if (aDay !== bDay) {
-        return bDay - aDay;
-    }
-    return 0;
-};
-const titlesComparator = (a, b) => a.title.localeCompare(b.title);
-export const sortMediaArray = (type) => {
-    switch (type) {
-        case 'popularité':
-            currentMediaArray.sort(likesComparator);
-            break;
-        case 'date':
-            currentMediaArray.sort(datesComparator);
-            break;
-        case 'titre':
-            currentMediaArray.sort(titlesComparator);
-            break;
-        default:
-            break;
     }
 };
 export const ariaHideMainContent = (isHidden) => {

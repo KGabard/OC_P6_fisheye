@@ -29,22 +29,16 @@ class Api {
 export class PhotographerApi extends Api {
   async getPhotographers() {
     const fullData = await this.getData()
-    if (!fullData) {
-      return
-    }
-
-    return fullData.photographers
+    return fullData ? fullData.photographers : undefined
   }
 
   async getCurrentPhotographer(currentId: string) {
     const photographers = await this.getPhotographers()
-    if (!photographers) {
-      return
-    }
-
-    return photographers.find(
-      (photographer) => photographer.id.toString() === currentId
-    )
+    return photographers
+      ? photographers.find(
+          (photographer) => photographer.id.toString() === currentId
+        )
+      : undefined
   }
 }
 

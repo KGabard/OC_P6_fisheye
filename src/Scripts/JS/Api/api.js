@@ -34,19 +34,15 @@ export class PhotographerApi extends Api {
     getPhotographers() {
         return __awaiter(this, void 0, void 0, function* () {
             const fullData = yield this.getData();
-            if (!fullData) {
-                return;
-            }
-            return fullData.photographers;
+            return fullData ? fullData.photographers : undefined;
         });
     }
     getCurrentPhotographer(currentId) {
         return __awaiter(this, void 0, void 0, function* () {
             const photographers = yield this.getPhotographers();
-            if (!photographers) {
-                return;
-            }
-            return photographers.find((photographer) => photographer.id.toString() === currentId);
+            return photographers
+                ? photographers.find((photographer) => photographer.id.toString() === currentId)
+                : undefined;
         });
     }
 }

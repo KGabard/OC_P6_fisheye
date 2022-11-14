@@ -1,4 +1,4 @@
-import { displayMediaCards, sortMediaArray } from '../Pages/photographer.js';
+import { currentMediaArray, displayMediaCards } from '../Pages/photographer.js';
 import { closeElmt, elmtIsActive, openElmt } from '../Utils/html-functions.js';
 // DOM Elements
 export const selectorContainerElmt = document.querySelector('.media-sorter__selector-container');
@@ -58,6 +58,43 @@ const clickOnSelectorItem = (e) => {
     sortMediaArray(currentInput);
     updateLabelsInput(currentInput);
     displayMediaCards();
+};
+const likesComparator = (a, b) => b.likes - a.likes;
+const datesComparator = (a, b) => {
+    const aDate = a.date.split('-');
+    const bDate = b.date.split('-');
+    const aYear = parseInt(aDate[0]);
+    const bYear = parseInt(bDate[0]);
+    const aMonth = parseInt(aDate[1]);
+    const bMonth = parseInt(bDate[1]);
+    const aDay = parseInt(aDate[2]);
+    const bDay = parseInt(bDate[2]);
+    if (aYear !== bYear) {
+        return bYear - aYear;
+    }
+    if (aMonth !== bMonth) {
+        return bMonth - aMonth;
+    }
+    if (aDay !== bDay) {
+        return bDay - aDay;
+    }
+    return 0;
+};
+const titlesComparator = (a, b) => a.title.localeCompare(b.title);
+export const sortMediaArray = (type) => {
+    switch (type) {
+        case 'popularité':
+            currentMediaArray.sort(likesComparator);
+            break;
+        case 'date':
+            currentMediaArray.sort(datesComparator);
+            break;
+        case 'titre':
+            currentMediaArray.sort(titlesComparator);
+            break;
+        default:
+            break;
+    }
 };
 // Add Eventlisteners
 export const sortMenuHandler = () => {

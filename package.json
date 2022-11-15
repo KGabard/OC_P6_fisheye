@@ -1,7 +1,7 @@
 {
   "name": "fisheye",
   "version": "1.0.0",
-  "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
+  "description": "FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux. Il est conçus de façon à être accessible au plus grand nombre.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +16,7 @@
     "url": "git+https://github.com/KGabard/OC_P6_fisheye.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "KGabard",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KGabard/OC_P6_fisheye/issues"

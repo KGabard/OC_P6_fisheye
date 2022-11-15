@@ -23,8 +23,8 @@ Outils :
 - Eslint
 
 Tests d'accessibilité :
-- Achecker [lien](https://achecker.achecks.ca/checker/index.php)
-- Screen Reader [lien](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn)
+- Achecker : [lien](https://achecker.achecks.ca/checker/index.php)
+- Screen Reader : [lien](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn)
 
 ## Démo du site
 La démo du site est disponible : [ici](https://kgabard.github.io/OC_P6_fisheye/)
